@@ -274,47 +274,44 @@ print(anova_model)
 
 ```
 
+#Dette er resultatet av en **mixed ANOVA** der du tester:
 
-#Dette er resultatet av en **mixed ANOVA** der du tester:  
+1.  **Hovedeffekten av gruppe** ("stedlig" vs. "digital")\
+2.  **Hovedeffekten av tid** ("pre" vs. "post")\
+3.  **Interaksjonen mellom gruppe og tid** (om gruppene endrer seg forskjellig over tid)
 
-1. **Hovedeffekten av gruppe** ("stedlig" vs. "digital")  
-2. **Hovedeffekten av tid** ("pre" vs. "post")  
-3. **Interaksjonen mellom gruppe og tid** (om gruppene endrer seg forskjellig over tid)  
+### **Tolkning av resultatene:**
 
-### **Tolkning av resultatene:**  
+#### 1️⃣ **Hovedeffekt av gruppe (`gruppe`)**
 
-#### 1️⃣ **Hovedeffekt av gruppe (`gruppe`)**  
-   - **F(1,32) = 0.00, p = 0.993**  
-   - **Tolkning:** Ingen signifikant forskjell mellom gruppene uavhengig av tid (p ≈ 1).  
-   - **Konklusjon:** "Stedlig" og "digital" har omtrent like skårer samlet sett.  
+-   **F(1,32) = 0.00, p = 0.993**\
+-   **Tolkning:** Ingen signifikant forskjell mellom gruppene uavhengig av tid (p ≈ 1).\
+-   **Konklusjon:** "Stedlig" og "digital" har omtrent like skårer samlet sett.
 
-#### 2️⃣ **Hovedeffekt av tid (`tid`)**  
-   - **F(1,32) = 30.77, p < 0.001 (***), ges = 0.167**  
-   - **Tolkning:** En signifikant forbedring fra pre til post-test.  
-   - **Konklusjon:** Deltakerne har generelt forbedret seg fra pre til post, uavhengig av gruppe.  
+#### 2️⃣ **Hovedeffekt av tid (`tid`)**
 
-#### 3️⃣ **Interaksjon mellom gruppe og tid (`gruppe:tid`)**  
-   - **F(1,32) = 0.28, p = 0.599**  
-   - **Tolkning:** Ingen signifikant forskjell i hvordan gruppene endrer seg over tid.  
-   - **Konklusjon:** Begge grupper har forbedret seg omtrent like mye fra pre til post.  
+-   **F(1,32) = 30.77, p \< 0.001 (**\*), ges = 0.167\*\*\
+-   **Tolkning:** En signifikant forbedring fra pre til post-test.\
+-   **Konklusjon:** Deltakerne har generelt forbedret seg fra pre til post, uavhengig av gruppe.
 
-### **Sammendrag:**  
-✅ **Det er en signifikant forbedring fra pre til post for alle deltakere.**  
-❌ **Ingen signifikant forskjell mellom gruppene totalt sett.**  
-❌ **Ingen signifikant forskjell i hvordan gruppene utviklet seg over tid.**  
+#### 3️⃣ **Interaksjon mellom gruppe og tid (`gruppe:tid`)**
 
+-   **F(1,32) = 0.28, p = 0.599**\
+-   **Tolkning:** Ingen signifikant forskjell i hvordan gruppene endrer seg over tid.\
+-   **Konklusjon:** Begge grupper har forbedret seg omtrent like mye fra pre til post.
 
+### **Sammendrag:**
 
+✅ **Det er en signifikant forbedring fra pre til post for alle deltakere.**\
+❌ **Ingen signifikant forskjell mellom gruppene totalt sett.**\
+❌ **Ingen signifikant forskjell i hvordan gruppene utviklet seg over tid.**
 
-
-
-#visualisere interaksjonen mellom tid (pre/post) og gruppe (stedlig/digital) med en linjegraf:
-##Hva ser du i plottet?
-Hvis linjene er parallelt, betyr det at begge gruppene forbedret seg likt.
+#visualisere interaksjonen mellom tid (pre/post) og gruppe (stedlig/digital) med en linjegraf: ##Hva ser du i plottet? Hvis linjene er parallelt, betyr det at begge gruppene forbedret seg likt.
 
 Hvis linjene krysser eller har ulik stigning, kan det være en interaksjon (men i ditt tilfelle er interaksjonen ikke signifikant).
 
 Feilstolpene (error bars) viser hvor mye variasjon det er i dataene.
+
 ```{r}
 library(ggplot2)
 
@@ -329,7 +326,6 @@ print(summary_plot)
 
 
 ```
-
 
 ```{r}
 library(ggplot2)
@@ -364,8 +360,6 @@ ggplot(summary_plot, aes(x = tid, y = mean_score, color = gruppe, group = gruppe
   )
 
 ```
-
-
 
 #Sammenligne pre og post \## dat.wide er nytt datasett som viser endring i de 2 gruppene. Se etter en effektstørrelse
 
@@ -420,9 +414,8 @@ anova(m8, model_null)
 
 ```
 
-
-
 #pre- og post-testdata Keiser for de samme deltakerne, hvor jeg bruker en mixed ANOVA, en paired t-test, og en Wilcoxon sign-rank test for å sammenligne endringer i score innen og mellom gruppene.
+
 ```{r}
 #Filtrerer både pre- og post-testdata og omstrukturerer slik at hver deltaker har én rad per tidspunkt
 
@@ -511,8 +504,6 @@ print(anova_model)
 
 
 ```
-
-
 
 #Endring i styrke 1RM
 

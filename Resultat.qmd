@@ -1,217 +1,631 @@
-# Assignment 3: Drawing inference from statistical models, and statistical power {#assignment3}
+---
+title: "Resultat berg og keiser"
+editor: visual
+---
 
-This assignment is set up as a statistical laboratory, we will perform simulations and your assignment is to interpret and explain the results. Create a report based on the code used in the lab and make sure you answer the specified questions (1-8). You can be as creative as you want and explore the results further. 
+#Laster ned relevante pakker
 
-The report should be handed in on canvas as a link to github repository containing a reproducible `.Rmd` (or `qmd`) file.
+```{r}
+install.packages("openxlsx")
+install.packages("readxl")
+install.packages("gt")
+install.packages("tidyverse")
+install.packages("ggplot2")
+install.packages("broom")
+install.packages("ggtext")
+install.packages("readr")
+install.packages("dplyr")
+install.packages("rio")
+install.packages("rbbt")
+install.packages("tidyr")
+install.packages("rtools")
+install.packages("excidata")
+install.packages("matrix")
+install.packages("lmerTest")
+install.packages("rstatix")
+install.packages("afex")
+install.packages("quarto")
 
-## Setting up a simulation
+install.packages("rmarkdown")
+install.packages("tinytex")
+tinytex::install_tinytex()  # Installerer en lettversjon av LaTeX
 
-In this assignment we will simulate a population of possible values, from this population we will draw random samples, calculate statistics and interpret them. The population of values can be regarded as the possible differences between two treatments in a cross-over study where participants have performed both treatments. The values in the population are calculate as $Treatment - Control$.
+tinytex::tlmgr("--version")  
 
-We will simulate a population of one million numbers with a mean of 1.5 and a standard deviation of 3. We will make two different set of studies, one set with a sample size of 8 and one set with a sample size of 40. In order to be sure you replicate your results, include and run `set.seed()` before simulations in your final script.
+quarto::quarto_render("Resultat.qmd", output_format = "pdf")
 
-We will use the `lm` function to estimate the average value of the population. We do this in an "intercept-only" model. This model can be written as
+(quarto clean)
+quarto render
 
-$$Y_i = \beta_0 + \epsilon_i$$
+```
 
-where $\beta_0$ is the intercept and can be interpreted as the average value of $Y$, our dependent variable. $\epsilon$ is the error term, each observation ($i$) deviates from the intercept to some degree. If the intercept term is positive or negative we can interpret it as a difference between the two treatments (described above). This model is equivalent to a one-sample *t*-test. Let's get started!
+```{r}
+#| include: false
 
-In the code chunk below, we will simulate the population of differences between treatments. We will then draw two random samples corresponding sample sizes of 8 and 40 and save these data in data frames with the dependent variable named `y`. We fit the very simple model `y ~ 1` as a linear model and save the model object as `m1` and `m2`.  
-
-```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
+library(gt)
+library(readxl)
+library(broom)
+library(ggplot2)
+library(readr)
+library(rio)
+library(tidyr)
 
-set.seed(1)
-population <- rnorm(1000000, mean = 1.5, sd = 3)
+library(ggtext)
+library(lme4)
+library(emmeans)
 
 
-samp1 <- data.frame(y = sample(population, 8, replace = FALSE))
 
-samp2 <- data.frame(y = sample(population, 40, replace = FALSE))
+# Laster opp excel filene
 
 
-m1 <- lm(y ~ 1, data = samp1)
-m2 <- lm(y ~ 1, data = samp2)
+komplett_datainnsamling <- read_excel("Filer/Komplett datainnsamling_29.03.25.xlsx")
+View(komplett_datainnsamling)
 
-summary(m1)
+
+
+
+
 
 ```
 
-The results from a simple model can be calculated by hand. The `Estimate` corresponds to the average of all values in the sample, from the smaller sample, `samp1` we can do `mean(samp1$y)`. This average should correspond to `coef(m1)` which should be `r as.numeric(round(coef(m1), 3))`. The variation of the data is most often described with the standard deviation (SD). The SD of `y` in the smaller sample is `sd(samp1$y)` (corresponding to `r round(sd(samp1$y), 3)`). However, the regression table (`summary(m1)`) show you the standard error (SE). This statistic is an attempt to estimate the variation in a hypothetical distribution of means. The standard error is (in this simple case) $SE_y = \frac{SD_y}{\sqrt{n}}$. Calculating by hand using the data in `samp1` we would do `sd(samp1$y)/sqrt(8)`. Amazingly this corresponds to `r round(sd(samp1$y)/sqrt(8), 3)`!
+#Person karakteristika baseline
 
-By using the estimate `r as.numeric(round(coef(m1), 3))` and the corresponding SE (`r round(sd(samp1$y)/sqrt(8), 3)`) we can calculate the *t*-value as the ratio $\frac{Estimate}{SE}$. The *t*-value may in turn be used to determine the are under the curve of a *t*-distribution. The *t*-value from the above calculation is `r as.numeric(coef(m1))/(sd(samp1$y)/sqrt(8))`. Using our single $n=8$ study, we estimate that values of *t*, as extreme or even more extreme as our observed value both above and below 0, would occur in `r round(100 * coef(summary(m1))[1, 4], 1)`% of studies if the null-hypothesis was true. This corresponds to a *p*-value of `r round(coef(summary(m1))[1, 4], 3)`. The figure below shows a graphical representation of a *t*-value distribution under the assumption that the null-hypothesis is true.
+```{r}
+person_baseline <- komplett_datainnsamling%>%
+  select(deltaker, tid, kjonn, alder, kreftform, vekt, hoyde, bmi )%>%
+  filter(tid=="pre")%>%
+  mutate(alder = recode(alder, "unge voksne" = "18-44", "middelalder"="45-59", "eldre voksne" = "60-74", "gamle eldre" ="75-89", "eldste eldre" = "90+"))%>%
+  print()
 
-```{r t-dist-fig, echo = FALSE, fig.cap="A *t*-distribution estimated from model `m1` with the shaded area corresponding to the observed *p*-value."}
-ggplot(data.frame(x = c(-4,4))) +
-  # Plot the pdf
-  stat_function(
-    fun = function(x) dt(x, df = 8),
-    aes(x),
-    geom = "area", color = "grey75", fill = "grey75", alpha = 0.4) +
-  # Shade below -2
-  stat_function(
-    fun = function(x) ifelse(x <= -as.numeric(coef(m1))/(sd(samp1$y)/sqrt(8)), dt(x, df = 8), NA),
-    aes(x),
-    geom = "area", color = NA, fill = "grey40", alpha = 0.7) +
-  # Shade above 2
-  stat_function(
-    fun = function(x) ifelse(x >= as.numeric(coef(m1))/(sd(samp1$y)/sqrt(8)), dt(x, df = 8), NA),
-    aes(x),
-    geom = "area", color = NA, fill = "grey40", alpha = 0.7) +
-  ggtitle("Observed t-value plotted in the null-hypothesis t-distribution") +
-  xlab(expression(italic(t))) +
-  ylab(expression(paste("Density, ", italic(f(t))))) 
+
+
 ```
 
+#Bergs balanse test normalfordeling pre test
 
-> In light of what you know now about the process of conducting a study with a random sample, use your own words and...
->
-> 1. Explain the estimate, SE, *t*-value, and *p*-value from the regression models that we created previously (`m1` and `m2`).
->
-> 2. Discuss what contributes to the different results in the two studies (`m1` and `m2`).
->
-> 3. Why do we use the shaded area in the lower and upper tail of the *t*-distribution (See Figure  \@ref(fig:t-dist-fig)).
+```{r}
+berg_pre <- komplett_datainnsamling%>%
+  select(deltaker,gruppe, tid, s_sum)%>%
+  filter(tid=="pre")%>%
+  group_by(tid, gruppe)%>%
+  drop_na()%>%
+  print()
+  
+  
+
+plot(berg_pre)
+summary(berg_pre)
 
 
-## Many studies
+```
 
-Below we will perform 1000 studies and save the results from each study. This will make it possible for us to get an actual sampling distribution. Copy the code to your own document to run the experiment. 
+#Bergs balanse test normalfordeling post test
+
+```{r}
+berg_post <- komplett_datainnsamling%>%
+  select(deltaker,gruppe, tid, s_sum)%>%
+  filter(tid=="post")%>%
+  group_by(tid, gruppe)%>%
+  drop_na()%>%
+  print()
+
+```
+
+#Sammenligning av stedlig og digital ved pre test
+
+```{r}
+library(dplyr)
+
+berg_pre_summary <- berg_pre %>%
+  group_by(gruppe) %>%
+  summarise(
+    mean_score = mean(s_sum, na.rm = TRUE),
+    sd_score = sd(s_sum, na.rm = TRUE),
+    median_score = median(s_sum, na.rm=TRUE),
+    n = n()
+  )
+
+print(berg_pre_summary)
+
+
+library(ggplot2)
+
+ggplot(berg_pre, aes(x = gruppe, y = s_sum, fill = gruppe)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Sammenligning av score mellom grupper pre test", 
+       x = "Gruppe", 
+       y = "Score (s_sum)")
+
+t_test_result <- t.test(s_sum ~ gruppe, data = berg_pre, var.equal = TRUE) 
+print(t_test_result)
+
+wilcox_test_result <- wilcox.test(s_sum ~ gruppe, data = berg_pre)
+print(wilcox_test_result)
+
+```
+
+#Sammenligning av stedlig og digital ved post test
+
+```{r}
+berg_post_summary <- berg_post %>%
+  group_by(gruppe) %>%
+  summarise(
+    mean_score = mean(s_sum, na.rm = TRUE),
+    sd_score = sd(s_sum, na.rm = TRUE),
+    median_score = median(s_sum, na.rm=TRUE),
+    n = n()
+  )
+
+print(berg_post_summary)
+
+
+library(ggplot2)
+
+ggplot(berg_post, aes(x = gruppe, y = s_sum, fill = gruppe)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Sammenligning av score mellom grupper post test", 
+       x = "Gruppe", 
+       y = "Score (s_sum)")
+
+t_test_result <- t.test(s_sum ~ gruppe, data = berg_post, var.equal = TRUE) 
+print(t_test_result)
+
+wilcox_test_result <- wilcox.test(s_sum ~ gruppe, data = berg_pre)
+print(wilcox_test_result)
+```
+
+#pre- og post-testdata for de samme deltakerne, hvor jeg bruker en mixed ANOVA, en paired t-test, og en Wilcoxon sign-rank test for å sammenligne endringer i score innen og mellom gruppene.
 
 ```{r}
 
-# Create data frames to store the model estimates
-results_8 <- data.frame(estimate = rep(NA, 1000), 
-                      se = rep(NA, 1000), 
-                      pval = rep(NA, 1000), 
-                      n = 8)  
+library(dplyr)
+library(tidyr)
 
-results_40 <- data.frame(estimate = rep(NA, 1000), 
-                      se = rep(NA, 1000), 
-                      pval = rep(NA, 1000), 
-                      n = 40)
+#Filtrerer både pre- og post-testdata og omstrukturerer slik at hver deltaker har én rad per tidspunkt
 
-# A for loop used to sample 1000 studies, each iteration (i) will draw a new sample
-# from the population. 
+# Hente pre- og post-test data
+berg_prepost <- komplett_datainnsamling %>%
+  select(deltaker, gruppe, tid, s_sum) %>%
+  filter(tid %in% c("pre", "post")) %>%
+  drop_na()
 
-for(i in 1:1000) {
-  
-  # Draw a sample 
-  samp1 <- data.frame(y = sample(population, 8, replace = FALSE))
-  samp2 <- data.frame(y = sample(population, 40, replace = FALSE))
+# Sjekk datastrukturen
+print(head(berg_prepost))
 
-  # Model the data
-  m1 <- lm(y ~ 1, data = samp1)
-  m2 <- lm(y ~ 1, data = samp2)
-  
-  # Extract values from the models
-  results_8[i, 1] <- coef(summary(m1))[1, 1]
-  results_8[i, 2] <- coef(summary(m1))[1, 2]
-  results_8[i, 3] <- coef(summary(m1))[1, 4]
+#Gjennomsnittlig endring pr gruppe fra pre til post
+summary_table <- berg_prepost %>%
+  group_by(gruppe, tid) %>%
+  summarise(
+    mean_score = mean(s_sum, na.rm = TRUE),
+    sd_score = sd(s_sum, na.rm = TRUE),
+    n = n()
+  ) 
 
-  results_40[i, 1] <- coef(summary(m2))[1, 1]
-  results_40[i, 2] <- coef(summary(m2))[1, 2]
-  results_40[i, 3] <- coef(summary(m2))[1, 4]
-  
-  
-}
+print(summary_table)
 
 
-# Save the results in a combined data frame
+#Visuell endring fra pre til post
+library(ggplot2)
 
-results <- bind_rows(results_8, results_40)
+ggplot(berg_prepost, aes(x = tid, y = s_sum, color = gruppe, group = interaction(gruppe, deltaker))) +
+  geom_line(alpha = 0.5) +  # Linjer for individuelle deltakere
+  geom_point() +  # Punkter for pre og post
+  stat_summary(fun = mean, geom = "line", aes(group = gruppe), size = 1.2) +  # Linjer for gruppenes gjennomsnitt
+  theme_minimal() +
+  labs(title = "Endring i score fra pre til post", x = "Tidspunkt", y = "Score (s_sum)")
+
+
+
+#sjekke om hver gruppe forbedret seg signifikant fra pre til post, kan du bruke en paired t-test (dersom normalfordelt) eller Wilcoxon sign-rank test
+pre_post_wide <- berg_prepost %>%
+  pivot_wider(names_from = tid, values_from = s_sum)
+
+t_test_stedlig <- t.test(pre_post_wide$pre[pre_post_wide$gruppe == "stedlig"], 
+                         pre_post_wide$post[pre_post_wide$gruppe == "stedlig"], 
+                         paired = TRUE)
+
+t_test_digital <- t.test(pre_post_wide$pre[pre_post_wide$gruppe == "digital"], 
+                         pre_post_wide$post[pre_post_wide$gruppe == "digital"], 
+                         paired = TRUE)
+
+print(t_test_stedlig)
+
+print(t_test_digital)
+
+
+
+
+wilcox_stedlig <- wilcox.test(pre_post_wide$pre[pre_post_wide$gruppe == "stedlig"], 
+                              pre_post_wide$post[pre_post_wide$gruppe == "stedlig"], 
+                              paired = TRUE)
+
+wilcox_digital <- wilcox.test(pre_post_wide$pre[pre_post_wide$gruppe == "digital"], 
+                              pre_post_wide$post[pre_post_wide$gruppe == "digital"], 
+                              paired = TRUE)
+
+print(wilcox_stedlig)
+print(wilcox_digital)
+
+
+
+#Mixed ANOVA (hvis du vil se interaksjonseffekt mellom tid og gruppe)
+#Dersom du vil teste om endringen over tid er forskjellig mellom gruppene, er en mixed ANOVA en god løsning.
+
+
+library(rstatix)
+library(afex)
+
+# ANOVA-modell
+anova_model <- aov_ez(id = "deltaker", 
+                      dv = "s_sum", 
+                      within = "tid", 
+                      between = "gruppe", 
+                      data = berg_prepost)
+
+print(anova_model)
+
+
+
+
 
 ```
 
 
-> Using the `results` data frame...
->
-> 4. Calculate the standard deviation of the `estimate` variable, and the average of the `se` variable for each of the study sample sizes (8 and 40). Explain why these numbers are very similar. How can you define the Standard Error (SE) in light of these calculations?
->
-> 5. Create a histogram (see example code below) of the *p*-values from each study sample-size. How do you interpret these histograms, what do they tell you about the effect of sample size on statistical power?
->
-> 6. Calculate the number of studies from each sample size that declare a statistical significant effect (specify a threshold for $\alpha$, your significance level).
->
-> 7. Using the `pwr` package, calculate the power of a one-sample t-test, with a effect size of `1.5/3`, your specified significance level and sample sizes 8 and 40. Explain the results in the light of your simulations.  
-  
+#Dette er resultatet av en **mixed ANOVA** der du tester:  
 
-```{r, eval = FALSE}
-# Example code for copy and paste
+1. **Hovedeffekten av gruppe** ("stedlig" vs. "digital")  
+2. **Hovedeffekten av tid** ("pre" vs. "post")  
+3. **Interaksjonen mellom gruppe og tid** (om gruppene endrer seg forskjellig over tid)  
 
-# A two facets histogram can be created with ggplot2
-results %>%
-  ggplot(aes(pval)) + 
-  geom_histogram() +
-  facet_wrap(~ n)
+### **Tolkning av resultatene:**  
+
+#### 1️⃣ **Hovedeffekt av gruppe (`gruppe`)**  
+   - **F(1,32) = 0.00, p = 0.993**  
+   - **Tolkning:** Ingen signifikant forskjell mellom gruppene uavhengig av tid (p ≈ 1).  
+   - **Konklusjon:** "Stedlig" og "digital" har omtrent like skårer samlet sett.  
+
+#### 2️⃣ **Hovedeffekt av tid (`tid`)**  
+   - **F(1,32) = 30.77, p < 0.001 (***), ges = 0.167**  
+   - **Tolkning:** En signifikant forbedring fra pre til post-test.  
+   - **Konklusjon:** Deltakerne har generelt forbedret seg fra pre til post, uavhengig av gruppe.  
+
+#### 3️⃣ **Interaksjon mellom gruppe og tid (`gruppe:tid`)**  
+   - **F(1,32) = 0.28, p = 0.599**  
+   - **Tolkning:** Ingen signifikant forskjell i hvordan gruppene endrer seg over tid.  
+   - **Konklusjon:** Begge grupper har forbedret seg omtrent like mye fra pre til post.  
+
+### **Sammendrag:**  
+✅ **Det er en signifikant forbedring fra pre til post for alle deltakere.**  
+❌ **Ingen signifikant forskjell mellom gruppene totalt sett.**  
+❌ **Ingen signifikant forskjell i hvordan gruppene utviklet seg over tid.**  
 
 
-# Count the proportion of tests below a certain p-value for each 
-results %>%
-  filter(pval < 0.05) %>%
-  group_by(n) %>%
-  summarise(sig_results = n()/1000)
 
-# Using the pwr package
-library(pwr)
 
-pwr.t.test(n = 40, sig.level = 0.05, d = 1.5/3, type = "one.sample")
+
+
+#visualisere interaksjonen mellom tid (pre/post) og gruppe (stedlig/digital) med en linjegraf:
+##Hva ser du i plottet?
+Hvis linjene er parallelt, betyr det at begge gruppene forbedret seg likt.
+
+Hvis linjene krysser eller har ulik stigning, kan det være en interaksjon (men i ditt tilfelle er interaksjonen ikke signifikant).
+
+Feilstolpene (error bars) viser hvor mye variasjon det er i dataene.
+```{r}
+library(ggplot2)
+
+# Beregne gjennomsnitt og standardfeil per gruppe og tid
+summary_plot <- berg_prepost %>%
+  group_by(gruppe, tid) %>%
+  summarise(
+    mean_score = mean(s_sum, na.rm = TRUE),
+    se = sd(s_sum, na.rm = TRUE) / sqrt(n())
+  )
+print(summary_plot)
 
 
 ```
-
-## Many studies without population effect
-
-We will now simulate a population without differences between treatment and control. The code below is very similar to the one we use above, except that we use an average effect of 0 in the population. 
 
 
 ```{r}
+library(ggplot2)
 
-population <- rnorm(1000000, mean = 0, sd = 3)
+# Sørg for at "tid" har riktig rekkefølge
+berg_prepost$tid <- factor(berg_prepost$tid, levels = c("pre", "post"))
+
+# Beregne gjennomsnitt og standardfeil per gruppe og tid
+summary_plot <- berg_prepost %>%
+  group_by(gruppe, tid) %>%
+  summarise(
+    mean_score = mean(s_sum, na.rm = TRUE),
+    se = sd(s_sum, na.rm = TRUE) / sqrt(n())
+  )
+
+# Plot interaksjon mellom tid og gruppe
+ggplot(summary_plot, aes(x = tid, y = mean_score, color = gruppe, group = gruppe)) +
+  geom_line(size = 1.2) +  
+  geom_point(size = 3) +   
+  geom_errorbar(aes(ymin = mean_score - se, ymax = mean_score + se), width = 0.1) +  
+  theme_minimal() +
+  labs(
+    title = "Endring i score fra pre til post per gruppe",
+    x = "Tidspunkt",
+    y = "Gjennomsnittlig score (s_sum)",
+    color = "Gruppe"
+  ) +
+  scale_x_discrete(labels = c("Pre", "Post")) +
+  theme(
+    text = element_text(size = 14),
+    legend.position = "top"
+  )
+
+```
 
 
-# Create data frames to store the model estimates
-results_8 <- data.frame(estimate = rep(NA, 1000), 
-                      se = rep(NA, 1000), 
-                      pval = rep(NA, 1000), 
-                      n = 8)  
 
-results_40 <- data.frame(estimate = rep(NA, 1000), 
-                      se = rep(NA, 1000), 
-                      pval = rep(NA, 1000), 
-                      n = 40)
+#Sammenligne pre og post \## dat.wide er nytt datasett som viser endring i de 2 gruppene. Se etter en effektstørrelse
 
-# A for loop used to sample 1000 studies, each iteration (i) will draw a new sample
-# from the population. 
+# Styrketester
 
-for(i in 1:1000) {
+##Keiser testene 1RM og Pmax
+
+```{r}
+#Gjennomsnitt og SD på 1RM og Pmax på pre-testing
+
+ 
+library(dplyr)
+library(gt)
+library(readxl)
+
+keiser <- komplett_datainnsamling %>%
+
+  filter(tid %in% c("pre", "post"))%>%
   
-  # Draw a sample 
-  samp1 <- data.frame(y = sample(population, 8, replace = FALSE))
-  samp2 <- data.frame(y = sample(population, 40, replace = FALSE))
-
-  # Model the data
-  m1 <- lm(y ~ 1, data = samp1)
-  m2 <- lm(y ~ 1, data = samp2)
-  
-  # Extract values from the models
-  results_8[i, 1] <- coef(summary(m1))[1, 1]
-  results_8[i, 2] <- coef(summary(m1))[1, 2]
-  results_8[i, 3] <- coef(summary(m1))[1, 4]
-
-  results_40[i, 1] <- coef(summary(m2))[1, 1]
-  results_40[i, 2] <- coef(summary(m2))[1, 2]
-  results_40[i, 3] <- coef(summary(m2))[1, 4]
+  mutate(tid = factor(tid , levels = c("pre", "post"))) %>%
+  group_by(deltaker, tid , gruppe ) %>%
+ 
+ 
+   summarize(
+    Snitt = mean(repmax, na.rm =TRUE),
+    Sd = sd(repmax, na.rm = TRUE),
+    Median = median(repmax, na.rm = TRUE),
+    Antall = n()
+  ) %>%
+  print()
   
   
-}
+gt(keiser)
+
+#Mixed models
+library(lme4)
+
+m8<- lmer(Snitt~gruppe + (1|deltaker), data = keiser)
+summary(m8)
+
+plot(fitted(m8))  # Restplott for å se om det er mønstre i residualene
+qqnorm(residuals(m8)); qqline(residuals(m8))  # Sjekk normalfordeling
+
+library(lmerTest)
+summary(lmer(Snitt ~ gruppe + (1 | deltaker), data = keiser))
 
 
-# Save the results in a combined data frame
+model_null <- lmer(Snitt ~ (1 | deltaker), data = keiser, REML = TRUE)
+anova(m8, model_null)
 
-results_null <- bind_rows(results_8, results_40)
 
 
 ```
 
-> Using the new data frame with results from studies of a population with an average effect of zero, create new histograms.
->
-> 8. With a significance level of 5%, how many studies would give you a "false positive" result if you did many repeated studies?
+
+
+#pre- og post-testdata Keiser for de samme deltakerne, hvor jeg bruker en mixed ANOVA, en paired t-test, og en Wilcoxon sign-rank test for å sammenligne endringer i score innen og mellom gruppene.
+```{r}
+#Filtrerer både pre- og post-testdata og omstrukturerer slik at hver deltaker har én rad per tidspunkt
+
+# Hente pre- og post-test data
+keiser_prepost <- komplett_datainnsamling%>%
+  select(deltaker, gruppe, tid, repmax) %>%
+  filter(tid %in% c("pre", "post")) %>%
+  drop_na()
+
+# Sjekk datastrukturen
+print(head(keiser_prepost))
+
+#Gjennomsnittlig endring pr gruppe fra pre til post
+summary_table <- keiser_prepost %>%
+  group_by(gruppe, tid) %>%
+  summarise(
+    mean_score = mean(repmax, na.rm = TRUE),
+    sd_score = sd(repmax, na.rm = TRUE),
+    n = n()
+  ) 
+
+print(summary_table)
+
+
+#Visuell endring fra pre til post
+library(ggplot2)
+
+ggplot(keiser_prepost, aes(x = tid, y = repmax, color = gruppe, group = interaction(gruppe, deltaker))) +
+  geom_line(alpha = 0.5) +  # Linjer for individuelle deltakere
+  geom_point() +  # Punkter for pre og post
+  stat_summary(fun = mean, geom = "line", aes(group = gruppe), size = 1.2) +  # Linjer for gruppenes gjennomsnitt
+  theme_minimal() +
+  labs(title = "Endring i score fra pre til post", x = "Tidspunkt", y = "Score (s_sum)")
+
+
+
+#sjekke om hver gruppe forbedret seg signifikant fra pre til post, kan du bruke en paired t-test (dersom normalfordelt) eller Wilcoxon sign-rank test
+pre_post_wide_keiser <- keiser_prepost%>%
+  pivot_wider(names_from = tid, values_from = repmax )
+
+t_test_stedlig_keiser <- t.test(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "stedlig"], 
+                         pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "stedlig"], 
+                         paired = TRUE)
+
+t_test_digital_keiser <- t.test(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "digital"], 
+                         pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "digital"], 
+                         paired = TRUE)
+
+print(t_test_stedlig_keiser)
+
+print(t_test_digital_keiser)
+
+
+
+
+wilcox_stedlig_keiser <- wilcox.test(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "stedlig"], 
+                              pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "stedlig"], 
+                              paired = TRUE)
+
+wilcox_digital_keiser <- wilcox.test(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "digital"], 
+                              pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "digital"], 
+                              paired = TRUE)
+
+print(wilcox_stedlig_keiser)
+print(wilcox_digital_keiser)
+
+
+
+#Mixed ANOVA (hvis du vil se interaksjonseffekt mellom tid og gruppe)
+#Dersom du vil teste om endringen over tid er forskjellig mellom gruppene, er en mixed ANOVA en god løsning.
+
+install.packages("rstatix")
+install.packages("afex")
+library(rstatix)
+library(afex)
+
+# ANOVA-modell
+anova_model_keiser <- aov_ez(id = "deltaker", 
+                      dv = "repmax", 
+                      within = "tid", 
+                      between = "gruppe", 
+                      data = keiser_prepost)
+
+print(anova_model)
+
+
+
+```
+
+
+
+#Endring i styrke 1RM
+
+```{r}
+styrke <- komplett_datainnsamling%>%
+  select(deltaker, tid, gruppe, rm_endring_kg)%>%
+  filter(gruppe=="stedlig")%>%
+   group_by(tid, gruppe)%>%
+  drop_na()%>%
+  print()
+  
+  
+  filter(tid=="post")%>%
+  group_by(tid, gruppe)%>%
+  drop_na()%>%
+  print()
+  
+  
+  
+ tablestrength <- styrke %>%    
+  group_by(tid)%>%
+  filter(gruppe=="stedlig" ) %>%
+   summarise(m = mean(pros_change),
+            sd = sd(pros_change)) %>%
+  mutate(meansd= paste0(signif(m, 3), "(", signif(sd, 3), ")")) %>%
+  select(meansd) 
+
+
+group_by(repmax)%>%
+  group_by(deltaker, tid, gruppe) %>%
+  print()
+  summarise(combined.load = mean(scaled.load, na.rm = TRUE)) %>%
+  ungroup() %>%
+  pivot_wider(names_from = time,
+              values_from = combined.load) %>%
+  mutate(pros_change= ((post - pre) / pre) * 100)  %>%
+  print()
+
+
+
+```
+
+#Sammenligne pre og post i boxplott og bland altman plot på stedlig trening
+
+```{r}
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Filtrere for stedlig trening
+repmax_stedlig<- komplett_datainnsamling%>%
+select(gruppe, tid, repmax)%>%
+  filter(gruppe=="stedlig")%>%
+  drop_na()%>%
+print()
+
+boxplot(data(repmax_stedlig=="pre", repmax_stedlig=="post"), palette("blue", "red"))
+
+
+
+
+    = df[df["gruppe"] == "stedlig"]
+
+# Velge relevante kolonner
+repmax_stedlig -> df_stedlig[["deltaker", "tid", "repmax"]].dropna()
+
+# Pivotere slik at vi får pre- og post-test på separate kolonner
+df_repmax_wide = df_repmax.pivot(index="deltaker", columns="tid", values="repmax").dropna()
+
+# Lage boxplot
+plt.figure(figsize=(8, 6))
+sns.boxplot(data=[df_repmax_wide["pre"], df_repmax_wide["post"]], palette=["blue", "red"])
+plt.xticks(ticks=[0, 1], labels=["Pre-test", "Post-test"])
+plt.ylabel("Repmax (kg)")
+plt.title("Boxplot av Repmax for Stedlig Trening")
+plt.grid(True)
+plt.show()
+
+# Beregne forskjeller for Bland-Altman-plot
+df_repmax_wide["diff"] = df_repmax_wide["post"] - df_repmax_wide["pre"]
+df_repmax_wide["mean"] = (df_repmax_wide["post"] + df_repmax_wide["pre"]) / 2
+
+# Bland-Altman-plot
+plt.figure(figsize=(8, 6))
+plt.scatter(df_repmax_wide["mean"], df_repmax_wide["diff"], color="black")
+plt.axhline(df_repmax_wide["diff"].mean(), color="red", linestyle="--", label="Mean Difference")
+plt.axhline(df_repmax_wide["diff"].mean() + 1.96 * df_repmax_wide["diff"].std(), color="blue", linestyle="--", label="Upper Limit (95%)")
+plt.axhline(df_repmax_wide["diff"].mean() - 1.96 * df_repmax_wide["diff"].std(), color="blue", linestyle="--", label="Lower Limit (95%)")
+plt.xlabel("Gjennomsnitt av Pre- og Post-test (kg)")
+plt.ylabel("Forskjell (Post - Pre) (kg)")
+plt.title("Bland-Altman-plot for Repmax")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+```
+
+```{r}
+keiser <- komplett_datainnsamling %>%
+
+  filter(tid %in% c("pre", "post"))%>%
+  
+  mutate(tid = factor(tid , levels = c("pre", "post"))) %>%
+  group_by(tid , gruppe ) %>%
+ 
+ 
+   summarize(
+    Snitt = mean(repmax, na.rm =TRUE),
+    Sd = sd(repmax, na.rm = TRUE),
+    Median = median(repmax, na.rm = TRUE),
+    Percentil = percent_rank(repmax, na.rm= TRUE),
+    Antall = n()
+  ) %>%
+  print()
+
+
+```

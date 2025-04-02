@@ -1,3 +1,17 @@
-# Philosophy of science
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
-See instructions on canvas.
+# Problemstilling
+
+Gir 12 uker (2 g/uken) digital hjemmebasert styrketrening samme/tilsvarende effekt på maksimal benstyrke, målt i 1RM og Pmax, hos kreftpasienter etter behandling, sammenlignet med gruppebasert styrketrening med fysisk oppmøte?
+
+## 
+
+Sekundære problemstillinger
+
+Gir 12 uker (2 g/uken) digital hjemmebasert styrketrening samme/tilsvarende effekt på balanse hos kreftpasienter etter behandling, sammenlignet med gruppebasert styrketrening med fysisk oppmøte?
+
+Gir 12 uker (2 g/uken) digital hjemmebasert styrketrening samme/tilsvarende effekt på fatique hos kreftpasienter etter behandling, sammenlignet med gruppebasert styrketrening med fysisk oppmøte?

@@ -1,57 +1,56 @@
+# Innledning
+
+<!-- Part 1: Innledning -->
+
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+  title: "Innledning"
+output: html_document
+editor_options: 
+chunk_output_type: console
+linestretch: 1.5
+  
+  
+---
 
 
-# Assignment 1: Reliability and tools for reproducible data science {#assignment1}
 
-The purpose of this assignment is to present estimates of reliability of measures collected in the physiology lab. A second purpose is to use tools for reproducible data science. The report that you are expected to hand in therefore has some strict requirements in its format (see below). The assignment is a group assignment and at least three students are expected to contribute to each report.
 
-## Elements of the report
 
-The report should describe one test that you have performed in the physiology-lab. Select the test that is most interesting to you. The test should be described with a detailed protocol, including preparations of the participant (that is being tested), standardization of the test, and post-test data preparation. Post-test data preparation refers to steps needed to get data from e.g. equipment used during the test. This section should take into account and reference [@RN1739; @RN2511]
+## Egen motivasjon og interesse
 
-The next section should contain descriptive data from the test. This could be measures of central tendency and variability in the measures you have collected. If possible, try to find similar estimates in the scientific literature.
+## Bakgrunn
 
-Finally, we are interested in reliability. Here you need to calculate an estimate of reliability of the test. Use (and reference) [@RN130]. Try to be clear with what measure of reliability you are using and what it is telling you.
+Kreft er en fellesbetegnelse for sykdommer hvor noen av kroppens celler vokser ukontrollerbart, sprer seg til andre deler av kroppen og gir forstyrrelser av organismens normale fysiologiske funksjon (Brown et al., 2023). Studier har vist at mer enn 40% av alle kreftsykdommer er relatert til livsstil, mens resterende er relatert til genetikk. (Anand et al., 2008; Spring et al., 2015; Weiderpass, 2010). Kreft utgjør en betydelig del av sykdomsbyrden globalt, og prognoser antyder at kreftbyrden vil fortsette å øke de neste to tiårene (WHOb, 2024). Høyinntektsland står overfor en større byrde per innbygger i form av tapte leveår justert for funksjonshemming (DALYs) enn lav- og mellominntektsland (Chen et al., 2023). Selv om flere og flere får kreft, er det stadig flere som blir helt friske (Kreftregisteret, 2023) og det er rapportert om veldig mange seneffekter innenfor den biopsykososiale helsen som f.eks. redusert muskelstyrke, fatique, nevropatier, samt redusert hverdagsmestring og svekkede sosiale relasjoner (Helsedirektoratet b, 2020; Cramp et al., 2010; Philips & Currow 2010; American Cancer Society, 2022; Brown et al., 2023; Caruso et al., 2017; Pituskin, 2022). Trening, derunder styrketrening, er i økende grad blitt anerkjent for å kunne gi en rekke positive helseeffekter hos kreftpasienter, både under og etter behandling, i tillegg til at det er et forebyggende tiltak for komorbiditeter (Fairman et al., 2022; Lee, 2022; Padilha et al., 2017). Styrketrening er en effektiv metode for å forbedre styrke, kraft og balanse og skaper forutsetninger for videre progresjon i trening, funksjon og biopsykososial helse (Champ et al., 2023). Av ulike årsaker er det dessverre lav tilslutning og opptil 40% frafall (Bullard et al., 2019; Champ et al., 2023; Kampshoff et al., 2015). Geografi, ulike logistikk utfordringer, utilstrekkelig tilgang til kreftspesifikk trening og mangelfulle anbefalinger fra helsepersonell kan være årsaker til lav tilslutning og stort frafall (IJsbrandy et al., 2019). Derfor er det presserende behov for evidensbaserte, kostnadseffektive, bærekraftige og lett tilgjengelige tilnærminger for å redusere forekomsten av disse ugunstige helsekonsekvensene etter kreftbehandling og under rehabilitering. Studier har vist at hjemmebaserte treningsprogram i rehabilitering av kreftoverlevere, inkludert digital teknologi, har vist gode effekter på fysisk form og at den er logistikkmessig enklere å gjennomføre i hverdagen (Bullard et al., 2019; Driessen et al., 2017; Roberts et al., 2017). Samtidig har disse studiene svakheter ved de har undersøkt ren utholdenhetstrening eller en kombinasjon mellom utholdenhet- og styrketrening. Derfor er det behov for mer forskning på hjemmebasert styrketrening som potensielt kan rette seg mot et bredt spekter av pasienter og samtidig overkomme hindrene som begrenser deltakelse i tradisjonell trening på stedet. I Norge har «Aktiv mot kreft» etablert «Pusterom», ved 21 forskjellige sykehus, som er treningssteder for kreftpasienter under og etter behandling. I forbindelse med Covid-19 pandemien ble «Pusterommet live» og «Pusterommet hjemme» opprettet (Aktiv mot kreft Pusterommet LIVE, 2024), noe som gjør at man kan følge direktesendte eller ferdiginnspilte digitale treningsøkter uten å måtte møte på sykehus, fysioterapiklinikker eller treningssentre. Digital hjemmebasert styrketrening er derfor en fleksibel og hensiktsmessig treningsmetode hos pasienter som av ulike årsaker har utfordringer med å sikre treningskontinuitet. Det er derimot behov for klinisk relevante studier som undersøker effekten av digital hjemmetrening etter kreftbehandling, som i fremtiden effektivt kan tilbys uavhengig av pasientenes bosted.
 
-## The format of the report
+## Formål med studien
 
-The report should be uploaded to github with both a source file (`.Rmd` or `.qmd`) and report file as output (`html`, `pdf` or `docx`-file). The github folder should also contain the dataset being used in the calculations. Work on your assignment as a R project. Contributions from members of the group can be made directly to the github repository. Follow this checklist on how to get started:
+Eksisterende studier er mangelfull på digital hjemmebasert styrketrening. Derfor er hensikten med dette oppgaven undersøke effekten av digital trening på maksimal muskelstyrke som en ny kostnadseffektiv metode som ikke påvirkes av barrierer som geografi, kultur, økonomi eller ulike logistikkmessige utfordringer.
 
-([A nice introduction to github with R can be found here](https://happygitwithr.com/install-intro.html))
+Det overordnede målet med denne masteroppgaven er å sammenligne effekten av et 12-ukers digitalt, hjemmebasert styrketreningprogram for kreftpasienter etter fullført behandling, moten gruppe kreftpasienter som trener samme programmet med fysisk oppmøteog under veiledning av instruktør.
 
-- Create a [github account](http://www.github.com). All members of the group should have their own account.
-- Once signed in to github.com, create a new repository with an informative name. Make sure that the repository is public. One member of the group can create this repository in their own account.
-- Be sure to [download and install git](https://git-scm.com/downloads) on your computer. 
-- Start up RStudio, start a new project, select the Version Control option and copy the address to the repository.
-- Add files to your project and upload to github. You need to add files, commit them and push using git. Use the command line in your terminal:
+Det primære utfallsmålet i oppgaven er benstyrke, mens balanse og  fatique er sekundære utfallsmål.
 
-```{r, eval = FALSE}
-git add -A
+## Oppgavens struktur
 
-git commit -m "A short message to describe your changes"
+## Begrepsavklaring
 
-git push
-```
+**Kreft:** En fellesbetegnelse for sykdommer hvor noen av kroppens celler vokser ukontrollerbart og sprer seg til andre deler av kroppen." (Brown et al., 2023). Det er rundt 200 ulike kreftformer. De har mange fellestrekk, men det er også mye som skiller dem fra hverandre. Derfor vil sykdomsforløpet, behandling og overlevelse variere. (Kreftforeningen, 2020)
 
-- When you want to download the latest version of your project, type in the terminal:
+WHO definerer kreft som "en stor gruppe sykdommer som kan starte i nesten hvilket som helst organ eller vev i kroppen når unormale celler vokser ukontrollerbart, går utenfor sine vanlige grenser for å invadere tilstøtende deler av kroppen og/eller sprer seg til andre organer. Den siste prosessen kalles metastasering og er en viktig årsak til død fra kreft. En neoplasm og ondartet svulst er andre vanlige navn for kreft." (*WHOc*, 2024)
 
-```{r, eval = FALSE}
+**Sykdom:** Kan bety så mangt (Hofmann & Wilkinson, 2016), men kan beskrives som en tilstand eller unormalitet som representerer en forstyrrelse av organismens normale fysiologiske funksjon (Brown et al., 2023). Kreft er en sykdom fordi kreftcellenes vekst, spredning, ressursbruk og produksjon av metabolitter, vevsforstyrrelse og inkorporering av normale ikke-kreftceller forstyrrer normale kroppsfunksjoner (Brown et al., 2023).
 
-git pull
+**Forebygging:** Trening som tiltak som er rettet mot befolkning og individ for å minimere risiko for sykdom eller funksjonshemming  (Helsedirektoratet, 2018)
 
-```
+**Behandling:** Formål som tar sikte på hel eller delvis helbredelse, og således endring i pasientens helsesituasjon (Helsedirektoratet, 2018)
 
-- You may encounter conflicts if pushing changes that overwrites changes made by other group members. These may be tricky but can be resolved... Have patience!
+**Trening:** En delmengde av fysisk aktivitet som er planlagt, strukturert og repetitivt med mål om å forbedre eller opprettholde fysisk form. Fysisk form er et sett med egenskaper som enten er helse- eller ferdighetsrelaterte. Fysisk aktivitet defineres som ethvert kroppslig bevegelsesmønster produsert av skjelettmuskler som resulterer i energiforbruk (Caspersen et al., 1985) 
 
-If you are contributing to the project owned by another person in your group it is reccomended that you create a pull request with your changes.
+**Styrketrening:** En treningsform som systematisk bruker motstand for å påføre musklene stress, hvilket fører til fysiologiske tilpasninger som økt muskelmasse, styrke og kraft. Dette inkluderer bruk av frie vekter, maskiner eller egen kroppsvekt som motstand. (Raastad, 2010)
 
-## Data
+Insidensen av en sykdom er definert som antall «nye» tilfeller av en sykdom i en populasjon i en definert periode. Dette tallet er anvendelig for epidemiologer, fordi det angir risikoen for en sykdom. Insidensraten er definert som insidens delt på summen av risikoperioder/situasjoner for det enkelte individ. ([Wikipedia](https://no.wikipedia.org/wiki/Insidens))
 
-If you want more data, you may "borrow" data from previous students:
-
-[VO<sub>2max</sub> tests (Group 1)](/data/reliability-old/vo2max-g1.xlsx)
-[VO<sub>2max</sub> tests (Group 2)](/data/reliability-old/vo2max-g2.xlsx)
-[Lactate threshold tests](/data/reliability-old/laktatprofil-g2.xlsx)
-
-## How to hand in the report.
-
-Copy the link to your github folder into canvas. 
+Andre begreper: Nevropati, Balanse (i ADL), fatique, maks styrke

@@ -1,0 +1,424 @@
+---
+title: "Resultat maksimal benstyrke"
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(gt)
+library(readxl)
+library(broom)
+library(ggplot2)
+library(readr)
+library(rio)
+library(tidyr)
+library(ggtext)
+library(dplyr)
+library(lme4)
+library(ggplot2)
+
+
+
+ 
+# Les inn Excel-filen
+
+komplett_datainnsamling <- read_excel("Filer/Komplett datainnsamling_29.03.25.xlsx")
+View(komplett_datainnsamling)
+
+
+
+
+```
+
+```{r}
+
+
+# Lese inn data
+
+
+komplett_datainnsamling%>%
+  select(deltaker, gruppe, tid, repmax)%>%
+       print()
+
+  #Filtrerer inkluderte deltagere
+        filter(gruppe=="stedlig") %>%
+
+
+
+%>%
+   # Beregner gjennomsnittlig baseline
+        mutate(gruppe = if_else(gruppe %in% c("pre"), "pre", gruppe)) %>%
+        group_by(gruppe,tid) %>%
+        summarise(styrke = mean(repmax, na.rm = TRUE)) %>%
+     #Filtrerer pre-post-data
+        filter(gruppe %in% c("pre", "post")) %>%
+     #Utvider med tid
+        pivot_wider(names_from = "time",
+                    values_from = "load") %>%
+     # Beregner differanse
+        mutate(str_change = post - pre) %>%
+  select(deltaker:repmax, str_change) %>%
+     # Lagrer  differansen og utvider med sett
+        pivot_wider(names_from = gruppe, values_from = str_change) 
+
+
+
+```
+
+```{r}
+repmax%>%
+select(deltaker, tid)
+  select(deltaker, tid, repmax)%>%
+  print()
+  
+  
+  
+  pivot_longer(names_to = "variable",
+               values_to = "value",
+               cols = repmax)
+
+%>%
+  group_by(gruppe)
+
+%>%
+  
+  print()
+
+
+#skrive inn gruppe. Ute etter å sammenligne gruppene på pre vs post
+
+
+
+   select(deltaker, tid, rm_endring_kg)%>%
+  print()
+
+%>%
+   
+  
+  print()
+ 
+
+%>%
+  
+  ggplot(aes(x = deltaker, y = s_sum_endring_poeng )) +
+  geom_point(color = "steelblue", size = 2, alpha = 0.7, position = position_jitter(width = 1.0, height = 0) ) +
+  labs(title = "Gjennomsnittlig endring per deltaker",
+       x = "Deltaker",
+       y = "Gjennomsnittlig S_sum") +
+  theme_minimal()
+
+
+
+
+repmax%>%
+  
+  filter(tid== "post")
+
+%>%
+        
+  summarise(
+    snitt_pre = mean(rm_endring_kg, na.rm = TRUE),
+    sd_pre = sd(rm_endring_kg, na.rm = TRUE),
+    median_pre = median(rm_endring_kg, na.rm = TRUE),
+    miss_val = sum(na.omit(rm_endring_kg)),
+    n = n()
+  )
+  
+
+
+```
+
+```{r}
+
+# Les inn Excel-filen
+repmax <- Komplett_datainnsamling
+
+
+repmax%>%
+  select(rm_endring_kg)%>%
+  print()
+  
+
+
+
+
+rowwise() %>% 
+
+# Velg kun relevante kolonner
+df_rm <- df[, c("deltaker", "rm_endring_prosent")]
+
+
+
+
+# Fjern rader med manglende verdier
+df <- na.omit(df)
+
+# Se oversikt over dataene
+summary(df)
+
+# Velg kun relevante kolonner
+df <- df[, c("deltaker", "s_sum_endring_prosent", "rm_endring_prosent")]
+
+
+# Beregn gjennomsnitt og standardavvik
+
+
+# Sjekk datatype for kolonnen
+str(df$s_sum_endring_prosent)
+
+# Konverter til numerisk hvis den er tekst eller faktor
+df$s_sum_endring_prosent <- as.numeric(as.character(df$s_sum_endring_prosent))
+
+# Sjekk om konverteringen fungerte
+str(df$s_sum_endring_prosent)
+
+# Prøv mean-funksjonen igjen
+
+mean(df$s_sum_endring_prosent, na.rm = TRUE)
+
+sd(df$s_sum_endring_prosent, na.rm = TRUE)
+
+
+
+qqnorm(df$rm_endring_prosent, main = "QQ-plot for rm_endring_prosent")
+qqline(df$rm_endring_prosent, col = "red")
+
+
+
+shapiro.test(df$s_sum_endring_prosent)
+shapiro.test(df$rm_endring_prosent)
+
+
+# Hvis normalfordelt
+cor.test(df$s_sum_endring_prosent, rm_endring_prosent, method = "pearson")
+
+# Hvis ikke normalfordelt
+cor.test(df$s_sum_endring_prosent, df$rm_endring_prosent, method = "spearman")
+
+library(ggplot2)
+
+ggplot(df, aes(x = s_sum_endring_prosent , y = rm_endring_prosent)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal() +
+  labs(title = "Sammenheng mellom s_sum og rm endring",
+       x = "s_sum_endring_prosent",
+       y = "rm_endring_prosent")
+
+
+
+ 
+
+```
+
+```{r}
+
+summary(df)
+
+sum(is.infinite(df$rm_endring_prosent))  # Antall Inf-verdier
+sum(is.nan(df$rm_endring_prosent))  # Antall NaN-verdier
+
+df <- df[!is.infinite(df$rm_endring_prosent) & !is.nan(df$rm_endring_prosent), ]
+
+
+
+df_clean <- na.omit(df)  # Fjerner alle rader med minst én NA-verdi
+
+df$rm_endring_prosent[is.na(df$rm_endring_prosent)] <- mean(df$rm_endring_prosent, na.rm = TRUE)
+df$s_sum_endring_prosent[is.na(df$s_sum_endring_prosent)] <- mean(df$s_sum_endring_prosent, na.rm = TRUE)
+
+# Kjør regresjonsmodellen
+lm_model <- lm(rm_endring_prosent ~ s_sum_endring_prosent, data = df)
+summary(lm_model)
+
+
+# Kjør regresjonsmodellen på det rensede datasettet
+lm_model <- lm(rm_endring_prosent ~ s_sum_endring_prosent, data = df_clean)
+summary(lm_model)
+
+
+# Lineær regresjonsanalyse
+lm_model <- lm(rm_endring_prosent ~ s_sum_endring_prosent, data = df)
+
+# Sammendrag av modellen
+summary(lm_model)
+
+# Plott regresjonslinjen
+ggplot(df, aes(x = s_sum_endring_prosent, y = rm_endring_prosent)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  theme_minimal() +
+  labs(title = "Lineær regresjon: s_sum vs rm endring",
+       x = "s_sum_endring_prosent",
+       y = "rm_endring_prosent")
+
+
+Tolkning av output:
+Se på R²-verdien for hvor mye varians i rm_endring_prosent som forklares av s_sum_endring_prosent.
+Se på p-verdien til koeffisienten for å avgjøre om sammenhengen er statistisk signifikant.
+
+ 
+
+```
+
+```{r}
+
+summary(df)
+
+# Sjekk unike verdier i tid-kolonnen
+unique(df$tid)
+
+# Opprett pre- og post-grupper (hvis "tid" finnes)
+df_pre <- df[df$tid == "pre", ]
+df_post <- df[df$tid == "post", ]
+
+shapiro.test(df_pre$s_sum_endring_prosent)
+shapiro.test(df_post$s_sum_endring_prosent)
+
+shapiro.test(df_pre$rm_endring_prosent)
+shapiro.test(df_post$rm_endring_prosent)
+
+t.test(df_pre$s_sum_endring_prosent, df_post$s_sum_endring_prosent, paired = TRUE)
+t.test(df_pre$rm_endring_prosent, df_post$rm_endring_prosent, paired = TRUE)
+
+wilcox.test(df_pre$s_sum_endring_prosent, df_post$s_sum_endring_prosent, paired = TRUE)
+wilcox.test(df_pre$rm_endring_prosent, df_post$rm_endring_prosent, paired = TRUE)
+
+
+library(ggplot2)
+
+# Samle data i langt format
+library(reshape2)
+df_long <- melt(df, id.vars = "tid", measure.vars = c("s_sum_endring_prosent", "rm_endring_prosent"))
+
+# Boxplot for å sammenligne pre og post
+ggplot(df_long, aes(x = tid, y = value, fill = variable)) +
+  geom_boxplot() +
+  facet_wrap(~variable, scales = "free") +
+  theme_minimal() +
+  labs(title = "Sammenligning av pre- og post-målinger",
+       x = "Tidspunkt",
+       y = "Endring i prosent")
+
+
+Oppsummering
+Regresjonsanalyse: Bruk lm() for å undersøke sammenhengen mellom variablene.
+Gruppesammenligning: Bruk t.test() for normalfordelte data og wilcox.test() for ikke-normalfordelte data.
+Visualisering: Bruk ggplot2 for å lage scatterplot og boxplot.
+ 
+
+```
+
+```{r}
+#ANOVA for gruppesammenligning i R
+#Analysis of Variance (ANOVA) brukes for å teste om det er signifikante forskjeller mellom flere grupper. I ditt tilfelle kan vi bruke enveis ANOVA for å se om det er signifikante forskjeller i s_sum_endring_prosent og rm_endring_prosent mellom pre- og post-målingene.
+
+# Konverter tid til faktorvariabel
+df$tid <- as.factor(df$tid)
+
+# Sjekk unike verdier
+levels(df$tid)
+
+
+#Sjekk for normalfordeling og homoskedastisitet
+#ANOVA forutsetter at dataene er normalfordelte og har lik varians mellom gruppene.
+# Normalfordelingstest for hver gruppe
+shapiro.test(df$s_sum_endring_prosent[df$tid == "pre"])
+shapiro.test(df$s_sum_endring_prosent[df$tid == "post"])
+
+shapiro.test(df$rm_endring_prosent[df$tid == "pre"])
+shapiro.test(df$rm_endring_prosent[df$tid == "post"])
+
+# Levene’s test for lik varians (homoskedastisitet)
+library(car)
+leveneTest(s_sum_endring_prosent ~ tid, data = df)
+leveneTest(rm_endring_prosent ~ tid, data = df)
+
+ #Hvis p > 0.05 i Shapiro-testen: Dataene er normalfordelte 
+ #Hvis p > 0.05 i Levene’s test: Variansen er lik mellom gruppene
+ 
+ 
+ #Dersom normalitet og lik varians er oppfylt, kan vi kjøre en enveis ANOVA
+ #Hvis p < 0.05, betyr det at det er en signifikant forskjell mellom pre og post
+ 
+ # ANOVA for s_sum_endring_prosent
+anova_s_sum <- aov(s_sum_endring_prosent ~ tid, data = df)
+summary(anova_s_sum)
+
+# ANOVA for rm_endring_prosent
+anova_rm <- aov(rm_endring_prosent ~ tid, data = df)
+summary(anova_rm)
+
+
+Hvis ANOVA viser signifikante forskjeller, kan vi gjøre en Tukey HSD-test for å se hvilke grupper som skiller seg ut.
+# Tukey HSD for s_sum_endring_prosent
+TukeyHSD(anova_s_sum)
+
+# Tukey HSD for rm_endring_prosent
+TukeyHSD(anova_rm)
+
+
+#Dersom dataene ikke er normalfordelte eller variansen er ulik, bruker vi en Kruskal-Wallis-test i stedet for ANOVA.
+kruskal.test(s_sum_endring_prosent ~ tid, data = df)
+kruskal.test(rm_endring_prosent ~ tid, data = df)
+
+
+Visualisering av resultatene
+Vi kan bruke boxplot for å vise forskjellene mellom pre og post.
+library(ggplot2)
+
+ggplot(df, aes(x = tid, y = s_sum_endring_prosent, fill = tid)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Sammenligning av s_sum_endring_prosent mellom pre og post",
+       x = "Tidspunkt",
+       y = "s_sum_endring_prosent")
+
+ggplot(df, aes(x = tid, y = rm_endring_prosent, fill = tid)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Sammenligning av rm_endring_prosent mellom pre og post",
+       x = "Tidspunkt",
+       y = "rm_endring_prosent")
+
+
+
+Oppsummering
+Sjekk forutsetninger: Normalfordeling (Shapiro-Wilk) og lik varians (Levene's test).
+Kjør ANOVA: aov()
+Post-hoc analyse hvis ANOVA er signifikant: TukeyHSD()
+Bruk Kruskal-Wallis hvis dataene ikke er normalfordelte.
+Visualiser forskjellene med ggplot2.
+Ønsker du flere justeringer, for eksempel en toveis ANOVA med andre variabler?
+
+```
+
+```{r}
+
+Komplett_datainnsamling%>%
+  select(deltaker, tid, repmax)%>%
+  head()
+
+
+-> keiser
+
+
+keiser%>%
+  select(deltaker, tid, repmax)%>%
+head()
+  
+  filter(tidspunkt== "pre")%>%
+  summarise(
+    snitt=mean(rm, na.rm = TRUE),
+    standardavvik= sd(rm,na.rm = TRUE),
+    miss_val = sum(is.na(rm)),
+    n = n()
+  )
+
+
+
+ 
+
+```

@@ -3,309 +3,185 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
-# Assignment 5: Analyzing repeated measures experiments {#assignment5}
 
-> Below you will find a basic outline of the report and example code that we worked on today in class. Further below is the description of the assignment.
+# Teorigrunnlag for studien
 
-## Introduction
+I denne studien blir det fokusert på kreftsykdommer.
 
-## Methods
+WHO definerer kreftsykdommene som en fellesbetegnelse for en rekke tilstander hvor kroppens celler vokser ukontrollert, sprer seg til andre deler av kroppen og forstyrrer organismens normale funksjon. Denne sykdomsgruppen utgjør en betydelig del av den globale sykdomsbyrden, og det er anslått at antallet krefttilfeller vil fortsette å øke de neste tiårene (Brown et al., 2023; WHO, 2024). Kreftforekomsten er sterkt påvirket av livsstilsfaktorer som tobakk, alkohol og fedme, samt økende aldring og vekst av befolkningen. I høyinntektsland opplever man et høyere tap av leveår justert for funksjonshemming (DALYs) per innbygger, enn i lav- og mellominntektsland (Chen et al., 2023).
 
-### Participants and study overview
+I Norge har antall personer som får kreftdiagnose økt markant de siste tiårene, og i dag får tre ganger så mange diagnosen som for 50 år siden. Dette reflekterer både tidligere diagnostisering og forbedrede behandlingsmetoder. I 2022 ble det registrert over 38 000 nye tilfeller av kreft, og mer enn 325 000 mennesker lever med kreft i Norge i dag (Kreftregisteret, 2023). Prognosene tyder på at insidensen vil overskride 50 000 årlige diagnoser innen 2040. Selv om flere kreftpasienter overlever sykdommen, fører behandlingen med seg mange bivirkninger som kan svekke pasientens biopsykososiale helse.
 
-### Muscle strength and hypertrophy
+Kreftbehandling kan gi både akutte og kroniske bivirkninger som påvirker pasientens fysiske og psykiske helse. Seneffekter som hjerte- og lungeskader, kognitive problemer, fatigue, hormonforstyrrelser, muskel- og skjelettskader, samt perifere nevropatier er blant de vanligste konsekvensene (Helsedirektoratet, 2020). I tillegg rapporteres om kroniske smerter, nedsatt fysisk funksjon og psykososiale utfordringer som kan påvirke livskvaliteten på lang sikt (Pituskin, 2022; Cramp et al., 2010; Philips & Currow, 2010). For mange kreftoverlevere kan disse konsekvensene gjøre daglige aktiviteter som å gå, bruke trapp, reise seg fra en stol og påkledning svært utfordrende (American Cancer Society, 2022).
 
-### Data analysis and statistics
+Trening, spesielt styrketrening, har vist seg å ha flere positive effekter på helse og livskvalitet hos kreftpasienter både under behandling og i rehabiliteringsfasen. Til tross for dokumenterte helsefordeler, viser forskning at tilslutning til styrketrening blant kreftpasienter er lav, noe som gjør det nødvendig med evidensbaserte og tilgjengelige tilnærminger for å motvirke de negative helsekonsekvensene ved kreftbehandling.
 
-## Results
+Denne oppgaven vil undersøke anbefalinger for fysisk aktivitet og styrketrening for kreftpasienter, med fokus på effektene på muskelstyrke, muskelmasse, balanse og fatigue.
 
-```{r}
-#| label: "Load packages and data"
-#| warning: false
-#| message: false
-#| echo: false
-#| output: false
+## Fysisk aktivitet og styrketrening som medisin
 
+### Gjeldende anbefalinger for fysisk aktivitet
 
+I følge kreftforeningen er fysisk aktivitet verdens beste medisin (Kreftforeningen, 2020). Verdens helseorganisasjon (WHO) gir generelle anbefalinger om fysisk aktivitet, inkludert de som lever med kroniske tilstander og funksjonshemninger som kreft. Disse anbefalingene (tabell 1) innebærer minst 150--300 minutter med moderat intensitet eller 75--150 minutter med høy intensitet per uke, eller en kombinasjon av begge (Bull et al., 2020). Tabellen viser også viktigheten av styrke-og balansetrening og at voksne bør ha styrketrening minimum 2 ganger pr uke og at de over 65 år bør ha minimum 3 økter pr uke med funksjonell styrke -og balansetrening.
 
-library(tidyverse); library(exscidata)
-library(lme4)
+Styrketrening er en dokumentert og effektiv metode for å forbedre styrke, kraft og balanse, hvilket er fysiske egenskaper som er viktige for den motoriske funksjon som i sin tur reduserer fallrisiko og skaper forutsetninger for videre progresjon i trening og funksjon (Champ et al., 2023).
 
++-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Aldersgruppe**                                                                                            | **Anbefalinger**                                                                                                                                                                                               |
++-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Barn og ungdom (i alderen 5--17 år), inkludert de som lever med funksjonshemninger.                         | Minst 60 minutter variert aktivitet pr dag med moderat til høyintensitet. I tillegg minst tre ganger i uka kondisjonsrettet med høy intensitet som inkluderer aktiviteter som styrker muskler og skjelett.     |
++-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Voksne (i alderen 18--64 år), inkludert de med kroniske tilstander og de som lever med funksjonshemninger.  | Regelmessig fysisk aktivitet. Hver uke være fysisk aktive i minst 150 til 300 minutter med moderat intensitet, minst 75 til 150 minutter med høy intensitet eller en kombinasjon av moderat og høy intensitet. |
+|                                                                                                             |                                                                                                                                                                                                                |
+|                                                                                                             | Voksne bør også utføre styrketrening som involverer alle store muskelgrupper på 2 eller flere dager i uken, da dette gir ytterligere helsefordeler.                                                            |
++-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Eldre voksne (65 år og eldre), inkludert de med kroniske tilstander og de som lever med funksjonshemninger. | Samme råd som hos voksne, men i tillegg ha minimum 3 økter i uken med funksjonell styrke og balansetrening for å forebygge fall i funksjon og fall-risiko.                                                     |
++-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-## Import data set, extract leg lean mass per leg and remove observations
-# that are include == "excl".
+: Tabell 1: Sammendrag av WHO-retningslinjene om fysisk aktivitet. Retningslinjene gjelder for alle befolkningsgrupper fra 5 år og eldre, uavhengig av kjønn, kulturell bakgrunn eller økonomisk status. Personer kroniske medisinske tilstander og/eller funksjonshemninger, bør forsøke å oppfylle disse anbefalingene når det er mulig og etter evne. (Bull et al., 2020)
 
-leanmass <- dxadata %>%
-  select(participant:include, lean.left_leg, lean.right_leg) %>%
-  pivot_longer(names_to = "leg", 
-               values_to = "lean.mass", 
-               cols = lean.left_leg:lean.right_leg) %>%
-  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
-         sets = if_else(multiple == leg, "multiple", "single")) %>%
-  select(participant, time, sex, include, sets, leg, lean.mass) %>%
-  filter(include == "incl") %>%
-  
-  ## Change levels for time and sets
-  mutate(time = factor(time, levels = c("pre", "post")), 
-         sets = factor(sets, levels = c("single", "multiple")), 
-         leg = paste0(participant, leg)) %>%
-  
-  print()
+I gjennomføringen av disse anbefalingene anbefaler Helsedirektoratet at kreftoverlevere følger disse retningslinjene, men at prinsippet om progresjon med varighet og intensitet bør ivaretas. For eksempel foreslås det å starte med 15--20 minutter med moderat fysisk aktivitet, som ergometersykling eller gange i motbakke, tre ganger per uke, og gradvis øke intensiteten over tid. [Helsedirektoratet](https://www.helsedirektoratet.no/rapporter/seneffekter-etter-kreftbehandling/?utm_source=chatgpt.com)
 
+Kreftforeningen anbefaler også at ferdigbehandlede kreftpasienter gradvis øker til minst 30 minutter med moderat fysisk aktivitet daglig, som rask gange. Når man er i stand til det, bør intensiteten økes slik at man blir svett, andpusten og får økt puls.
 
-# Create a wide data set of change scores per volume condition
-# suitable for a t-test
-leanmass_change_wide <- leanmass %>%
-  pivot_wider(names_from = time, values_from = lean.mass) %>%
-  mutate(change = post - pre) %>%
-  
-  select(participant, sex, sets, change) %>%
-  pivot_wider(names_from = sets, 
-              values_from = change) %>%
-  
-  mutate(diff = multiple - single) %>%
-  
-  print()
+Gjeldende anbefalinger tilsvarer omtrent 7,5--15 MET-timer (Metabolic Equivalent of Task) per uke. En MET er en enhet som representerer energiforbruket i hvile. Aktiviteter med moderat intensitet, som rask gange, har en MET-verdi på omtrent 3--6, mens høyintensive aktiviteter, som løping, har høyere MET-verdier. For eksempel vil 150 minutter med en aktivitet på 5 MET per uke gi totalt 12,5 MET-timer.
 
+Meta-analysen til @liDoseResponseEffect2016 konkluderer med at de nåværende anbefalingene for fysisk aktivitet er tilstrekkelige for å redusere kreftdødelighet. Så mye som 21% redusert kreftdødelighet er vist hos kvinner. Tilsvarende effekt er derimot ikke observert hos menn. De har også studier som viser at fysisk aktivitet beskytter spesielt mot bryst-, kolorektal- og prostatakreft. Mekanismene bak er vist i tabell 2. Dette understreker viktigheten av en aktiv livsstil i både forebygging og oppfølging etter kreftdiagnose.
 
-leanmass_change_wide_time <- leanmass %>%
-  pivot_wider(names_from = time, values_from = lean.mass) %>%
++--------------------------+-----------------------------------------------------------------------------+
+| **Mekanismeområde**      | **Forklaring**                                                              |
++==========================+=============================================================================+
+| Metabolske endringer     | \- Lavere kroppsmasseindeks (BMI)                                           |
+|                          |                                                                             |
+|                          | \- Redusert fettvev (adipositas)                                            |
++--------------------------+-----------------------------------------------------------------------------+
+| Hormonelle påvirkninger  | \- Reduserte nivåer av kjønnshormoner                                       |
+|                          |                                                                             |
+|                          | \- Lavere nivåer av insulin og c-peptid                                     |
++--------------------------+-----------------------------------------------------------------------------+
+| Reduksjon i inflammasjon | \- Mulige reduserte betennelsesprosesser i kroppen                          |
++--------------------------+-----------------------------------------------------------------------------+
+| Forbedret immunfunksjon  | \- Potensielle forbedringer i immunforsvarets funksjon                      |
++--------------------------+-----------------------------------------------------------------------------+
+| Bedre insulinfølsomhet   | \- Økt insulinsensitivitet, som er spesielt relevant for enkelte krefttyper |
++--------------------------+-----------------------------------------------------------------------------+
 
-  select(participant, sex, sets, pre, post) %>%
-  
-  print()
+Tabell 2: En oppsummering av mekanismene som potensielt bidrar til den beskyttende effekten fysisk aktivitet har på kreftdødelighet. @liDoseResponseEffect2016
 
+Andre referanser?
 
+#### Styrketrening som terapeutisk intervensjon (skrive det sånn eller som ved styrketrening som medisin)
 
+Styrketrening har vist seg å være en viktig komponent i rehabilitering og sykdomsforebygging blant kreftpasienter. Den bidrar til å redusere risikoen for komorbiditeter, forbedre behandlingsresultater og fremme fysisk funksjon (Fairman et al., 2022; Lee, 2022). Likevel er styrketrening underutnyttet i klinisk praksis, og deltakelsen blant pasientene er lav (Champ et al., 2023).
 
-## Do a t-test on change scores per condition. 
+Sarkopeni er en sentral utfordring for kreftpasienter, karakterisert ved redusert muskelmasse, styrke og funksjonsevne (Cruz-Jentoft et al., 2019). Denne tilstanden kan være primær (aldersrelatert) eller sekundær, forårsaket av sykdom eller behandling. Kjemoterapi-indusert perifer nevropati (CIPN) er en vanlig bivirkning som forverrer sarkopeni ved å påvirke muskelkontroll, balanse og styrke negativt (Seretny et al., 2014).
 
-## Alternatives (paired, equal variation)
-tt1 <- with(leanmass_change_wide, t.test(multiple, single, paired = TRUE))
+##### Fysiologiske og funksjonelle fordeler ved styrketrening
 
-## The same model but with lm
-m1 <- lm(diff ~ 1, data = leanmass_change_wide)
+Styrketrening er blant de mest effektive metodene for å motvirke muskelatrofi og redusert fysisk funksjon. Studier har vist at regelmessig styrketrening kan øke muskelstyrken med opptil 42 % hos eldre, forbedre ganghastighet og styrke evnen til å reise seg fra en stol (Dent et al., 2018; Marzuca-Nassr et al., 2024). Studien til @marzuca-nassrMuscleMassStrength2024 videre at alle deltakerne økte tverrsnittsarealet for quadriceps, med en økning som varierte fra [1% til 18%]{.underline} hos 65--75 åringene og fra [6% til 21%]{.underline} hos deltagerne over 85 år. De ble også henholdsvis 38% og 42% sterkere, samt 8% og 12% raskere. Slike forbedringer reduserer risikoen for fall, fremmer selvstendighet og styrker livskvaliteten (Sherrington et al., 2019).
 
-summary(m1)
+Fysiologisk stimulerer styrketreningen proteinsyntesen, forbedrer mitokondriell funksjon og reduserer opphopningen av skadede proteiner i muskulaturen (Irving et al., 2012; Hood et al., 2019). Samtidig fører treningen til frigjøring av myokiner, som har anti-inflammatoriske effekter og styrker immunforsvaret (Tagliafico et al., 2022). Disse mekanismene er særlig viktige for å redusere aldersrelaterte funksjonsnedsettelser og fremme helhetlig helse.
 
+##### Fallforebygging og balansetrening
 
+Integrering av balansetrening med styrketrening er avgjørende for å redusere fallrisiko, særlig blant eldre. Fallrelaterte skader utgjør en betydelig samfunnsøkonomisk byrde og er blant de mest kostbare helseutfordringene for eldre i Norge (Kinge et al., 2023). Kreftpasienter er spesielt utsatt for balanseproblemer, noe som ofte skyldes nevrotoksiske effekter av kjemoterapi (Marshall et al., 2017).
 
+Det er sett at fall kan bidra til inaktivitet som igjen bidrar til ytterligere funksjonsnedsetting og reduksjon i helhetlig helse.
 
-### Mixed effects model
-# A mixed effects model allowing for a random slope for time is very similar 
-# to the t-test used above. 
+Tilpassede treningsprogrammer som kombinerer balanse- og styrketrening har vist seg effektive for å bedre fysisk funksjon og redusere alvorlighetsgraden av fall (Montero-Odasso et al., 2022). Som for eksempel kan en opplæring i funksjonelle ferdigheter, som å kunne reise seg fra gulvet, ha en viktig rolle i å redusere konsekvensene av fall.
 
-m2 <- lmer(lean.mass ~ time * sets +( 1 + time |participant), 
-           data = leanmass)
+##### Barrièrer for deltakelse og tiltak for fremme av styrketrening
 
-# Check the summary 
-summary(m2)
-# Check assumptions of equal residual variance
-plot(m2)
+Til tross for styrketreningens godt dokumenterte fordeler, er deltakelsen blant kreftpasienter lav. Frykt for skade, manglende veiledning og kunnskap, og begrenset tilgang til tilrettelagte treningsfasiliteter er vanlige barrièrer (Champ et al., 2023). Initiativ som "Aktiv mot kreft" og etableringen av Pusterom, treningssentre spesielt designet for kreftpasienter, har vist seg effektive i å fremme fysisk aktivitet.
 
-## Mixed-Effects ANCOVA
+##### Konklusjon
 
-# The lm model does not contain information on multiple
-# observations per participant
-m3 <- lm(post ~ pre + sets, data = leanmass_change_wide_time)
+Styrketrening representerer en kraftfull intervensjon for å bedre muskelstyrke, funksjonsevne og livskvalitet hos både eldre og kreftpasienter. For å realisere dette potensialet kreves systematiske tiltak for å integrere styrketrening i behandlingsforløpene, samt økt fokus på kompetansebygging blant helsepersonell og pasienter. En slik tilnærming vil kunne bidra til betydelige helsegevinster og redusert samfunnsøkonomisk byrde.
 
+## Styrketrening som medisin
 
-# A more correct model also include random intercepts per 
-# participant. Mixed effects ANCOVA mnodel:
-m4 <- lmer(post ~ pre + sets + (1|participant), 
-           data = leanmass_change_wide_time)
+Styrketrening er i økende grad blitt anerkjent som gunstig i behandling for mennesker som lever med kreft som en kronisk sykdom, i tillegg til at det er et forebyggende tiltak for komorbiditeter (Fairman et al., 2022; Lee, 2022; Padilha et al., 2017).
 
+Det er kjent at et progressivt tap av skjelettmuskel har negative kliniske konsekvenser på muskelstyrke, respirasjonsfunksjon, funksjonsstatus, funksjonshemmingsrisiko og livskvalitet [@muscaritoliConsensusDefinitionSarcopenia2010], og at lav muskelstyrke er assosiert med ugunstige helseutfall som fall- og bruddskader @schaapAssociationsSarcopeniaDefinitions2018.
 
-summary(m3)
+Samtidig vet man at styrketrening ikke har blitt en rutinemessig del av behandling og rehabilitering, og at det dessverre lav tilslutning til denne treningsformen blant kreftpasienter (Champ et al., 2023).
 
-summary(m4)
+### Sarkopeni og dens konsekvenser
 
+Sarkopeni og overvekt er signifikante utfordringer hos mennesker med kreft, både under og etter kreftbehandling (Champ et al., 2023). Cruz-Jentoft et al. (2019) definerer sarkopeni som *et muskelsvinn-syndrom kjennetegnet ved lav muskelmasse, lav muskelstyrke og/eller lav fysisk funksjon* (f.eks. lav ganghastighet). I deres konsensusdefinisjon for "European Working Group on Sarcopenia in Older People (EWGSOP2)" legger de vekt på muskelstyrke som det mest avgjørende elementet, siden styrke er sterkere assosiert med funksjonelle utfall enn muskelmasse alene.
 
+(Sarkopeni kommer gjerne fra flere faktorer og deles inn i primær og sekundær sarkopeni. Sarkopeni, sarkopeni kakeksi, sarkopeni obesity [@anjanappaSarcopeniaCancerRisking2020].)
 
-### How to extract data from a model:
+Det er også beskrevet at både muskelstyrke og muskelmasse virker å kunne gi både informativ og prediktiv verdi for kreftprognose @caoEffectExerciseSarcopenia2022. Studien til (Miyamoto et al., 2015) fremhever sarkopeni som en mulig prediktiv faktor for overlevelse etter gjennomgått behandling. Det er også sett at kreftpasienter og kreftoverlevere med lav muskelmasse har en økt risiko for akutt kardiovaskulær sykdom (Zhang et al., 2023).
 
-# m1 is a linear model of difference in differences
-# we can use it for inference, extract average diff and confidence 
-# intervals and p-value
+I studien til @morishitaDifferencesRelationshipsMuscle2022 konkluderte de med at eldre brystkreftoverlevere har betydelig lavere muskelstyrke (og muskelmasse) enn middelaldrende.
 
-# Save all elements of inline results
-m1pval <- round(coef(summary(m1))[1, 4], 3)
-m1est <- round(coef(summary(m1))[1, 1], 1)
+Fysisk skrøpelighet kjennetegnes ved redusert muskelstyrke, redusert energinivå og økt trettbarhet, utilsiktet vekttap og lav fysisk aktivitet (Clegg, Young, Iliffe, Rikkert, & Rockwood, 2013; Rodriguez-Manas & Fried, 2015). De fysiologiske reservene i kroppen blir redusert, og motstandskraften mot påkjenninger som sykdommer og skader blir dårligere. 
 
-m1ciu <- round(confint(m1)[1,2], 1)
-m1cil <- round(confint(m1)[1,1], 1)
+Helsedirektoratet råd for fallforebygging hos eldre viser til at balanse- og styrketrening styrker beinhelsen og bidrar til å forhindre fall og fallrelaterte skader. Styrketrening øker muskelstyrken og kan øke beinmineraltettheten i knoklene, noe som styrker dem ved et eventuelt fall. Fysisk aktivitet og fallforebyggende trening kan ha betydning for hvor lenge en person kan bo hjemme og klare seg selv. Aldringsprosessen fører til endringer i de fleste av kroppens organer og en generell nedgang i både fysisk og mental kapasitet. Daglig fysisk aktivitet og trening kan bidra til at prosessen utsettes. Mange av hverdagens gjøremål stiller krav til både muskelstyrke og balanse. For eksempel er det avgjørende med muskelstyrke i beina for å kunne reise seg fra en stol og gå i trapp på egen hånd. Det å forflytte seg på egen hånd og bevege seg fritt både innendørs og utendørs krever både muskelstyrke og balanse. Av disse grunner er det svært viktig å trene styrke og balanse for å bevare mest mulig selvstendighet i hverdagen. Bevegelsesvansker og tap av selvstendighet er ofte årsak til at eldre får behov for hjelp i hjemmet (Wyller, 2016; Størksen, 2016). Å lære seg ferdigheten å kunne reise seg fra gulvet selv dersom man faller er viktig fordi det å ligge på gulvet i mer enn en time er assosiert med dehydrering, elektrolyttforstyrrelser, nyresvikt, hypotermi, lungebetennelse og urinveisinfeksjoner, hudskader og smerter og nedsatt bevegelighet og begrensinger i aktivitet, trolig på grunn av bekymringer for å falle på nytt (Montero-Odasso et al., 2022).
 
-# Combine into an object
-m1results <- paste0(m1est, 
-                    ", 95% CI: [",
-                    m1cil, 
-                    ", ",
-                    m1ciu, 
-                    "], p = ",
-                    m1pval
-                    )
+### Viktigheten av styrketrening
 
+Styrketrening er vist å kunne motvirke fall i muskelmasse, -styrke og -kraft hos eldre personer [@marzuca-nassrMuscleMassStrength2024]. Studien viste at alle deltakerne økte tverrsnittsarealet for quadriceps, med økningen som varierte fra [1% til 18%]{.underline} hos 65--75 og fra [6% til 21%]{.underline} hos 85+. De ble også henholdsvis 38% og 42% sterkere, samt 8% og 12% raskere.
 
+Styrketrenings gode effekter på økt muskelfunksjon kan forklares med at den stimulerer til økt proteinomsetning, og kan redusere opphopningen av skadede proteiner (Irving et al., 2012). Den gir også økt produksjon og frigjøring av myokiner som har en rekke gunstige påvirkninger som redusert systemiske inflammasjon og økt immunrespons (Tagliafico et al., 2022) og vil forbedre kvaliteten på mitokondriemengden i musklene, med den overordnede effekten av å forbedre muskelfunksjonen (Hood et al., 2019).
 
+Styrketrening vil også forbedre hverdagslige funksjoner som å reise seg opp fra en stol og øke ganghastighet (Dent et al., 2018). Tilpasset styrketrening har vist å redusere funksjonstapet hos eldre (Frändin et al., 2016), og flere meta-analyser har vist at trening reduserer risikoen for fall og antall fall hos eldre (Sherrington et al., 2019; Tricco et al., 2017). I den største av disse meta-analysene fant man at trening reduserte fallraten hos eldre med 23 prosent (Sherrington et al., 2019).
 
+Styrketrening gir også en økning i muskelmasse hos disse pasientene selv om det er mer sprikende funn på dette området (Champ et al., 2023; Lee, 2022; Nilsen et al., 2015).
 
-```
+Målene ved styrketrening innenfor kreft er å optimalisere styrketreningen for hver enkelt pasient for å påvirke styrke og bevegelighet, prestasjon og funksjon, og kroppssammensetning (Champ et al., 2023).
 
-The average difference in lean mass changes between sets were `r m1results`.
+## Balansetrening
 
+### Balanseutfordringene og trening av balanse
 
+Det er beskrevet at kreftpasienter har redusert balanse (Morishita et al., 2022) og at så mange som 20% av kreftoverlevere rapporterer balanseutfordringer [@chevilleDetectionTreatmentCancerrelated2009]. I tillegg er over 60% av kreftoverleverne over 65 år [@medinaBalanceVestibularFunction2021] , og økende alder er i seg selv en risikofaktor for nedsatt balanse, da gjerne sett i sammenheng med nedsatt muskelstyrke i beina. Dette gir gjerne en selvforsterkende effekt med økende inaktivitet. For det er slik at ca 1/3 av alle over 65 år har ett eller flere fall pr år og at risikoen for fall og fallrelaterte skader øker videre med alderen, og at fall er assosiert med redusert livskvalitet grunnet redusert fysisk funksjon og sosial omgang. [@sherringtonExercisePreventingFalls2019].
 
-```{r}
+I tillegg har eldre brystkreftoverlevere betydelig lengre COP-lengde (trykksenter) enn middelaldrende @morishitaDifferencesRelationshipsMuscle2022.
 
-## Time points in strength data set
+Fall har store samfunnsmessige konsekvenser, både for den enkelte, pårørende og alle nivåer i helsetjenesten.
 
-strengthvolume %>%
-  distinct(exercise)
+Andre konsekvenser er engstelse for nye fall, immobilitet og økt behov for helse- og omsorgstjenester (Olsen et al., 2017). Det er beregnet at fall utgjør den nest mest kostbare tilstanden i Norge i 2019 etter demens, med anslåtte helsekostnader på 14.5 milliarder NOK (Kinge et al., 2023). Dette tallet innebefatter behandling av fallskader, og hoftebrudd er blant de mest kostnadskrevende enkeltdiagnosene for eldre pasienter i spesialisthelsetjenesten. Fall som resulterer i hoftebrudd medfører høy overdødelighet (Holvik et al., 2023), redusert selvhjulpenhet, økt pleiebehov og etter hvert behov for sykehjemsplass for mange. På grunn av økningen av antallet eldre i de kommende årene, særlig fra 2025.
 
+Hvert å faller omtrent 30 prosent av alle over 65 år og hele 50 prosent av dem som er over 80 år. Funksjonssvikt, inaktivitet, isolasjon, nedsatt livskvalitet, økt hjelpebehov og tidligere død er noen av konsekvensene et fall kan innebære for eldre. Balanseøvelser og aktivitet som øker kjernemuskulatur og styrke kan forebygge fall. (https://sykepleien.no/meninger/2024/05/vi-ma-gjore-mer-forebygge-fall-blant-eldre)
 
+I @mullerOutBalancePostural2020 så man at kreftpasienter viser betydelig balansesvikt etter nevrotoksisk kjemoterapi, at den reduserte balansen er mest tydelig under visuell deprivasjon (lukkede øyne) og at den er sterkest assosiert med nerveledningshastighet
 
-## Exploratory plot of strength data 
+#### Nevropati som påvirkende faktor på redusert balanse
 
-str <- strengthvolume %>%
-  filter(include == "incl") %>%
-  mutate(time = factor(time, levels = c("pre", "session1", 
-                                        "week2", "week5", 
-                                        "week9", "post"))) %>%
-  print()
+Kjemoterapi-indusert perifer nevropati (CIPN) er en invalidiserende smertetilstand @seretnyIncidencePrevalencePredictors2014 og har også vist seg å være en risikofaktorer for balanseproblemer hos kreftoverlevere @marshallChemotherapyinducedperipheralNeuropathyGait2017
 
+I en tidligere oversiktsartikkel og meta-analyse @seretnyIncidencePrevalencePredictors2014 så man at CIPN-prevalensen var 68,1 % (57,7--78,4) målt i den første måneden etter kjemoterapi, 60,0 % (36,4--81,6) etter 3 måneder og 30,0 % (6,4--53,5) etter 6 måneder eller mer.
 
-str %>%
-  ggplot(aes(time, 
-             load, 
-             group = paste(participant, sets), 
-             color = sets)) + 
-  geom_line() + 
-  facet_wrap(~ exercise, scales = "free")
-  
+### Fatigue blant kreftoverlevere og effekten av trening
 
-## How many measurements per participant
+Tidligere diagnostisering, bedre behandling og overlevelse de siste tiårene har sine fordeler. Samtidig viser økt overlevelse seg å gi en økning i bieffekter som fatigue @mullerOutBalancePostural2020.
 
-str %>%
-  filter(!is.na(load)) %>%
-  group_by(participant, exercise, sets) %>%
-  summarise(n = n() ) %>%
-  ggplot(aes(n, participant, color = sets)) +
-  geom_point() + 
-  facet_wrap(~ exercise) + 
-  theme(axis.text.y = element_blank())
+NCCN definerer kreftrelatert fatique som "en plagsom, vedvarende, subjektiv følelse av fysisk, emosjonell og/eller kognitiv tretthet eller utmattelse relatert til kreft eller kreftbehandling som ikke står i forhold til nylig aktivitet og forstyrrer vanlig funksjon." (Sanft et al., 2023)
 
+Fatigue er nesten universell under kreftbehandling og flere studier har vist at fatigue kan vedvare i opptil 10 år hos over 25% av kreftoverlevere. Dette har stor innvirkning på disse menneskenes livkvalitet i både daglige aktiviteter, på jobb og sosialt (Bower, 2014).
 
+I tillegg kan fatique være med på å bidra til balanseproblemer og \@huangFactorsAssociatedSelfreported2018 så en tydelig sammenheng mellom fatigue og nedsatt balanse hos kreftoverlevere. De beskriver at fatigue er med på å redusere muskelstyrke- og utholdenhet som igjen svekker både dynamisk og statisk balanse.
 
-## Use pre and post data 
-# Combine pre data prior to data analysis
-# per exercise, leg, participant, and sets
+Det er også at sett en korrelasjon mellom høy grad av fatique og lav benstyrke, samt høy fettprosent og aktivitetsnivå blant kreftoverlevere. (Winters-Stone et al., 2008).
 
-str %>%
-  mutate(time = if_else(time %in% c("pre", "session1"), "pre", time)) %>%
-  
-  filter(time %in% c("pre", "post")) %>%
-  
-  summarise(load = max(load, na.rm = TRUE), 
-            .by = c(participant, 
-                    sex, 
-                    time, 
-                    sets,
-                    exercise,
-                    leg)) %>%
-  
-  print()
+Selv om det fortsatt er en viss usikkerhet om fordelene ved trening for å redusere kreftrelatert tretthet (CRF) generelt, er det overbevisende bevis på at trening ikke øker CRF. (Thong et al., 2020). Og det er vist er at fysisk aktivitet bidrar til lavere grad av fatique, og noen studier på styrketrening viser det samme.....
 
+GÅ GJERNE MER RETT PÅ HVA STYRKETRENING VISER PÅ DISSE VARIABLENE
 
+GJERNE NOE OM BARRIERER FOR STYRKETRENING, AKTIV MOT KREFT OG PUSTEROMMENE
 
+## Tidligere studier på styrketrening på kreftpasienter
 
+### Etterlevelse av denne treningen
 
+Generelt viser det seg...
 
+### Hjemmebasert styrketrening
 
+### Styrketrening på treningstudio
 
+JA, FÅ MED LITT OM HVA VI VET OM EFFEKTEN AV STYRKETRENING PÅ KREFTPASIENTER, MEN AT DETTE FORUSETTER AT TRENINGEN GJENNOMFØRES. SKRIV GJERNE OM FORDELER OG ULEMPER MED DE ULIKE TRENINGSFORMENE, OG AT DET ER VIKTIG Å FINNE KOSTNADSEFFEKTIVE PROGRAMMER SOM ENKELT KAN IMPLEMENTERES TIL PASIENTER UAVHENGIG AV HVOR DE BOR, OG HVOR LANG REISEVEI DE HAR TIL NÆRMESTE PUSTEROM ELLER ANDRE TRENINGSLOKALER SOM KAN TILBY KREFTRELATERT TRENING.
 
-
-
-```
-
-
-
-
-
-## Discussion
-
-## Conclusion
-
-
-
-
-
-
-
-
-In this assignment you will analyze and report on trial investigating the effect of resistance training volume on lean mass and muscle strength. The data are part of the `exscidata` package and can be accessed as `data("strengthvolume")` and `data("dxadata")`. Read the instructions carefully!
-
-## Organizing the report
-
-Your report should consist of the sections Introduction, Methods, Results and Discussion. Each part of the report should be written as a reproducible document and a link or reference to the repository containing the source document(s) should be included in the report. Below follows detailed descriptions and requirements for each section.
-
-### Introduction
-
-This section should consist of a description of the field, resistance-training volume and muscle strength and mass. Use at least five to ten references to introduce your audience and explain why you are doing the analysis/study. A tip is to use the QALMRI method, introduced in Assignment 4 to structure the reading of background information. It is up to you how you motivate the study and how you phrase the purpose of the study. It could be a hypothesis based on previous studies, it could also be question to fill a knowledge gap that you have identified in your literature review.
-
-Structure the introduction in paragraphs. A first paragraph could contain a general introduction to the field, why is it of interest to investigate resistance-training? A second paragraph could specifically describe the specific field of resistance-training volume, why is important to know more about how we are likely to respond to different training volumes. The second paragraph should incorporate definitions important for your report, e.g., training volume, muscle mass and strength. Try to incorporate these definition as a fluid part of the text.
-
-A third (or last) paragraph of the introduction should contain a statement regarding the purpose of the study. The purpose could be descriptive, hypothesis-driven or guided by a question. Although it could be considered a bit backward, you should explore the data sets before you select your question/hypothesis/purpose for it to be possible to answer.
-
-### Methods
-
-The method should give a thorough overview of the study and specific details regarding data collection. You can read about the details of this specific study in [@RN2358]. Use your own words to describe the study based on this description. A nice way to structure the methods section is to include subheadings:
-
--   Participants and study overview: Describe the participants and give an overview of all tests/measurements. Participants should be described in the first table of the report (Table 1). The overview of the tests/measurements should be done without double presentation as details should be presented in subsequent sections.
-
--   Specific descriptions (e.g. strength tests): Describe in detail how tests/measurements that you mentioned in the overview where conducted.
-
--   Data analysis and statistics: Describe how you treated the data prior to statistical tests or procedures and what tests/procedures were used to draw inference (or more generally, to answer your purpose). Describe how you present data (e.g. descriptive data with mean (SD), inference with confidence intervals etc.).
-
-### Results
-
-Describe the results of your analysis. This description should make use of table and figures as well as a text that guides and structures the content to the reader. Think about it this way, the text should describe when and how to read the figures and tables. This means that all aspects of the results should be covered in the text. The figures and tables should also be "self explanatory", this means that you have to include descriptive figure captions and descriptions of tables (see below for tips).
-
-As the main purpose of the analysis should concern the effect of training volume on muscle mass and strength, it is natural that the comparison of training outcomes between volume conditions is the main analysis in the results. You may also have questions regarding the relationship between muscle strength and mass gains, if there are differences between men and women etc. Selection of statistical/analysis techniques should reflect the study question/purpose.
-
-### Discussion
-
-Structure the discussion with a first paragraph describing the main results of the analysis, this could be the answer to your question or a statement regarding the study hypothesis. In the following paragraphs discuss all results that you have presented in the light of previous studies. It is your job to give the reader plausible interpretations and explanations of your results. This is how single scientific results are incorporated in our collective understanding. These interpretations can later be challenged, however if you give the reader good arguments and clear descriptions, your insights will be valuable to collective reasoning even if they turn out to be wrong in light of new data.
-
-End the discussion with a summary or conclusion. Some journals request that you state your conclusions under a specific heading in the end of the report/article.
-
-## Organizing the data analysis
-
-### Data preparation
-
-The data is already structured in the `exscidata` package. To access the data, use the following code:
-
-```{r, eval = TRUE, echo = TRUE}
-
-library(exscidata)
-data("dxadata"); data("strengthvolume")
-
-
-```
-
-To get and overview of the variables in each data set use `?strengthvolume` and `?dxadata`. In the `dxadata` the variables of interest are organized in a more convenient way using the code below:
-
-```{r, message = FALSE, warning = FALSE, echo = TRUE}
-
-library(tidyverse)
-
-dxadata %>%
-  select(participant:include, lean.left_leg, lean.right_leg) %>%
-  pivot_longer(names_to = "leg", 
-               values_to = "lean.mass", 
-               cols = lean.left_leg:lean.right_leg) %>%
-  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
-         sets = if_else(multiple == leg, "multiple", "single")) %>%
-  select(participant, time, sex, include, sets, leg, lean.mass) %>%
-  print()
-
-```
+Definisjoner

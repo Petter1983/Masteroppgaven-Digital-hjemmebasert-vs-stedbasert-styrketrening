@@ -1,0 +1,223 @@
+---
+title: "Resultat berg"
+editor: visual
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(gt)
+library(readxl)
+
+library(broom)
+library(ggplot2)
+library(readr)
+library(rio)
+library(tidyr)
+
+library(ggtext)
+library(dplyr)
+library(knitr)
+
+
+
+ 
+# Les inn Excel-filen
+komplett_datainnsamling <- read_excel("Filer/Komplett datainnsamling_29.03.25.xlsx")
+View(komplett_datainnsamling)
+
+
+komplett_datainnsamling -> berg
+
+```
+
+#Bergs balanse test normalfordeling pre test
+
+```{r}
+berg_pre <- komplett_datainnsamling%>%
+  select(deltaker,gruppe, tid, s_sum)%>%
+  filter(tid=="pre")%>%
+  group_by(tid, gruppe)%>%
+  drop_na()%>%
+  print()
+  
+  
+
+plot(berg_pre)
+summary(berg_pre)
+
+
+```
+
+#Bergs balanse test normalfordeling post test
+
+```{r}
+berg_post <- komplett_datainnsamling%>%
+  select(deltaker,gruppe, tid, s_sum)%>%
+  filter(tid=="post")%>%
+  group_by(tid, gruppe)%>%
+  drop_na()%>%
+  print()
+
+```
+
+# Berg pre og post resultater
+
+```{r}
+berg_pre_og_post<-komplett_datainnsamling %>%
+  select(deltaker, gruppe, tid, s_sum)%>%
+  filter(tid %in% c("pre", "post"))%>%
+  
+  mutate(tid = factor(tid , levels = c("pre", "post"))) %>%
+  group_by(tid , gruppe ) %>%
+  summarise(snitt = mean(s_sum, na.rm = TRUE),
+            min = min(s_sum, na.rm = TRUE),
+          max = max(s_sum, na.rm = TRUE),
+          SD = sd(s_sum, na.rm = TRUE),
+          median = median(s_sum, na.rm = TRUE),
+          n = n()
+          ) %>%
+  print()
+```
+
+```{r}
+berg_pre_og_post<-komplett_datainnsamling %>%
+  select(deltaker, gruppe, tid, s_sum)%>%
+  filter(tid %in% c("pre", "post"))%>%
+  
+  mutate(tid = factor(tid , levels = c("pre", "post"))) %>%
+  group_by(deltaker , tid , gruppe ) %>%
+  summarise(snitt = mean(s_sum, na.rm = TRUE),
+            min = min(s_sum, na.rm = TRUE),
+          max = max(s_sum, na.rm = TRUE),
+          SD = sd(s_sum, na.rm = TRUE),
+          median = median(s_sum, na.rm = TRUE),
+          n = n()
+          ) %>%
+  print()
+
+names(berg_pre_og_post)
+
+#Mixed models
+library(lme4)
+
+m1<- lmer(snitt~gruppe + (1|deltaker), data = berg_pre_og_post)
+summary(m1)
+
+plot(m1)  # Restplott for å se om det er mønstre i residualene
+qqnorm(residuals(m1)); qqline(residuals(m1))  # Sjekk normalfordeling
+```
+
+```{r}
+#Andre analyser
+
+#Lineær regresjonsanalyse
+m2<- lm (snitt ~ gruppe, data = berg_pre_og_post)
+#ved plot kan man se om tabellene er normalfordelte. Dette er også regresjonsmodeller
+summary(m2)
+#Lager Q-Q plott med referanselinje
+plot(m2)
+
+
+#ANOVA
+m3<- anova (lm(snitt ~ gruppe, data = berg_pre_og_post))
+summary(m3)
+gt(m3)
+
+```
+
+```{r}
+#Tester som ikke fungerer...
+#Uavhengig T-test
+m4<- t.test(snitt ~ gruppe, data = berg_pre_og_post, var.equal = FALSE)
+summary(m4)
+
+
+
+#Kruskal-Willis test (ikke-parametrisk test, ikke-parametrisk alternativ til ANOVA og tester om minst én gruppe skiller seg fra de andre.)
+m5<- kruskal.test (snitt ~ gruppe, data = berg_pre_og_post)
+summary(m5)
+m6<- pairwise.wilcox.test (berg_pre_og_post$snitt, berg_pre_og_post$gruppe, p.adjust.method = "bonferroni")
+summary(m6)
+
+#Wilcox test
+m7<- wilcox.test(snitt ~ gruppe, data = berg_pre_og_post)
+summary(m7)
+
+
+
+
+```
+
+Uavhengig T-test
+
+```{r}
+#Parret T-test
+m<- t.test(snitt_etter - snitt_før)
+summary(m)
+
+
+```
+
+#Endring fra pre til post på Berg Balanse test målt i prosent
+
+```{r}
+berg_endring <- berg
+berg_endring%>%
+  select(deltaker, tid, gruppe, s_sum_endring_prosent)%>%
+  mutate(s_sum_endring_prosent=s_sum_endring_prosent*100)%>%
+ filter(tid== "post")%>% 
+  
+  print()
+  
+
+
+group_by(tid, gruppe)%>% 
+summarise(snitt = mean(s_sum_endring_prosent, na.rm = TRUE),
+          min = min(s_sum_endring_prosent, na.rm = TRUE),
+          max = max(s_sum_endring_prosent, na.rm = TRUE),
+          SD = sd(s_sum_endring_prosent, na.rm = TRUE),
+          median = median(s_sum_endring_prosent, na.rm = TRUE))  %>%
+  
+       
+  print()
+
+summary(berg_endring)  
+
+
+```
+
+#Endring pr deltager fra pre til post
+
+```{r}
+berg_endring%>%
+  
+  ggplot(aes(x = deltaker, y = s_sum_endring_poeng )) +
+  geom_point(color = "steelblue", size = 2, alpha = 0.7, position = position_jitter(width = 1.0, height = 0) ) + 
+  labs(title = "Gjennomsnittlig endring per deltaker",
+       x = "Deltaker",
+       y = "Gjennomsnittlig S_sum") +
+  theme_minimal()
+
+
+
+
+  
+```
+
+#Endring pr gruppe ved post test
+
+```{r}
+
+berg_pre_og_post %>%
+   ggplot(aes(x = gruppe, y = snitt )) +
+  geom_point(color = "steelblue", size = 2, alpha = 0.7, position = position_jitter(width = 1.0, height = 0) ) + geom_abline()+
+  labs(title = "Gjennomsnittlig endring per gruppe",
+       x = "Gruppe",
+       y = "Gjennomsnittlig S_sum") +
+  theme_minimal()
+  
+  
+ 
+```

@@ -2,19 +2,21 @@ project:
   type: book
 
 book:
-  title: "Mappeeksamen IDR4000"
-  author: "Student Studentson"
-  date: "2023-08-15"
+  title: "Masteroppgaven"
+  author: "Petter Leistad"
+  date: "2025-01-01"
   chapters:
     - index.qmd
-    - 01-reliability-tools.qmd
-    - 02-regression-models.qmd
-    - 03-statistical-inference.qmd
-    - 04-study-design.qmd
-    - 05-repeated-measurements.qmd
-    - 06-vitenskapsteori.qmd
-    - 07-laboratory-report.qmd
-    - references.qmd
+    - forord.qmd
+    - summary.qmd
+    - 01-teori.qmd
+    - 02-innledning.qmd
+    - 03-metode.qmd
+    - 04-resultat.qmd
+    - 05-diskusjon.qmd
+    - 06-referanser.qmd
+    - 07-vedlegg.qmd
+    - references.bib
 
 bibliography: resources/bib-final.bib
 

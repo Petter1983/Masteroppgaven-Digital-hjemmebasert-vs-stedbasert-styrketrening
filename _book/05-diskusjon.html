@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.330">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Mappeeksamen IDR4000 - 2&nbsp; Assignment 1: Reliability and tools for reproducible data science</title>
+<title>Masteroppgaven - 7&nbsp; Diskusjon</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
-<link href="./01-reliability-tools.html" rel="prev">
+<link href="./06-referanser.html" rel="next">
+<link href="./04-resultat.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -91,7 +57,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -107,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Assignment 1: Reliability and tools for reproducible data science</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-diskusjon.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diskusjon</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -122,7 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Mappeeksamen IDR4000</a> 
+      <a href="./">Masteroppgaven</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -140,26 +107,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-reliability-tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Assignment 1: Reliability and tools for reproducible data science</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Assignment 1: Reliability and tools for reproducible data science</span></span></a>
+  <a href="./forord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">forord.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="./01-teori.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">01-teori.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-innledning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">02-innledning.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-metode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Metode</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-resultat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Laster opp excel filene</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-diskusjon.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diskusjon</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-referanser.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-vedlegg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">07-vedlegg.html</span></span></a>
   </div>
 </li>
     </ul>
@@ -172,10 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#elements-of-the-report" id="toc-elements-of-the-report" class="nav-link active" data-scroll-target="#elements-of-the-report"><span class="header-section-number">2.1</span> Elements of the report</a></li>
-  <li><a href="#the-format-of-the-report" id="toc-the-format-of-the-report" class="nav-link" data-scroll-target="#the-format-of-the-report"><span class="header-section-number">2.2</span> The format of the report</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">2.3</span> Data</a></li>
-  <li><a href="#how-to-hand-in-the-report." id="toc-how-to-hand-in-the-report." class="nav-link" data-scroll-target="#how-to-hand-in-the-report."><span class="header-section-number">2.4</span> How to hand in the report.</a></li>
+  <li><a href="#bergs-balanse-skala" id="toc-bergs-balanse-skala" class="nav-link active" data-scroll-target="#bergs-balanse-skala"><span class="header-section-number">7.1</span> Bergs Balanse Skala</a></li>
   </ul>
 </nav>
     </div>
@@ -184,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="assignment1" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Assignment 1: Reliability and tools for reproducible data science</span></span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diskusjon</span></h1>
 </div>
 
 
@@ -199,50 +193,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The purpose of this assignment is to present estimates of reliability of measures collected in the physiology lab. A second purpose is to use tools for reproducible data science. The report that you are expected to hand in therefore has some strict requirements in its format (see below). The assignment is a group assignment and at least three students are expected to contribute to each report.</p>
-<section id="elements-of-the-report" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="elements-of-the-report"><span class="header-section-number">2.1</span> Elements of the report</h2>
-<p>The report should describe one test that you have performed in the physiology-lab. Select the test that is most interesting to you. The test should be described with a detailed protocol, including preparations of the participant (that is being tested), standardization of the test, and post-test data preparation. Post-test data preparation refers to steps needed to get data from e.g.&nbsp;equipment used during the test. This section should take into account and reference <span class="citation" data-cites="RN1739 RN2511">(<a href="references.html#ref-RN1739" role="doc-biblioref"><strong>RN1739?</strong></a>; <a href="references.html#ref-RN2511" role="doc-biblioref"><strong>RN2511?</strong></a>)</span></p>
-<p>The next section should contain descriptive data from the test. This could be measures of central tendency and variability in the measures you have collected. If possible, try to find similar estimates in the scientific literature.</p>
-<p>Finally, we are interested in reliability. Here you need to calculate an estimate of reliability of the test. Use (and reference) <span class="citation" data-cites="RN130">(<a href="references.html#ref-RN130" role="doc-biblioref"><strong>RN130?</strong></a>)</span>. Try to be clear with what measure of reliability you are using and what it is telling you.</p>
-</section>
-<section id="the-format-of-the-report" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="the-format-of-the-report"><span class="header-section-number">2.2</span> The format of the report</h2>
-<p>The report should be uploaded to github with both a source file (<code>.Rmd</code> or <code>.qmd</code>) and report file as output (<code>html</code>, <code>pdf</code> or <code>docx</code>-file). The github folder should also contain the dataset being used in the calculations. Work on your assignment as a R project. Contributions from members of the group can be made directly to the github repository. Follow this checklist on how to get started:</p>
-<p>(<a href="https://happygitwithr.com/install-intro.html">A nice introduction to github with R can be found here</a>)</p>
 <ul>
-<li>Create a <a href="http://www.github.com">github account</a>. All members of the group should have their own account.</li>
-<li>Once signed in to github.com, create a new repository with an informative name. Make sure that the repository is public. One member of the group can create this repository in their own account.</li>
-<li>Be sure to <a href="https://git-scm.com/downloads">download and install git</a> on your computer.</li>
-<li>Start up RStudio, start a new project, select the Version Control option and copy the address to the repository.</li>
-<li>Add files to your project and upload to github. You need to add files, commit them and push using git. Use the command line in your terminal:</li>
+<li>Question</li>
+<li>Alternative</li>
+<li>Logic</li>
+<li>Methods</li>
+<li>Results</li>
+<li>Inference</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git add <span class="sc">-</span>A</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>git commit <span class="sc">-</span>m <span class="st">"A short message to describe your changes"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>git push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>When you want to download the latest version of your project, type in the terminal:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>You may encounter conflicts if pushing changes that overwrites changes made by other group members. These may be tricky but can be resolved… Have patience!</li>
-</ul>
-<p>If you are contributing to the project owned by another person in your group it is reccomended that you create a pull request with your changes.</p>
-</section>
-<section id="data" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="data"><span class="header-section-number">2.3</span> Data</h2>
-<p>If you want more data, you may “borrow” data from previous students:</p>
-<p><a href="./data/reliability-old/vo2max-g1.xlsx">VO<sub>2max</sub> tests (Group 1)</a> <a href="./data/reliability-old/vo2max-g2.xlsx">VO<sub>2max</sub> tests (Group 2)</a> <a href="./data/reliability-old/laktatprofil-g2.xlsx">Lactate threshold tests</a></p>
-</section>
-<section id="how-to-hand-in-the-report." class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="how-to-hand-in-the-report."><span class="header-section-number">2.4</span> How to hand in the report.</h2>
-<p>Copy the link to your github folder into canvas.</p>
+<section id="bergs-balanse-skala" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="bergs-balanse-skala"><span class="header-section-number">7.1</span> Bergs Balanse Skala</h2>
+<p>I tverrsnittstudien til <span class="citation" data-cites="viveiroReliabilityValidityAbility2019">(<a href="06-referanser.html#ref-viveiroReliabilityValidityAbility2019" role="doc-biblioref"><strong>viveiroReliabilityValidityAbility2019?</strong></a>)</span> sammenlignet de BBS med andre balansetester. Eldre voksne (n = 49; alder 62–90 år; gjennomsnitt = 77,8; standardavvik = 7,2) ble rekruttert fra et ideelt sykehjem. Alle deltakerne ble vurdert av 2 fysioterapeuter ved bruk av BBS, BESTest, Mini-BESTest og Brief-BESTest. Alle balansetestene viste lignende pålitelighet, reproduserbarhet og validitet. Dette tyder på at hvilken som helst av disse testene kan brukes i klinisk praksis. I denne oppgaven ble BBS valgt da denne er kjent for meg gjennom min bakgrunn som fysioterapeut. Den er også veldig nyttig da den tester både statisk og dynamisk balanse i både stående, sittende og ved forflytninger.</p>
+<p>Fysisk aktivitet er helt avgjørende for å opprettholde og forbedre kondisjon, muskelstyrke og balanse hos eldre (&gt;65 år). Dette kan bidra til å forebygge fall, samt forbedre hverdagslige funksjoner som å reise seg opp fra en stol og øke ganghastighet (Dent et al., 2018). Det er vist at individrettet trening minsker tap av fysisk funksjon hos gamle mennesker (Frändin et al., 2016), og flere meta-analyser av randomiserte, kontrollerte studier har vist at trening reduserer risikoen for fall og antall fall hos eldre (Sherrington et al., 2019; Tricco et al., 2017). I den største av disse meta-analysene fant man at trening reduserte fallraten hos eldre med 23 prosent (Sherrington et al., 2019). &nbsp;</p>
+<p>For å vedlikeholde skjelettet og forebygge brudd er det viktig å unngå inaktivitet, og selv moderat aktivitet kan ha betydning. Det gir ytterligere gevinst å drive med noe styrketrening og/eller andre vektbærende fysiske aktiviteter av høyere intensitet for å forebygge osteoporose og osteoporotiske brudd (2018 Physical&nbsp; Activity Guidelines Advisory Committee, 2018). &nbsp;</p>
+<p>Kroppens funksjonsevne gir en god pekepinn på robusthet, særlig blant de eldste. I en stor dansk studie fulgte man 92- og 93-åringer over en 8-års periode, og blant menn som klarte å reise seg fra en stol uten å bruke hendene som støtte, ble hele 11 prosent 100 år (Thinggaard et al., 2016). For de som ikke klarte dette nådde kun 2 prosent 100-års alder. Tilsvarende tall for kvinner var 22 og 2 prosent. Enkle funksjonstester kan si like mye om overlevelsessannsynlighet som større helsekartlegginger.</p>
+<p>Begrepet iboende kapasitet ble lansert av WHO i 2015, og er et mål på kroppens fysiske og mentale reserver (WHO, 2015). Disse fysiologiske reservene omfatter muligheten til å bevege seg, sensorisk kapasitet som syn og hørsel, muskelstyrke, vitalitet, kognisjon, og psykologisk kapasitet. Opprettholdelse og utvikling av iboende kapasitet vil gi eldre mulighet til å være aktive og fungere i hverdagen. Iboende kapasitet er derfor en viktig komponent for sunn aldring. Iboende kapasitet i yngre år, og i kritiske perioder i livet, kan påvirkes av en rekke biologiske, sosioøkonomiske og miljømessige faktorer og har betydning for helsen i alderdommen (Ben-Shlomo &amp; Kuh, 2002; Hanson et al., 2016). Funksjonsevne er en kombinasjon av personens iboende kapasitet og samspillet med miljøet personen lever i (WHO, 2015, 2021).</p>
 
 
 </section>
@@ -483,13 +448,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./01-reliability-tools.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Assignment 1: Reliability and tools for reproducible data science</span></span>
+      <a href="./04-resultat.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Laster opp excel filene</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./06-referanser.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

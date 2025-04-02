@@ -1,0 +1,2156 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Masteroppgaven},
+  pdfauthor={Petter Leistad},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Masteroppgaven}
+\author{Petter Leistad}
+\date{2025-01-01}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, sharp corners, interior hidden, enhanced, boxrule=0pt, frame hidden, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\bookmarksetup{startatroot}
+
+\hypertarget{introduksjon-til-mappetemplat-og-luxe6rinsgrefleksjon}{%
+\chapter*{Introduksjon til mappetemplat og
+Lærinsgrefleksjon}\label{introduksjon-til-mappetemplat-og-luxe6rinsgrefleksjon}}
+\addcontentsline{toc}{chapter}{Introduksjon til mappetemplat og
+Lærinsgrefleksjon}
+
+\markboth{Introduksjon til mappetemplat og
+Lærinsgrefleksjon}{Introduksjon til mappetemplat og Lærinsgrefleksjon}
+
+Emnet IDR4000, kvantitativ metode og statistikk bruker mappeeksamen som
+evalueringsform. Dette er et ``templat'' for skriving og innlevering av
+eksamen. Lag en egen versjon av templatet ved å laste ned det
+(clone/fork) fra GitHub og bruk denne som utgangspunkt. Ta vekk alle
+instruksjoner før du leverer den siste versjonen av din mappe.
+
+Mappeeksamen består av følgende deler:
+
+\begin{itemize}
+\tightlist
+\item
+  Refleksjoner på læring i emnet
+\item
+  Rapport: ``Deskriptiv statistikk, reliabilitet og validitet og verktøy
+  for reproduserbar vitenskap''.
+\item
+  Laborasjonsrapport fra molekylærlabb
+\item
+  Arbeidskrav i vitenskapsteori
+\item
+  Rapport: ``Statistisk inferens, statistiske modeller og statistisk
+  styrke''
+\item
+  Rapport: ``Studiedesign''
+\item
+  Rapport: ``Analyse av eksperimenter med repeterte målinger''
+\end{itemize}
+
+I templatet organiseres hver del som et kapittel og instruksjoner for
+hvert del finner du i templatet.
+
+\hypertarget{instruksjoner-for-luxe6ringsrefleksjon}{%
+\section*{Instruksjoner for
+læringsrefleksjon}\label{instruksjoner-for-luxe6ringsrefleksjon}}
+\addcontentsline{toc}{section}{Instruksjoner for læringsrefleksjon}
+
+\markright{Instruksjoner for læringsrefleksjon}
+
+Mappeeksamen skal starte med en læringsrefleksjon. Her forventes du
+reflektere over hvordan de forskjellige delene i mappeeksamen (og andre
+aktiviteter i emnet) bidrar til oppnåelse av emnets læringsutbytte. Du
+finner
+\href{https://studiekatalog.edutorium.no/inn/nb/emne/IDR4000/2023-host}{læringsutbytte
+her}. Emnet har flere, delvis overlappende mål. En form for refleksjon
+kan være å ta utgangspunkt i læringsutbytte og beskrive aktiviteter som
+bidratt til at du oppnådd målene. Refleksjonen bør være et levende
+dokument i løpet av emnet.
+
+Emnet har Bestått/Ikke bestått som karakterskala men læringsrefleksjonen
+skal inneholde en egen vurdering av læring. Her kan du bruke de
+generelle kvalitative beskrivelsene i tabellen under. Her er det ikke
+tilstrekkelig å sette en symbol eller betegnelse. Det forventes at
+refleksjonen inneholder motivering til vurderingen og hva som eventuelt
+savnes for et høyere nivå. Bruk enten læringsutbytte eller aktiviteter
+for å vise på eksempel hvor læringsstrategier eller innsats har
+bidratt/ikke bidratt til måloppnåelse.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Symbol
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Betegnelse
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Generell, ikke fagspesifikk beskrivelse av vurderingskriterier
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+A & fremragende & Fremragende prestasjon som klart utmerker seg.
+Kandidaten viser svært god vurderingsevne og stor grad av
+selvstendighet. \\
+B & meget god & Meget god prestasjon. Kandidaten viser meget god
+vurderingsevne og selvstendighet. \\
+C & god & Jevnt god prestasjon som er tilfredsstillende på de fleste
+områder. Kandidaten viser god vurderingsevne og selvstendighet på de
+viktigste områdene. \\
+D & nokså god & En akseptabel prestasjon med noen vesentlige mangler.
+Kandidaten viser en viss grad av vurderingsevne og selvstendighet. \\
+E & tilstrekkelig & Prestasjonen tilfredsstiller minimumskravene, men
+heller ikke mer. Kandidaten viser liten vurderingsevne og
+selvstendighet. \\
+F & ikke bestått & Prestasjon som ikke tilfredsstiller de faglige
+minimumskravene. Kandidaten viser både manglende vurderingsevne og
+selvstendighet. \\
+\end{longtable}
+
+For en godkjent mappeeksamen kreves et fullstendig refleksjonsnotat.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{section}{%
+\chapter{}\label{section}}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{summary}{%
+\chapter{Summary}\label{summary}}
+
+In summary, this book has no content whatsoever.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{section-1}{%
+\chapter{}\label{section-1}}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{section-2}{%
+\chapter{}\label{section-2}}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{metode}{%
+\chapter{Metode}\label{metode}}
+
+\hypertarget{section-3}{%
+\section{}\label{section-3}}
+
+Studiedesign
+
+Denne masteroppgaven er del av et større pågående forskningsprosjekt ved
+Seksjon for helse- og treningsfysiologi ved Høgskolen Innlandet, i
+samarbeid med Sykehuset Innlandet (SI). Prosjektet er en
+assessor-blindet randomisert kontrollert studie (RCT), med en
+intervensjonsperiode på 12 uker.
+
+\hypertarget{deltagere-og-rekruttering}{%
+\section{Deltagere og rekruttering}\label{deltagere-og-rekruttering}}
+
+Den randomiserte kontrollerte studien (RCT) inkluderer voksne pasienter
+diagnostisert med hvilken som helst type kreft som har fullført aktiv
+sykehusbasert behandling (kjemoterapi, strålebehandling eller andre
+infusjonsbaserte terapier) for mindre enn fem år siden. Pasientene som
+bor nær Gjøvik eller Lillehammer (0-20 km reiseavstand) og som sa seg
+villige til å reise til «Pusterommet» ved Gjøvik sykehus eller
+Aktivklinikken Lillehammer for treningsprogrammet, ble randomisert til
+enten stedbasert veiledet styrketrening to ganger i uken eller digital
+hjemmebasert styrketrening to ganger i uken. Pasientene måtte også ha
+tilgang til digitale muligheter hjemme som gjør det mulig å delta i det
+alternative behandlingsopplegget. Tabell 1 viser en mer detaljert
+beskrivelse av inklusjons- og eksklusjonskriterier som ble brukt i denne
+studien.
+
+Medisinske leger ved avdelingen for onkologi i Sykehuset Innlandet var
+med å rekruttere aktuelle pasienter til studien under ledelse av
+MD/professor Arne Kolstad. Kreftpasienter som legene var i stand til å
+delta i studien og som oppfylte inklusjonskriteriene uten
+eksklusjonskriterier til stede, ble informert om studien. Annen
+rekruttering av pasienter har foregått gjennom sosiale medier og andre
+mediekanaler. Pasienter som har vist interesse for å delta i studien har
+blitt kontaktet av PhD kandidaten for å kontrollere inklusjons- og
+eksklusjonskriteriene, samt fått mer informasjon og mottat informert
+samtykkeskjema. Etter innhenting av informert samtykke, har
+studiedeltakerne blitt inndelt i to separate grupper; 1) kvinner som har
+fullført aktiv behandling og bor omtrent 0-20 km fra treningsstedet, 2)
+menn som har fullført aktiv behandling og bor 0-20 km fra
+treningsstedet. Innenfor gruppene 1 og 2 ble de inkluderte deltakerne
+fordelt til digital hjemmebasert eller stedbasert trening i et 1:1
+randomisert forhold (ved bruk av randomiseringsblokker på 10 deltakere).
+Randomiseringen ble utført av en forsker som ikke er involvert i
+prosjektet (ved bruk av R programvare).
+
+\hypertarget{inklusjons--og-eksklusjonskriterier}{%
+\subsection{Inklusjons- og
+eksklusjonskriterier}\label{inklusjons--og-eksklusjonskriterier}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5694}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4306}}@{}}
+\caption{Tabell 1: Inklusjons-og eksklusjonskriterier}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Inklusjonskriterier
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Eksklusjonskriterier
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Inklusjonskriterier
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Eksklusjonskriterier
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+≥ 18 år og i stand til å gi informert samtykke & Komorbiditeter som
+forhindrer trening i henhold til protokollen, som alvorlige hjerte-,
+lunge- og andre organlidelser. \\
+Diagnostisert eller tidligere diagnostisert med enhver form for kreft og
+har fullført systemisk kjemoterapi, immunterapi eller målrettede
+terapier eller lokal strålebehandling for ikke mer enn 5 år siden &
+Tilstander forårsaket av kreft som forhindrer trening, som tidligere
+større kirurgi, brudd, smerte \\
+Forventet levetid på mer enn 12 måneder & Fremdeles under aktiv
+kreftbehandling som forventes å medføre høy risiko for
+beinmargsundertrykkelse som kan føre til \\
+infeksjoner, blødninger og/eller sterkt redusert fysisk kapasitet & \\
+Digitale muligheter hjemme: f.eks tilgang til PC og/eller iPad,
+e-postadresse for å logge inn på plattformen for de som tildeles digital
+trening & Forventet levetid på mindre enn 12 måneder \\
+I stand til å forstå norsk & Redusert mental kapasitet og ikke i stand
+til å gi informert samtykke og følge programmet \\
+Har ikke drevet med styrketrening regelmessig to ganger i uken eller mer
+de siste tre månedene & Reiseavstand på mer enn 20 km fra hjemmet til de
+to treningsstedene (Gjøvik og/eller Lillehammer) for pasienter som er
+kandidater for stedbasert trening. \\
+\end{longtable}
+
+\hypertarget{intervensjon}{%
+\section{Intervensjon}\label{intervensjon}}
+
+Intervensjonsgruppene hadde to økter med styrketrening per uke i en
+periode på 12 uker. Deltakerne i den digitale gruppen måtte ha en
+e-postadresse og tilgang til en PC og/eller iPad hjemme. De fikk tilgang
+til en lukket gruppe, kun for deltagere i dette prosjektet, på den
+digitale plattformen www.aktivmotkreft.no. Plattformen er en norsk,
+kostnadsfri digital plattform som inkluderer både direktesendte
+treningsøkter og forhåndsinnspilte treningsøkter. De ble bedt om å delta
+i forhåndsinnspilte økter som ville være tilgjengelige når de ønsket.
+Deltakere som ble randomisert til stedsbaserte treningsgrupper fulgte
+det samme treningsprogrammet under veiledning av bachelorstudenter
+involvert i prosjektet. Deltakerne med bosted i Gjøvik-området hadde
+treningsøkter på «Pusterommet Gjøvik» ved SI, mens deltakerne i
+Lillehammer-området hadde treninger på Aktivklinikken Lillehammer. PhD
+studenten og vi andre i prosjektgruppen var med på å sikre god kvalitet
+og opplæring av studentene. Prosjektgruppen hadde i samarbeid med «Aktiv
+mot kreft», utviklet og forhåndsinnspilt treningsøktene med tre
+forskjellige nivåer, for å sikre muligheter for tilpasning og
+progresjon. Varigheten av hver treningsøkt var 40 minutter (se Tabell 2
+for informasjon om strukturen). Alle deltakere mottok en treningsstrikk
+som skulle brukes under noen av øvelsene, og for å sikre muligheter for
+progresjon. For å dokumentere tilslutning til treningene registrerte
+instruktørene oppmøte på de stedsbaserte øktene, og deltakerne i den
+digitale gruppen brukte en treningsdagbok for å dokumentere tilslutning
+(i tillegg var det mulig å hente frem dokumentasjon på på tilslutning
+via den digitale plattformen).
+
+\hypertarget{utfallsmuxe5l}{%
+\section{Utfallsmål}\label{utfallsmuxe5l}}
+
+Alle tester ble utført i laboratoriet ved Høgskolen i Innlandet,
+Lillehammer (HINN), med hjelp av bachelorstudenter og veiledning fra
+stipendiat, prosjektleder og andre forskere tilknyttet laboratoriet
+tilknyttet HINN.
+
+Pre-testene ble utført i ukene 36, 37 og 38 (02.09.24 - 20.09.24), mens
+post-testene ble utført i ukene 49-51 (02.12.24 - 20.12.24).
+
+Alle testene ble gjennomført på en standardisert måte. Testene som ble
+brukt til utfallsmål fremgår i Tabell 3 (maksimal muskelstyrketest,
+Bergs balanse test (BBS) og spørreskjema for fatique (Chalders fatique
+spørreskjema)). Alle tester ble gjennomført rett før og rett etter
+intervensjonsperioden. Spørreskjemaet ble på forhånd validert for
+kreftpasienter, og data fra normalbefolkningen er tilgjengelige for
+sammenligning av data. Antropometrisk data, og annen
+bakgrunnsinformasjon som medisinsk historie, kreftdiagnose og behandling
+ble registrert ved bruk av et annet spørr
+
+\hypertarget{statistikk}{%
+\section{Statistikk}\label{statistikk}}
+
+Statistisk styrke
+
+Studiens hensikt har vært å undersøke treningseffekten av digital
+hjemmebasert versus stedsbasert styrketrening hos kreftpasienter.
+Hovedhypotesen forutsa at deltakere som trener hjemmebasert digital
+styrketrening ville oppnå samme treningseffekt på maksimal muskelstyrke
+som deltakere som trente i treningsstudio. Sekundære hypoteser har vært
+at hjemmebasert styrketrening vil forbedre balanse og fatique i samme
+grad som stedbasert styrketrening. Analysen ble utført i
+statistikkprogrammet R.
+
+(I hovedprosjektet har man gjort beregninger for å sikre at studien har
+tilstrekkelig statistisk styrke. Med minst 90 \% sannsynlighet kan man
+konkludere med at det ikke finnes en klinisk meningsfull forskjell på 5
+prosentpoeng mellom gruppene (ekvivalenstest av relative endringsskårer,
+𝛼 = 0,05, populasjon SD = 7,5) hvis utvalgsstørrelsen er \textgreater{}
+50 deltakere i hver gruppe. En utvalgsstørrelse på 49 deltakere per
+gruppe vil også ha \textgreater{} 90 \% styrke til å oppdage en
+forskjell mellom betingelsene tilsvarende 5 prosentpoeng. Med en
+forventet frafallsrate på 15-20 \%, vil studien rekruttere n=60 i hver
+gruppe for å sikre at man ender opp med et tilstrekkelig antall
+deltakere til å oppnå den nødvendige statistiske styrken.)
+
+\hypertarget{organisasjon-og-samarbeid}{%
+\section{Organisasjon og samarbeid}\label{organisasjon-og-samarbeid}}
+
+Denne masteroppgaven har vært en del av et større forskningsprosjekt og
+har flere medlemmer fra SI, HINN, «Aktiv mot kreft», «Pusterommet
+Gjøvik» og Aktivklinikken Lillehammer. Medlemmene består av anerkjente
+forskere innen medisin, fysiologi og helse /treningsområdet, og gruppen
+har bred erfaring med randomiserte kontrollerte studier (RCTs). I denne
+masteroppgaven har mye av det praktiske samarbeidet være mellom Phd
+kandidat, bachelor studenter og meg selv. I tillegg har veileder Anne
+Mette Rustaden og andre ved HINN bistått.
+
+\hypertarget{etikk}{%
+\section{Etikk}\label{etikk}}
+
+Prosjektet hadde fått godkjenning fra Regionalt Etisk Komité for
+Medisinsk Forskningsetikk, Norge (REK id 553383). Alle deltakere måtte
+signere en skriftlig samtykkeerklæring før de ble med i studien. De ble
+informert om at all deltakelse er frivillig, og at de til enhver tid
+kunnne trekke seg fra studien, uten begrunnelse. Alle prosedyrer i
+prosjektet fulgte Helsinkideklarasjonen («World Medical Association
+Declaration of Helsinki», 2013), og prosjektprotokollen ble registrert
+på www.clinicaltrials.gov og www.helsenorge.no/kliniske-studier før
+oppstart. Alle data er blitt lagret og behandlet i Tjenester for
+Sensitive Data (TSD), og uten identifikasjon.
+
+\hypertarget{tidsplan}{%
+\section{Tidsplan}\label{tidsplan}}
+
+Pre-testene ble utført i ukene 36, 37 og 38 (02.09.24 - 20.09.24), mens
+post-testene ble utført i ukene 49-51 (02.12.24 - 20.12.24).
+Intervensjonsperioden foregikk i 12 uker mellom pre- og posttester.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{a-tibble-44-x-8}{%
+\chapter{A tibble: 44 x 8}\label{a-tibble-44-x-8}}
+
+\#Laster ned relevante pakker
+
+\#Person karakteristika baseline
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{person\_baseline }\OtherTok{\textless{}{-}}\NormalTok{ komplett\_datainnsamling}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(deltaker, tid, kjonn, alder, kreftform, vekt, hoyde, bmi )}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(tid}\SpecialCharTok{==}\StringTok{"pre"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{alder =} \FunctionTok{recode}\NormalTok{(alder, }\StringTok{"unge voksne"} \OtherTok{=} \StringTok{"18{-}44"}\NormalTok{, }\StringTok{"middelalder"}\OtherTok{=}\StringTok{"45{-}59"}\NormalTok{, }\StringTok{"eldre voksne"} \OtherTok{=} \StringTok{"60{-}74"}\NormalTok{, }\StringTok{"gamle eldre"} \OtherTok{=}\StringTok{"75{-}89"}\NormalTok{, }\StringTok{"eldste eldre"} \OtherTok{=} \StringTok{"90+"}\NormalTok{))}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   deltaker tid   kjonn alder kreftform   vekt hoyde   bmi
+   <chr>    <chr> <chr> <chr> <chr>      <dbl> <dbl> <dbl>
+ 1 011      pre   f     60-74 brystkreft  80.3  170.  80.3
+ 2 012      pre   f     60-74 gynkreft    72.5  160   72.5
+ 3 013      pre   f     75-89 gynkreft    55.5  160   55.5
+ 4 014      pre   f     60-74 brystkreft  75    175   75  
+ 5 015      pre   f     60-74 brystkreft  65.8  166.  65.8
+ 6 016      pre   f     45-59 brystkreft  82.8  175.  82.8
+ 7 017      pre   f     45-59 blodkreft  104.   161. 105. 
+ 8 018      pre   f     60-74 brystkreft  89.5  172.  89.5
+ 9 019      pre   f     45-59 brystkreft  51.5  167.  51.5
+10 020      pre   f     45-59 lymfekreft  86.5  162.  86.5
+# i 34 more rows
+\end{verbatim}
+
+\#Bergs balanse test normalfordeling pre test
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{berg\_pre }\OtherTok{\textless{}{-}}\NormalTok{ komplett\_datainnsamling}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(deltaker,gruppe, tid, s\_sum)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(tid}\SpecialCharTok{==}\StringTok{"pre"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(tid, gruppe)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{()}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 44 x 4
+# Groups:   tid, gruppe [2]
+   deltaker gruppe  tid   s_sum
+   <chr>    <chr>   <chr> <dbl>
+ 1 011      stedlig pre      52
+ 2 012      digital pre      49
+ 3 013      stedlig pre      51
+ 4 014      digital pre      55
+ 5 015      digital pre      53
+ 6 016      digital pre      55
+ 7 017      digital pre      55
+ 8 018      stedlig pre      56
+ 9 019      stedlig pre      55
+10 020      stedlig pre      55
+# i 34 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(berg\_pre)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{04-resultat_files/figure-pdf/unnamed-chunk-4-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(berg\_pre)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   deltaker            gruppe              tid                s_sum      
+ Length:44          Length:44          Length:44          Min.   :41.00  
+ Class :character   Class :character   Class :character   1st Qu.:52.00  
+ Mode  :character   Mode  :character   Mode  :character   Median :54.00  
+                                                          Mean   :53.25  
+                                                          3rd Qu.:55.00  
+                                                          Max.   :56.00  
+\end{verbatim}
+
+\#Bergs balanse test normalfordeling post test
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{berg\_post }\OtherTok{\textless{}{-}}\NormalTok{ komplett\_datainnsamling}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(deltaker,gruppe, tid, s\_sum)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(tid}\SpecialCharTok{==}\StringTok{"post"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(tid, gruppe)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{()}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 34 x 4
+# Groups:   tid, gruppe [2]
+   deltaker gruppe  tid   s_sum
+   <chr>    <chr>   <chr> <dbl>
+ 1 012      digital post     51
+ 2 013      stedlig post     55
+ 3 014      digital post     56
+ 4 016      digital post     56
+ 5 017      digital post     56
+ 6 018      stedlig post     56
+ 7 019      stedlig post     56
+ 8 020      stedlig post     56
+ 9 021      digital post     56
+10 022      digital post     56
+# i 24 more rows
+\end{verbatim}
+
+\#Sammenligning av stedlig og digital ved pre test
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\NormalTok{berg\_pre\_summary }\OtherTok{\textless{}{-}}\NormalTok{ berg\_pre }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(gruppe) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_score =} \FunctionTok{mean}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{sd\_score =} \FunctionTok{sd}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{median\_score =} \FunctionTok{median}\NormalTok{(s\_sum, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{n =} \FunctionTok{n}\NormalTok{()}
+\NormalTok{  )}
+
+\FunctionTok{print}\NormalTok{(berg\_pre\_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 2 x 5
+  gruppe  mean_score sd_score median_score     n
+  <chr>        <dbl>    <dbl>        <dbl> <int>
+1 digital       53.4     2.99         54.5    24
+2 stedlig       53.1     3.51         54      20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(berg\_pre, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ gruppe, }\AttributeTok{y =}\NormalTok{ s\_sum, }\AttributeTok{fill =}\NormalTok{ gruppe)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sammenligning av score mellom grupper pre test"}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{"Gruppe"}\NormalTok{, }
+       \AttributeTok{y =} \StringTok{"Score (s\_sum)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{04-resultat_files/figure-pdf/unnamed-chunk-6-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(s\_sum }\SpecialCharTok{\textasciitilde{}}\NormalTok{ gruppe, }\AttributeTok{data =}\NormalTok{ berg\_pre, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{) }
+\FunctionTok{print}\NormalTok{(t\_test\_result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Two Sample t-test
+
+data:  s_sum by gruppe
+t = 0.28081, df = 42, p-value = 0.7802
+alternative hypothesis: true difference in means between group digital and group stedlig is not equal to 0
+95 percent confidence interval:
+ -1.701342  2.251342
+sample estimates:
+mean in group digital mean in group stedlig 
+               53.375                53.100 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilcox\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(s\_sum }\SpecialCharTok{\textasciitilde{}}\NormalTok{ gruppe, }\AttributeTok{data =}\NormalTok{ berg\_pre)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
+compute exact p-value with ties
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(wilcox\_test\_result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Wilcoxon rank sum test with continuity correction
+
+data:  s_sum by gruppe
+W = 243.5, p-value = 0.9424
+alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+\#Sammenligning av stedlig og digital ved post test
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{berg\_post\_summary }\OtherTok{\textless{}{-}}\NormalTok{ berg\_post }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(gruppe) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_score =} \FunctionTok{mean}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{sd\_score =} \FunctionTok{sd}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{median\_score =} \FunctionTok{median}\NormalTok{(s\_sum, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{n =} \FunctionTok{n}\NormalTok{()}
+\NormalTok{  )}
+
+\FunctionTok{print}\NormalTok{(berg\_post\_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 2 x 5
+  gruppe  mean_score sd_score median_score     n
+  <chr>        <dbl>    <dbl>        <dbl> <int>
+1 digital       55.3    1.96            56    18
+2 stedlig       55.5    0.816           56    16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(berg\_post, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ gruppe, }\AttributeTok{y =}\NormalTok{ s\_sum, }\AttributeTok{fill =}\NormalTok{ gruppe)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sammenligning av score mellom grupper post test"}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{"Gruppe"}\NormalTok{, }
+       \AttributeTok{y =} \StringTok{"Score (s\_sum)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{04-resultat_files/figure-pdf/unnamed-chunk-7-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(s\_sum }\SpecialCharTok{\textasciitilde{}}\NormalTok{ gruppe, }\AttributeTok{data =}\NormalTok{ berg\_post, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{) }
+\FunctionTok{print}\NormalTok{(t\_test\_result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Two Sample t-test
+
+data:  s_sum by gruppe
+t = -0.42075, df = 32, p-value = 0.6767
+alternative hypothesis: true difference in means between group digital and group stedlig is not equal to 0
+95 percent confidence interval:
+ -1.2980379  0.8535934
+sample estimates:
+mean in group digital mean in group stedlig 
+             55.27778              55.50000 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilcox\_test\_result }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(s\_sum }\SpecialCharTok{\textasciitilde{}}\NormalTok{ gruppe, }\AttributeTok{data =}\NormalTok{ berg\_pre)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
+compute exact p-value with ties
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(wilcox\_test\_result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Wilcoxon rank sum test with continuity correction
+
+data:  s_sum by gruppe
+W = 243.5, p-value = 0.9424
+alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+\#pre- og post-testdata for de samme deltakerne, hvor jeg bruker en
+mixed ANOVA, en paired t-test, og en Wilcoxon sign-rank test for å
+sammenligne endringer i score innen og mellom gruppene.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+
+\CommentTok{\#Filtrerer både pre{-} og post{-}testdata og omstrukturerer slik at hver deltaker har én rad per tidspunkt}
+
+\CommentTok{\# Hente pre{-} og post{-}test data}
+\NormalTok{berg\_prepost }\OtherTok{\textless{}{-}}\NormalTok{ komplett\_datainnsamling }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(deltaker, gruppe, tid, s\_sum) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(tid }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"pre"}\NormalTok{, }\StringTok{"post"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{()}
+
+\CommentTok{\# Sjekk datastrukturen}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{head}\NormalTok{(berg\_prepost))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 4
+  deltaker gruppe  tid   s_sum
+  <chr>    <chr>   <chr> <dbl>
+1 011      stedlig pre      52
+2 012      digital pre      49
+3 012      digital post     51
+4 013      stedlig pre      51
+5 013      stedlig post     55
+6 014      digital pre      55
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Gjennomsnittlig endring pr gruppe fra pre til post}
+\NormalTok{summary\_table }\OtherTok{\textless{}{-}}\NormalTok{ berg\_prepost }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(gruppe, tid) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_score =} \FunctionTok{mean}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{sd\_score =} \FunctionTok{sd}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{n =} \FunctionTok{n}\NormalTok{()}
+\NormalTok{  ) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'gruppe'. You can override using the
+`.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(summary\_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 4 x 5
+# Groups:   gruppe [2]
+  gruppe  tid   mean_score sd_score     n
+  <chr>   <chr>      <dbl>    <dbl> <int>
+1 digital post        55.3    1.96     18
+2 digital pre         53.4    2.99     24
+3 stedlig post        55.5    0.816    16
+4 stedlig pre         53.1    3.51     20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Visuell endring fra pre til post}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(berg\_prepost, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ tid, }\AttributeTok{y =}\NormalTok{ s\_sum, }\AttributeTok{color =}\NormalTok{ gruppe, }\AttributeTok{group =} \FunctionTok{interaction}\NormalTok{(gruppe, deltaker))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Linjer for individuelle deltakere}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}  \CommentTok{\# Punkter for pre og post}
+  \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ mean, }\AttributeTok{geom =} \StringTok{"line"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ gruppe), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Linjer for gruppenes gjennomsnitt}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Endring i score fra pre til post"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Tidspunkt"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Score (s\_sum)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+i Please use `linewidth` instead.
+\end{verbatim}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{04-resultat_files/figure-pdf/unnamed-chunk-8-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#sjekke om hver gruppe forbedret seg signifikant fra pre til post, kan du bruke en paired t{-}test (dersom normalfordelt) eller Wilcoxon sign{-}rank test}
+\NormalTok{pre\_post\_wide }\OtherTok{\textless{}{-}}\NormalTok{ berg\_prepost }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ tid, }\AttributeTok{values\_from =}\NormalTok{ s\_sum)}
+
+\NormalTok{t\_test\_stedlig }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(pre\_post\_wide}\SpecialCharTok{$}\NormalTok{pre[pre\_post\_wide}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"stedlig"}\NormalTok{], }
+\NormalTok{                         pre\_post\_wide}\SpecialCharTok{$}\NormalTok{post[pre\_post\_wide}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"stedlig"}\NormalTok{], }
+                         \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{t\_test\_digital }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(pre\_post\_wide}\SpecialCharTok{$}\NormalTok{pre[pre\_post\_wide}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"digital"}\NormalTok{], }
+\NormalTok{                         pre\_post\_wide}\SpecialCharTok{$}\NormalTok{post[pre\_post\_wide}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"digital"}\NormalTok{], }
+                         \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(t\_test\_stedlig)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Paired t-test
+
+data:  pre_post_wide$pre[pre_post_wide$gruppe == "stedlig"] and pre_post_wide$post[pre_post_wide$gruppe == "stedlig"]
+t = -3.3232, df = 15, p-value = 0.004634
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -4.308654 -0.941346
+sample estimates:
+mean difference 
+         -2.625 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(t\_test\_digital)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Paired t-test
+
+data:  pre_post_wide$pre[pre_post_wide$gruppe == "digital"] and pre_post_wide$post[pre_post_wide$gruppe == "digital"]
+t = -5.2309, df = 17, p-value = 6.78e-05
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -3.040570 -1.292763
+sample estimates:
+mean difference 
+      -2.166667 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilcox\_stedlig }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(pre\_post\_wide}\SpecialCharTok{$}\NormalTok{pre[pre\_post\_wide}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"stedlig"}\NormalTok{], }
+\NormalTok{                              pre\_post\_wide}\SpecialCharTok{$}\NormalTok{post[pre\_post\_wide}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"stedlig"}\NormalTok{], }
+                              \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in wilcox.test.default(pre_post_wide$pre[pre_post_wide$gruppe == :
+cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+Warning in wilcox.test.default(pre_post_wide$pre[pre_post_wide$gruppe == :
+cannot compute exact p-value with zeroes
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilcox\_digital }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(pre\_post\_wide}\SpecialCharTok{$}\NormalTok{pre[pre\_post\_wide}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"digital"}\NormalTok{], }
+\NormalTok{                              pre\_post\_wide}\SpecialCharTok{$}\NormalTok{post[pre\_post\_wide}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"digital"}\NormalTok{], }
+                              \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in wilcox.test.default(pre_post_wide$pre[pre_post_wide$gruppe == :
+cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+Warning in wilcox.test.default(pre_post_wide$pre[pre_post_wide$gruppe == :
+cannot compute exact p-value with zeroes
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(wilcox\_stedlig)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Wilcoxon signed rank test with continuity correction
+
+data:  pre_post_wide$pre[pre_post_wide$gruppe == "stedlig"] and pre_post_wide$post[pre_post_wide$gruppe == "stedlig"]
+V = 2.5, p-value = 0.002847
+alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(wilcox\_digital)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Wilcoxon signed rank test with continuity correction
+
+data:  pre_post_wide$pre[pre_post_wide$gruppe == "digital"] and pre_post_wide$post[pre_post_wide$gruppe == "digital"]
+V = 0, p-value = 0.0002674
+alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Mixed ANOVA (hvis du vil se interaksjonseffekt mellom tid og gruppe)}
+\CommentTok{\#Dersom du vil teste om endringen over tid er forskjellig mellom gruppene, er en mixed ANOVA en god løsning.}
+
+
+\FunctionTok{library}\NormalTok{(rstatix)}
+\FunctionTok{library}\NormalTok{(afex)}
+
+\CommentTok{\# ANOVA{-}modell}
+\NormalTok{anova\_model }\OtherTok{\textless{}{-}} \FunctionTok{aov\_ez}\NormalTok{(}\AttributeTok{id =} \StringTok{"deltaker"}\NormalTok{, }
+                      \AttributeTok{dv =} \StringTok{"s\_sum"}\NormalTok{, }
+                      \AttributeTok{within =} \StringTok{"tid"}\NormalTok{, }
+                      \AttributeTok{between =} \StringTok{"gruppe"}\NormalTok{, }
+                      \AttributeTok{data =}\NormalTok{ berg\_prepost)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Converting to factor: gruppe
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Missing values for 10 ID(s), which were removed before analysis:
+011, 015, 031, 033, 036, 041, 042, 053, 056, 060, ... [showing first 10 only]
+Below the first few rows (in wide format) of the removed cases with missing data.
+     deltaker  gruppe pre post
+# 1       011 stedlig  52   NA
+# 5       015 digital  53   NA
+# 17      031 digital  53   NA
+# 19      033 digital  56   NA
+# 22      036 stedlig  55   NA
+# 27      041 digital  55   NA
+\end{verbatim}
+
+\begin{verbatim}
+Contrasts set to contr.sum for the following variables: gruppe
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(anova\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Anova Table (Type 3 tests)
+
+Response: s_sum
+      Effect    df   MSE         F   ges p.value
+1     gruppe 1, 32 12.00      0.00 <.001    .993
+2        tid 1, 32  3.16 30.77 ***  .167   <.001
+3 gruppe:tid 1, 32  3.16      0.28  .002    .599
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '+' 0.1 ' ' 1
+\end{verbatim}
+
+\#Dette er resultatet av en \textbf{mixed ANOVA} der du tester:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Hovedeffekten av gruppe} (``stedlig'' vs.~``digital'')\\
+\item
+  \textbf{Hovedeffekten av tid} (``pre'' vs.~``post'')\\
+\item
+  \textbf{Interaksjonen mellom gruppe og tid} (om gruppene endrer seg
+  forskjellig over tid)
+\end{enumerate}
+
+\hypertarget{tolkning-av-resultatene}{%
+\subsection{\texorpdfstring{\textbf{Tolkning av
+resultatene:}}{Tolkning av resultatene:}}\label{tolkning-av-resultatene}}
+
+\hypertarget{hovedeffekt-av-gruppe-gruppe}{%
+\subsubsection{\texorpdfstring{1️⃣ \textbf{Hovedeffekt av gruppe
+(\texttt{gruppe})}}{1️⃣ Hovedeffekt av gruppe (gruppe)}}\label{hovedeffekt-av-gruppe-gruppe}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{F(1,32) = 0.00, p = 0.993}\\
+\item
+  \textbf{Tolkning:} Ingen signifikant forskjell mellom gruppene
+  uavhengig av tid (p ≈ 1).\\
+\item
+  \textbf{Konklusjon:} ``Stedlig'' og ``digital'' har omtrent like
+  skårer samlet sett.
+\end{itemize}
+
+\hypertarget{hovedeffekt-av-tid-tid}{%
+\subsubsection{\texorpdfstring{2️⃣ \textbf{Hovedeffekt av tid
+(\texttt{tid})}}{2️⃣ Hovedeffekt av tid (tid)}}\label{hovedeffekt-av-tid-tid}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{F(1,32) = 30.77, p \textless{} 0.001 (}*), ges = 0.167**\\
+\item
+  \textbf{Tolkning:} En signifikant forbedring fra pre til post-test.\\
+\item
+  \textbf{Konklusjon:} Deltakerne har generelt forbedret seg fra pre til
+  post, uavhengig av gruppe.
+\end{itemize}
+
+\hypertarget{interaksjon-mellom-gruppe-og-tid-gruppetid}{%
+\subsubsection{\texorpdfstring{3️⃣ \textbf{Interaksjon mellom gruppe og
+tid
+(\texttt{gruppe:tid})}}{3️⃣ Interaksjon mellom gruppe og tid (gruppe:tid)}}\label{interaksjon-mellom-gruppe-og-tid-gruppetid}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{F(1,32) = 0.28, p = 0.599}\\
+\item
+  \textbf{Tolkning:} Ingen signifikant forskjell i hvordan gruppene
+  endrer seg over tid.\\
+\item
+  \textbf{Konklusjon:} Begge grupper har forbedret seg omtrent like mye
+  fra pre til post.
+\end{itemize}
+
+\hypertarget{sammendrag}{%
+\subsection{\texorpdfstring{\textbf{Sammendrag:}}{Sammendrag:}}\label{sammendrag}}
+
+✅ \textbf{Det er en signifikant forbedring fra pre til post for alle
+deltakere.}\\
+❌ \textbf{Ingen signifikant forskjell mellom gruppene totalt sett.}\\
+❌ \textbf{Ingen signifikant forskjell i hvordan gruppene utviklet seg
+over tid.}
+
+\#visualisere interaksjonen mellom tid (pre/post) og gruppe
+(stedlig/digital) med en linjegraf: \#\#Hva ser du i plottet? Hvis
+linjene er parallelt, betyr det at begge gruppene forbedret seg likt.
+
+Hvis linjene krysser eller har ulik stigning, kan det være en
+interaksjon (men i ditt tilfelle er interaksjonen ikke signifikant).
+
+Feilstolpene (error bars) viser hvor mye variasjon det er i dataene.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Beregne gjennomsnitt og standardfeil per gruppe og tid}
+\NormalTok{summary\_plot }\OtherTok{\textless{}{-}}\NormalTok{ berg\_prepost }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(gruppe, tid) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_score =} \FunctionTok{mean}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{se =} \FunctionTok{sd}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{n}\NormalTok{())}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'gruppe'. You can override using the
+`.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(summary\_plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 4 x 4
+# Groups:   gruppe [2]
+  gruppe  tid   mean_score    se
+  <chr>   <chr>      <dbl> <dbl>
+1 digital post        55.3 0.463
+2 digital pre         53.4 0.610
+3 stedlig post        55.5 0.204
+4 stedlig pre         53.1 0.784
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Sørg for at "tid" har riktig rekkefølge}
+\NormalTok{berg\_prepost}\SpecialCharTok{$}\NormalTok{tid }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(berg\_prepost}\SpecialCharTok{$}\NormalTok{tid, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"pre"}\NormalTok{, }\StringTok{"post"}\NormalTok{))}
+
+\CommentTok{\# Beregne gjennomsnitt og standardfeil per gruppe og tid}
+\NormalTok{summary\_plot }\OtherTok{\textless{}{-}}\NormalTok{ berg\_prepost }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(gruppe, tid) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_score =} \FunctionTok{mean}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{se =} \FunctionTok{sd}\NormalTok{(s\_sum, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{n}\NormalTok{())}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'gruppe'. You can override using the
+`.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot interaksjon mellom tid og gruppe}
+\FunctionTok{ggplot}\NormalTok{(summary\_plot, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ tid, }\AttributeTok{y =}\NormalTok{ mean\_score, }\AttributeTok{color =}\NormalTok{ gruppe, }\AttributeTok{group =}\NormalTok{ gruppe)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}   
+  \FunctionTok{geom\_errorbar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =}\NormalTok{ mean\_score }\SpecialCharTok{{-}}\NormalTok{ se, }\AttributeTok{ymax =}\NormalTok{ mean\_score }\SpecialCharTok{+}\NormalTok{ se), }\AttributeTok{width =} \FloatTok{0.1}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Endring i score fra pre til post per gruppe"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Tidspunkt"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Gjennomsnittlig score (s\_sum)"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Gruppe"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Pre"}\NormalTok{, }\StringTok{"Post"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+    \AttributeTok{legend.position =} \StringTok{"top"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{04-resultat_files/figure-pdf/unnamed-chunk-10-1.pdf}
+
+}
+
+\end{figure}
+
+\#Sammenligne pre og post \#\# dat.wide er nytt datasett som viser
+endring i de 2 gruppene. Se etter en effektstørrelse
+
+\bookmarksetup{startatroot}
+
+\hypertarget{styrketester}{%
+\chapter{Styrketester}\label{styrketester}}
+
+\#\#Keiser testene 1RM og Pmax
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Gjennomsnitt og SD på 1RM og Pmax på pre{-}testing}
+
+ 
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(gt)}
+\FunctionTok{library}\NormalTok{(readxl)}
+
+\NormalTok{keiser }\OtherTok{\textless{}{-}}\NormalTok{ komplett\_datainnsamling }\SpecialCharTok{\%\textgreater{}\%}
+
+  \FunctionTok{filter}\NormalTok{(tid }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"pre"}\NormalTok{, }\StringTok{"post"}\NormalTok{))}\SpecialCharTok{\%\textgreater{}\%}
+  
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tid =} \FunctionTok{factor}\NormalTok{(tid , }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"pre"}\NormalTok{, }\StringTok{"post"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(deltaker, tid , gruppe ) }\SpecialCharTok{\%\textgreater{}\%}
+ 
+ 
+   \FunctionTok{summarize}\NormalTok{(}
+    \AttributeTok{Snitt =} \FunctionTok{mean}\NormalTok{(repmax, }\AttributeTok{na.rm =}\ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{Sd =} \FunctionTok{sd}\NormalTok{(repmax, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{Median =} \FunctionTok{median}\NormalTok{(repmax, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{Antall =} \FunctionTok{n}\NormalTok{()}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'deltaker', 'tid'. You can override using
+the `.groups` argument.
+\end{verbatim}
+
+\begin{verbatim}
+# A tibble: 88 x 7
+# Groups:   deltaker, tid [88]
+   deltaker tid   gruppe  Snitt    Sd Median Antall
+   <chr>    <fct> <chr>   <dbl> <dbl>  <dbl>  <int>
+ 1 011      pre   stedlig   155    NA    155      1
+ 2 011      post  stedlig   NaN    NA     NA      1
+ 3 012      pre   digital   110    NA    110      1
+ 4 012      post  digital   135    NA    135      1
+ 5 013      pre   stedlig   130    NA    130      1
+ 6 013      post  stedlig   135    NA    135      1
+ 7 014      pre   digital   140    NA    140      1
+ 8 014      post  digital   140    NA    140      1
+ 9 015      pre   digital   140    NA    140      1
+10 015      post  digital   NaN    NA     NA      1
+# i 78 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{gt}\NormalTok{(keiser)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr}
+\toprule
+gruppe & Snitt & Sd & Median & Antall \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{011 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 155 & NA & 155 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{011 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{012 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 110 & NA & 110 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{012 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 135 & NA & 135 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{013 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 130 & NA & 130 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{013 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 135 & NA & 135 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{014 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 140 & NA & 140 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{014 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 140 & NA & 140 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{015 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 140 & NA & 140 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{015 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{016 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 140 & NA & 140 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{016 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 141 & NA & 141 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{017 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 225 & NA & 225 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{017 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 240 & NA & 240 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{018 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 150 & NA & 150 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{018 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 174 & NA & 174 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{019 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 100 & NA & 100 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{019 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{020 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 200 & NA & 200 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{020 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 210 & NA & 210 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{021 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 250 & NA & 250 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{021 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{022 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 205 & NA & 205 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{022 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 235 & NA & 235 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{023 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 250 & NA & 250 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{023 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 300 & NA & 300 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{024 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 250 & NA & 250 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{024 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 200 & NA & 200 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{025 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 220 & NA & 220 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{025 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 250 & NA & 250 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{026 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 185 & NA & 185 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{026 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 190 & NA & 190 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{031 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 120 & NA & 120 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{031 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{032 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 145 & NA & 145 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{032 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 160 & NA & 160 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{033 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 185 & NA & 185 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{033 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{034 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 100 & NA & 100 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{034 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 124 & NA & 124 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{035 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 105 & NA & 105 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{035 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 112 & NA & 112 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{036 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 180 & NA & 180 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{036 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{037 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 185 & NA & 185 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{037 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 205 & NA & 205 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{038 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 200 & NA & 200 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{038 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 205 & NA & 205 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{039 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 175 & NA & 175 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{039 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 190 & NA & 190 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{040 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 110 & NA & 110 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{040 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{041 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 330 & NA & 330 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{041 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{042 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 210 & NA & 210 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{042 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{043 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 280 & NA & 280 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{043 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 310 & NA & 310 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{051 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 135 & NA & 135 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{051 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 145 & NA & 145 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{052 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 135 & NA & 135 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{052 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 155 & NA & 155 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{053 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 240 & NA & 240 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{053 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{054 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 152 & NA & 152 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{054 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 167 & NA & 167 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{055 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 155 & NA & 155 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{055 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 170 & NA & 170 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{056 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 150 & NA & 150 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{056 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{057 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 135 & NA & 135 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{057 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 140 & NA & 140 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{058 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 150 & NA & 150 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{058 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 160 & NA & 160 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{059 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 110 & NA & 110 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{059 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 120 & NA & 120 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{060 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 125 & NA & 125 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{060 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & NaN & NA & NA & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{091 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 167 & NA & 167 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{091 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 168 & NA & 168 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{092 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 140 & NA & 140 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{092 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 155 & NA & 155 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{093 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 150 & NA & 150 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{093 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+digital & 170 & NA & 170 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{094 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 110 & NA & 110 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{094 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 120 & NA & 120 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{095 - pre} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 80 & NA & 80 & 1 \\ 
+\midrule\addlinespace[2.5pt]
+\multicolumn{5}{l}{095 - post} \\[2.5pt] 
+\midrule\addlinespace[2.5pt]
+stedlig & 120 & NA & 120 & 1 \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\#pre- og post-testdata Keiser for de samme deltakerne, hvor jeg bruker
+en mixed ANOVA, en paired t-test, og en Wilcoxon sign-rank test for å
+sammenligne endringer i score innen og mellom gruppene.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Filtrerer både pre{-} og post{-}testdata og omstrukturerer slik at hver deltaker har én rad per tidspunkt}
+
+\CommentTok{\# Hente pre{-} og post{-}test data}
+\NormalTok{keiser\_prepost }\OtherTok{\textless{}{-}}\NormalTok{ komplett\_datainnsamling}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(deltaker, gruppe, tid, repmax) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(tid }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"pre"}\NormalTok{, }\StringTok{"post"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{()}
+
+\CommentTok{\# Sjekk datastrukturen}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{head}\NormalTok{(keiser\_prepost))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 6 x 4
+  deltaker gruppe  tid   repmax
+  <chr>    <chr>   <chr>  <dbl>
+1 011      stedlig pre      155
+2 012      digital pre      110
+3 012      digital post     135
+4 013      stedlig pre      130
+5 013      stedlig post     135
+6 014      digital pre      140
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Gjennomsnittlig endring pr gruppe fra pre til post}
+\NormalTok{summary\_table }\OtherTok{\textless{}{-}}\NormalTok{ keiser\_prepost }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(gruppe, tid) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{mean\_score =} \FunctionTok{mean}\NormalTok{(repmax, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{sd\_score =} \FunctionTok{sd}\NormalTok{(repmax, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{n =} \FunctionTok{n}\NormalTok{()}
+\NormalTok{  ) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` has grouped output by 'gruppe'. You can override using the
+`.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(summary\_table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 4 x 5
+# Groups:   gruppe [2]
+  gruppe  tid   mean_score sd_score     n
+  <chr>   <chr>      <dbl>    <dbl> <int>
+1 digital post        181.     51.9    17
+2 digital pre         173.     55.0    24
+3 stedlig post        170.     49.7    14
+4 stedlig pre         158.     52.7    20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Visuell endring fra pre til post}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(keiser\_prepost, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ tid, }\AttributeTok{y =}\NormalTok{ repmax, }\AttributeTok{color =}\NormalTok{ gruppe, }\AttributeTok{group =} \FunctionTok{interaction}\NormalTok{(gruppe, deltaker))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Linjer for individuelle deltakere}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}  \CommentTok{\# Punkter for pre og post}
+  \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ mean, }\AttributeTok{geom =} \StringTok{"line"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ gruppe), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Linjer for gruppenes gjennomsnitt}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Endring i score fra pre til post"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Tidspunkt"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Score (s\_sum)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{04-resultat_files/figure-pdf/unnamed-chunk-12-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#sjekke om hver gruppe forbedret seg signifikant fra pre til post, kan du bruke en paired t{-}test (dersom normalfordelt) eller Wilcoxon sign{-}rank test}
+\NormalTok{pre\_post\_wide\_keiser }\OtherTok{\textless{}{-}}\NormalTok{ keiser\_prepost}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pivot\_wider}\NormalTok{(}\AttributeTok{names\_from =}\NormalTok{ tid, }\AttributeTok{values\_from =}\NormalTok{ repmax )}
+
+\NormalTok{t\_test\_stedlig\_keiser }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{pre[pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"stedlig"}\NormalTok{], }
+\NormalTok{                         pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{post[pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"stedlig"}\NormalTok{], }
+                         \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{t\_test\_digital\_keiser }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{pre[pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"digital"}\NormalTok{], }
+\NormalTok{                         pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{post[pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"digital"}\NormalTok{], }
+                         \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(t\_test\_stedlig\_keiser)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Paired t-test
+
+data:  pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "stedlig"] and pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "stedlig"]
+t = -1.9859, df = 13, p-value = 0.06855
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -22.9664375   0.9664375
+sample estimates:
+mean difference 
+            -11 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(t\_test\_digital\_keiser)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Paired t-test
+
+data:  pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "digital"] and pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "digital"]
+t = -5.4444, df = 16, p-value = 5.403e-05
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -22.720293  -9.985589
+sample estimates:
+mean difference 
+      -16.35294 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilcox\_stedlig\_keiser }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{pre[pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"stedlig"}\NormalTok{], }
+\NormalTok{                              pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{post[pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"stedlig"}\NormalTok{], }
+                              \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in
+wilcox.test.default(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == :
+cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wilcox\_digital\_keiser }\OtherTok{\textless{}{-}} \FunctionTok{wilcox.test}\NormalTok{(pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{pre[pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"digital"}\NormalTok{], }
+\NormalTok{                              pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{post[pre\_post\_wide\_keiser}\SpecialCharTok{$}\NormalTok{gruppe }\SpecialCharTok{==} \StringTok{"digital"}\NormalTok{], }
+                              \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in
+wilcox.test.default(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == :
+cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+Warning in
+wilcox.test.default(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == :
+cannot compute exact p-value with zeroes
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(wilcox\_stedlig\_keiser)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Wilcoxon signed rank test with continuity correction
+
+data:  pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "stedlig"] and pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "stedlig"]
+V = 14, p-value = 0.01687
+alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(wilcox\_digital\_keiser)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Wilcoxon signed rank test with continuity correction
+
+data:  pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "digital"] and pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "digital"]
+V = 0, p-value = 0.0004658
+alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Mixed ANOVA (hvis du vil se interaksjonseffekt mellom tid og gruppe)}
+\CommentTok{\#Dersom du vil teste om endringen over tid er forskjellig mellom gruppene, er en mixed ANOVA en god løsning.}
+
+
+
+\CommentTok{\# ANOVA{-}modell}
+\NormalTok{anova\_model\_keiser }\OtherTok{\textless{}{-}} \FunctionTok{aov\_ez}\NormalTok{(}\AttributeTok{id =} \StringTok{"deltaker"}\NormalTok{, }
+                      \AttributeTok{dv =} \StringTok{"repmax"}\NormalTok{, }
+                      \AttributeTok{within =} \StringTok{"tid"}\NormalTok{, }
+                      \AttributeTok{between =} \StringTok{"gruppe"}\NormalTok{, }
+                      \AttributeTok{data =}\NormalTok{ keiser\_prepost)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Converting to factor: gruppe
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Missing values for 13 ID(s), which were removed before analysis:
+011, 015, 019, 021, 031, 033, 036, 040, 041, 042, ... [showing first 10 only]
+Below the first few rows (in wide format) of the removed cases with missing data.
+     deltaker  gruppe pre post
+# 1       011 stedlig 155   NA
+# 5       015 digital 140   NA
+# 9       019 stedlig 100   NA
+# 11      021 digital 250   NA
+# 17      031 digital 120   NA
+# 19      033 digital 185   NA
+\end{verbatim}
+
+\begin{verbatim}
+Contrasts set to contr.sum for the following variables: gruppe
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(anova\_model\_keiser)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Anova Table (Type 3 tests)
+
+Response: repmax
+      Effect    df     MSE         F   ges p.value
+1     gruppe 1, 29 4864.94      0.23  .008    .633
+2        tid 1, 29  138.58 20.72 ***  .019   <.001
+3 gruppe:tid 1, 29  138.58      0.79 <.001    .380
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '+' 0.1 ' ' 1
+\end{verbatim}
+
+\#Endring i styrke 1RM
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{styrke }\OtherTok{\textless{}{-}}\NormalTok{ komplett\_datainnsamling}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(deltaker, tid, gruppe, rm\_endring\_kg)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(gruppe}\SpecialCharTok{==}\StringTok{"stedlig"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+   \FunctionTok{group\_by}\NormalTok{(tid, gruppe)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{()}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{print}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 14 x 4
+# Groups:   tid, gruppe [1]
+   deltaker tid   gruppe  rm_endring_kg
+   <chr>    <chr> <chr>           <dbl>
+ 1 013      pre   stedlig             5
+ 2 018      pre   stedlig            24
+ 3 020      pre   stedlig            10
+ 4 024      pre   stedlig           -50
+ 5 026      pre   stedlig             5
+ 6 032      pre   stedlig            15
+ 7 034      pre   stedlig            24
+ 8 043      pre   stedlig            30
+ 9 052      pre   stedlig            20
+10 054      pre   stedlig            15
+11 057      pre   stedlig             5
+12 091      pre   stedlig             1
+13 094      pre   stedlig            10
+14 095      pre   stedlig            40
+\end{verbatim}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{diskusjon}{%
+\chapter{Diskusjon}\label{diskusjon}}
+
+\begin{itemize}
+\tightlist
+\item
+  Question
+\item
+  Alternative
+\item
+  Logic
+\item
+  Methods
+\item
+  Results
+\item
+  Inference
+\end{itemize}
+
+\hypertarget{bergs-balanse-skala}{%
+\section{Bergs Balanse Skala}\label{bergs-balanse-skala}}
+
+I tverrsnittstudien til
+(\textbf{viveiroReliabilityValidityAbility2019?}) sammenlignet de BBS
+med andre balansetester. Eldre voksne (n = 49; alder 62--90 år;
+gjennomsnitt = 77,8; standardavvik = 7,2) ble rekruttert fra et ideelt
+sykehjem. Alle deltakerne ble vurdert av 2 fysioterapeuter ved bruk av
+BBS, BESTest, Mini-BESTest og Brief-BESTest. Alle balansetestene viste
+lignende pålitelighet, reproduserbarhet og validitet. Dette tyder på at
+hvilken som helst av disse testene kan brukes i klinisk praksis. I denne
+oppgaven ble BBS valgt da denne er kjent for meg gjennom min bakgrunn
+som fysioterapeut. Den er også veldig nyttig da den tester både statisk
+og dynamisk balanse i både stående, sittende og ved forflytninger.
+
+Fysisk aktivitet er helt avgjørende for å opprettholde og forbedre
+kondisjon, muskelstyrke og balanse hos eldre (\textgreater65 år). Dette
+kan bidra til å forebygge fall, samt forbedre hverdagslige funksjoner
+som å reise seg opp fra en stol og øke ganghastighet (Dent et al.,
+2018). Det er vist at individrettet trening minsker tap av fysisk
+funksjon hos gamle mennesker (Frändin et al., 2016), og flere
+meta-analyser av randomiserte, kontrollerte studier har vist at trening
+reduserer risikoen for fall og antall fall hos eldre (Sherrington et
+al., 2019; Tricco et al., 2017). I den største av disse meta-analysene
+fant man at trening reduserte fallraten hos eldre med 23 prosent
+(Sherrington et al., 2019). ~
+
+For å vedlikeholde skjelettet og forebygge brudd er det viktig å unngå
+inaktivitet, og selv moderat aktivitet kan ha betydning. Det gir
+ytterligere gevinst å drive med noe styrketrening og/eller andre
+vektbærende fysiske aktiviteter av høyere intensitet for å forebygge
+osteoporose og osteoporotiske brudd (2018 Physical~ Activity Guidelines
+Advisory Committee, 2018). ~
+
+Kroppens funksjonsevne gir en god pekepinn på robusthet, særlig blant de
+eldste. I en stor dansk studie fulgte man 92- og 93-åringer over en
+8-års periode, og blant menn som klarte å reise seg fra en stol uten å
+bruke hendene som støtte, ble hele 11 prosent 100 år (Thinggaard et al.,
+2016). For de som ikke klarte dette nådde kun 2 prosent 100-års alder.
+Tilsvarende tall for kvinner var 22 og 2 prosent. Enkle funksjonstester
+kan si like mye om overlevelsessannsynlighet som større
+helsekartlegginger.
+
+Begrepet iboende kapasitet ble lansert av WHO i 2015, og er et mål på
+kroppens fysiske og mentale reserver (WHO, 2015). Disse fysiologiske
+reservene omfatter muligheten til å bevege seg, sensorisk kapasitet som
+syn og hørsel, muskelstyrke, vitalitet, kognisjon, og psykologisk
+kapasitet. Opprettholdelse og utvikling av iboende kapasitet vil gi
+eldre mulighet til å være aktive og fungere i hverdagen. Iboende
+kapasitet er derfor en viktig komponent for sunn aldring. Iboende
+kapasitet i yngre år, og i kritiske perioder i livet, kan påvirkes av en
+rekke biologiske, sosioøkonomiske og miljømessige faktorer og har
+betydning for helsen i alderdommen (Ben-Shlomo \& Kuh, 2002; Hanson et
+al., 2016). Funksjonsevne er en kombinasjon av personens iboende
+kapasitet og samspillet med miljøet personen lever i (WHO, 2015, 2021).
+
+\bookmarksetup{startatroot}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\markboth{References}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{section-4}{%
+\chapter{}\label{section-4}}
+
+
+
+\end{document}

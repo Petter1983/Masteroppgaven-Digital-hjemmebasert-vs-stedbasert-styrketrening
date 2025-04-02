@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Masteroppgaven - 6&nbsp; A tibble: 44 × 8</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05-diskusjon.html" rel="next">
+<link href="./03-metode.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-resultat.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Laster opp excel filene</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Masteroppgaven</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduksjon til mappetemplat og Lærinsgrefleksjon</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./forord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">forord.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-teori.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">01-teori.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-innledning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">02-innledning.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-metode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Metode</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-resultat.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Laster opp excel filene</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-diskusjon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diskusjon</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-referanser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-vedlegg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">07-vedlegg.html</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tolkning-av-resultatene" id="toc-tolkning-av-resultatene" class="nav-link active" data-scroll-target="#tolkning-av-resultatene"><span class="header-section-number">6.0.1</span> <strong>Tolkning av resultatene:</strong></a></li>
+  <li><a href="#sammendrag" id="toc-sammendrag" class="nav-link" data-scroll-target="#sammendrag"><span class="header-section-number">6.0.2</span> <strong>Sammendrag:</strong></a></li>
+  <li><a href="#styrketester" id="toc-styrketester" class="nav-link" data-scroll-target="#styrketester"><span class="header-section-number">7</span> Styrketester</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A tibble: 44 × 8</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>#Laster ned relevante pakker</p>
+<p>#Person karakteristika baseline</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>person_baseline <span class="ot">&lt;-</span> komplett_datainnsamling<span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(deltaker, tid, kjonn, alder, kreftform, vekt, hoyde, bmi )<span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tid<span class="sc">==</span><span class="st">"pre"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">alder =</span> <span class="fu">recode</span>(alder, <span class="st">"unge voksne"</span> <span class="ot">=</span> <span class="st">"18-44"</span>, <span class="st">"middelalder"</span><span class="ot">=</span><span class="st">"45-59"</span>, <span class="st">"eldre voksne"</span> <span class="ot">=</span> <span class="st">"60-74"</span>, <span class="st">"gamle eldre"</span> <span class="ot">=</span><span class="st">"75-89"</span>, <span class="st">"eldste eldre"</span> <span class="ot">=</span> <span class="st">"90+"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   deltaker tid   kjonn alder kreftform   vekt hoyde   bmi
+   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 011      pre   f     60-74 brystkreft  80.3  170.  80.3
+ 2 012      pre   f     60-74 gynkreft    72.5  160   72.5
+ 3 013      pre   f     75-89 gynkreft    55.5  160   55.5
+ 4 014      pre   f     60-74 brystkreft  75    175   75  
+ 5 015      pre   f     60-74 brystkreft  65.8  166.  65.8
+ 6 016      pre   f     45-59 brystkreft  82.8  175.  82.8
+ 7 017      pre   f     45-59 blodkreft  104.   161. 105. 
+ 8 018      pre   f     60-74 brystkreft  89.5  172.  89.5
+ 9 019      pre   f     45-59 brystkreft  51.5  167.  51.5
+10 020      pre   f     45-59 lymfekreft  86.5  162.  86.5
+# ℹ 34 more rows</code></pre>
+</div>
+</div>
+<p>#Bergs balanse test normalfordeling pre test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>berg_pre <span class="ot">&lt;-</span> komplett_datainnsamling<span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(deltaker,gruppe, tid, s_sum)<span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tid<span class="sc">==</span><span class="st">"pre"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tid, gruppe)<span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 44 × 4
+# Groups:   tid, gruppe [2]
+   deltaker gruppe  tid   s_sum
+   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+ 1 011      stedlig pre      52
+ 2 012      digital pre      49
+ 3 013      stedlig pre      51
+ 4 014      digital pre      55
+ 5 015      digital pre      53
+ 6 016      digital pre      55
+ 7 017      digital pre      55
+ 8 018      stedlig pre      56
+ 9 019      stedlig pre      55
+10 020      stedlig pre      55
+# ℹ 34 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(berg_pre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-resultat_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(berg_pre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   deltaker            gruppe              tid                s_sum      
+ Length:44          Length:44          Length:44          Min.   :41.00  
+ Class :character   Class :character   Class :character   1st Qu.:52.00  
+ Mode  :character   Mode  :character   Mode  :character   Median :54.00  
+                                                          Mean   :53.25  
+                                                          3rd Qu.:55.00  
+                                                          Max.   :56.00  </code></pre>
+</div>
+</div>
+<p>#Bergs balanse test normalfordeling post test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>berg_post <span class="ot">&lt;-</span> komplett_datainnsamling<span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(deltaker,gruppe, tid, s_sum)<span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tid<span class="sc">==</span><span class="st">"post"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tid, gruppe)<span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 34 × 4
+# Groups:   tid, gruppe [2]
+   deltaker gruppe  tid   s_sum
+   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+ 1 012      digital post     51
+ 2 013      stedlig post     55
+ 3 014      digital post     56
+ 4 016      digital post     56
+ 5 017      digital post     56
+ 6 018      stedlig post     56
+ 7 019      stedlig post     56
+ 8 020      stedlig post     56
+ 9 021      digital post     56
+10 022      digital post     56
+# ℹ 24 more rows</code></pre>
+</div>
+</div>
+<p>#Sammenligning av stedlig og digital ved pre test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>berg_pre_summary <span class="ot">&lt;-</span> berg_pre <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gruppe) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_score =</span> <span class="fu">sd</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_score =</span> <span class="fu">median</span>(s_sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(berg_pre_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  gruppe  mean_score sd_score median_score     n
+  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
+1 digital       53.4     2.99         54.5    24
+2 stedlig       53.1     3.51         54      20</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(berg_pre, <span class="fu">aes</span>(<span class="at">x =</span> gruppe, <span class="at">y =</span> s_sum, <span class="at">fill =</span> gruppe)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sammenligning av score mellom grupper pre test"</span>, </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Gruppe"</span>, </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Score (s_sum)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-resultat_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(s_sum <span class="sc">~</span> gruppe, <span class="at">data =</span> berg_pre, <span class="at">var.equal =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_test_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  s_sum by gruppe
+t = 0.28081, df = 42, p-value = 0.7802
+alternative hypothesis: true difference in means between group digital and group stedlig is not equal to 0
+95 percent confidence interval:
+ -1.701342  2.251342
+sample estimates:
+mean in group digital mean in group stedlig 
+               53.375                53.100 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>wilcox_test_result <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(s_sum <span class="sc">~</span> gruppe, <span class="at">data =</span> berg_pre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
+compute exact p-value with ties</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox_test_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  s_sum by gruppe
+W = 243.5, p-value = 0.9424
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>#Sammenligning av stedlig og digital ved post test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>berg_post_summary <span class="ot">&lt;-</span> berg_post <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gruppe) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_score =</span> <span class="fu">sd</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_score =</span> <span class="fu">median</span>(s_sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(berg_post_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  gruppe  mean_score sd_score median_score     n
+  &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
+1 digital       55.3    1.96            56    18
+2 stedlig       55.5    0.816           56    16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(berg_post, <span class="fu">aes</span>(<span class="at">x =</span> gruppe, <span class="at">y =</span> s_sum, <span class="at">fill =</span> gruppe)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sammenligning av score mellom grupper post test"</span>, </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Gruppe"</span>, </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Score (s_sum)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-resultat_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(s_sum <span class="sc">~</span> gruppe, <span class="at">data =</span> berg_post, <span class="at">var.equal =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_test_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  s_sum by gruppe
+t = -0.42075, df = 32, p-value = 0.6767
+alternative hypothesis: true difference in means between group digital and group stedlig is not equal to 0
+95 percent confidence interval:
+ -1.2980379  0.8535934
+sample estimates:
+mean in group digital mean in group stedlig 
+             55.27778              55.50000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wilcox_test_result <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(s_sum <span class="sc">~</span> gruppe, <span class="at">data =</span> berg_pre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
+compute exact p-value with ties</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox_test_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  s_sum by gruppe
+W = 243.5, p-value = 0.9424
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>#pre- og post-testdata for de samme deltakerne, hvor jeg bruker en mixed ANOVA, en paired t-test, og en Wilcoxon sign-rank test for å sammenligne endringer i score innen og mellom gruppene.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtrerer både pre- og post-testdata og omstrukturerer slik at hver deltaker har én rad per tidspunkt</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Hente pre- og post-test data</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>berg_prepost <span class="ot">&lt;-</span> komplett_datainnsamling <span class="sc">%&gt;%</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(deltaker, gruppe, tid, s_sum) <span class="sc">%&gt;%</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tid <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"post"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Sjekk datastrukturen</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(berg_prepost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  deltaker gruppe  tid   s_sum
+  &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+1 011      stedlig pre      52
+2 012      digital pre      49
+3 012      digital post     51
+4 013      stedlig pre      51
+5 013      stedlig post     55
+6 014      digital pre      55</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gjennomsnittlig endring pr gruppe fra pre til post</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> berg_prepost <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gruppe, tid) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_score =</span> <span class="fu">sd</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'gruppe'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+# Groups:   gruppe [2]
+  gruppe  tid   mean_score sd_score     n
+  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+1 digital post        55.3    1.96     18
+2 digital pre         53.4    2.99     24
+3 stedlig post        55.5    0.816    16
+4 stedlig pre         53.1    3.51     20</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visuell endring fra pre til post</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(berg_prepost, <span class="fu">aes</span>(<span class="at">x =</span> tid, <span class="at">y =</span> s_sum, <span class="at">color =</span> gruppe, <span class="at">group =</span> <span class="fu">interaction</span>(gruppe, deltaker))) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Linjer for individuelle deltakere</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="co"># Punkter for pre og post</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"line"</span>, <span class="fu">aes</span>(<span class="at">group =</span> gruppe), <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Linjer for gruppenes gjennomsnitt</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Endring i score fra pre til post"</span>, <span class="at">x =</span> <span class="st">"Tidspunkt"</span>, <span class="at">y =</span> <span class="st">"Score (s_sum)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="04-resultat_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sjekke om hver gruppe forbedret seg signifikant fra pre til post, kan du bruke en paired t-test (dersom normalfordelt) eller Wilcoxon sign-rank test</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>pre_post_wide <span class="ot">&lt;-</span> berg_prepost <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> tid, <span class="at">values_from =</span> s_sum)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>t_test_stedlig <span class="ot">&lt;-</span> <span class="fu">t.test</span>(pre_post_wide<span class="sc">$</span>pre[pre_post_wide<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"stedlig"</span>], </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                         pre_post_wide<span class="sc">$</span>post[pre_post_wide<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"stedlig"</span>], </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>t_test_digital <span class="ot">&lt;-</span> <span class="fu">t.test</span>(pre_post_wide<span class="sc">$</span>pre[pre_post_wide<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"digital"</span>], </span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                         pre_post_wide<span class="sc">$</span>post[pre_post_wide<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"digital"</span>], </span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_test_stedlig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  pre_post_wide$pre[pre_post_wide$gruppe == "stedlig"] and pre_post_wide$post[pre_post_wide$gruppe == "stedlig"]
+t = -3.3232, df = 15, p-value = 0.004634
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -4.308654 -0.941346
+sample estimates:
+mean difference 
+         -2.625 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_test_digital)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  pre_post_wide$pre[pre_post_wide$gruppe == "digital"] and pre_post_wide$post[pre_post_wide$gruppe == "digital"]
+t = -5.2309, df = 17, p-value = 6.78e-05
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -3.040570 -1.292763
+sample estimates:
+mean difference 
+      -2.166667 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>wilcox_stedlig <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(pre_post_wide<span class="sc">$</span>pre[pre_post_wide<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"stedlig"</span>], </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                              pre_post_wide<span class="sc">$</span>post[pre_post_wide<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"stedlig"</span>], </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(pre_post_wide$pre[pre_post_wide$gruppe == :
+cannot compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(pre_post_wide$pre[pre_post_wide$gruppe == :
+cannot compute exact p-value with zeroes</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>wilcox_digital <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(pre_post_wide<span class="sc">$</span>pre[pre_post_wide<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"digital"</span>], </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                              pre_post_wide<span class="sc">$</span>post[pre_post_wide<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"digital"</span>], </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(pre_post_wide$pre[pre_post_wide$gruppe == :
+cannot compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wilcox.test.default(pre_post_wide$pre[pre_post_wide$gruppe == :
+cannot compute exact p-value with zeroes</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox_stedlig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  pre_post_wide$pre[pre_post_wide$gruppe == "stedlig"] and pre_post_wide$post[pre_post_wide$gruppe == "stedlig"]
+V = 2.5, p-value = 0.002847
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox_digital)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  pre_post_wide$pre[pre_post_wide$gruppe == "digital"] and pre_post_wide$post[pre_post_wide$gruppe == "digital"]
+V = 0, p-value = 0.0002674
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mixed ANOVA (hvis du vil se interaksjonseffekt mellom tid og gruppe)</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Dersom du vil teste om endringen over tid er forskjellig mellom gruppene, er en mixed ANOVA en god løsning.</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA-modell</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id =</span> <span class="st">"deltaker"</span>, </span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">dv =</span> <span class="st">"s_sum"</span>, </span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">within =</span> <span class="st">"tid"</span>, </span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">between =</span> <span class="st">"gruppe"</span>, </span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> berg_prepost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Converting to factor: gruppe</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Missing values for 10 ID(s), which were removed before analysis:
+011, 015, 031, 033, 036, 041, 042, 053, 056, 060, ... [showing first 10 only]
+Below the first few rows (in wide format) of the removed cases with missing data.
+     deltaker  gruppe pre post
+# 1       011 stedlig  52   NA
+# 5       015 digital  53   NA
+# 17      031 digital  53   NA
+# 19      033 digital  56   NA
+# 22      036 stedlig  55   NA
+# 27      041 digital  55   NA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Contrasts set to contr.sum for the following variables: gruppe</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: s_sum
+      Effect    df   MSE         F   ges p.value
+1     gruppe 1, 32 12.00      0.00 &lt;.001    .993
+2        tid 1, 32  3.16 30.77 ***  .167   &lt;.001
+3 gruppe:tid 1, 32  3.16      0.28  .002    .599
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '+' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>#Dette er resultatet av en <strong>mixed ANOVA</strong> der du tester:</p>
+<ol type="1">
+<li><strong>Hovedeffekten av gruppe</strong> (“stedlig” vs.&nbsp;“digital”)<br>
+</li>
+<li><strong>Hovedeffekten av tid</strong> (“pre” vs.&nbsp;“post”)<br>
+</li>
+<li><strong>Interaksjonen mellom gruppe og tid</strong> (om gruppene endrer seg forskjellig over tid)</li>
+</ol>
+<section id="tolkning-av-resultatene" class="level3" data-number="6.0.1">
+<h3 data-number="6.0.1" class="anchored" data-anchor-id="tolkning-av-resultatene"><span class="header-section-number">6.0.1</span> <strong>Tolkning av resultatene:</strong></h3>
+<section id="hovedeffekt-av-gruppe-gruppe" class="level4" data-number="6.0.1.1">
+<h4 data-number="6.0.1.1" class="anchored" data-anchor-id="hovedeffekt-av-gruppe-gruppe"><span class="header-section-number">6.0.1.1</span> 1️⃣ <strong>Hovedeffekt av gruppe (<code>gruppe</code>)</strong></h4>
+<ul>
+<li><strong>F(1,32) = 0.00, p = 0.993</strong><br>
+</li>
+<li><strong>Tolkning:</strong> Ingen signifikant forskjell mellom gruppene uavhengig av tid (p ≈ 1).<br>
+</li>
+<li><strong>Konklusjon:</strong> “Stedlig” og “digital” har omtrent like skårer samlet sett.</li>
+</ul>
+</section>
+<section id="hovedeffekt-av-tid-tid" class="level4" data-number="6.0.1.2">
+<h4 data-number="6.0.1.2" class="anchored" data-anchor-id="hovedeffekt-av-tid-tid"><span class="header-section-number">6.0.1.2</span> 2️⃣ <strong>Hovedeffekt av tid (<code>tid</code>)</strong></h4>
+<ul>
+<li><strong>F(1,32) = 30.77, p &lt; 0.001 (</strong>*), ges = 0.167**<br>
+</li>
+<li><strong>Tolkning:</strong> En signifikant forbedring fra pre til post-test.<br>
+</li>
+<li><strong>Konklusjon:</strong> Deltakerne har generelt forbedret seg fra pre til post, uavhengig av gruppe.</li>
+</ul>
+</section>
+<section id="interaksjon-mellom-gruppe-og-tid-gruppetid" class="level4" data-number="6.0.1.3">
+<h4 data-number="6.0.1.3" class="anchored" data-anchor-id="interaksjon-mellom-gruppe-og-tid-gruppetid"><span class="header-section-number">6.0.1.3</span> 3️⃣ <strong>Interaksjon mellom gruppe og tid (<code>gruppe:tid</code>)</strong></h4>
+<ul>
+<li><strong>F(1,32) = 0.28, p = 0.599</strong><br>
+</li>
+<li><strong>Tolkning:</strong> Ingen signifikant forskjell i hvordan gruppene endrer seg over tid.<br>
+</li>
+<li><strong>Konklusjon:</strong> Begge grupper har forbedret seg omtrent like mye fra pre til post.</li>
+</ul>
+</section>
+</section>
+<section id="sammendrag" class="level3" data-number="6.0.2">
+<h3 data-number="6.0.2" class="anchored" data-anchor-id="sammendrag"><span class="header-section-number">6.0.2</span> <strong>Sammendrag:</strong></h3>
+<p>✅ <strong>Det er en signifikant forbedring fra pre til post for alle deltakere.</strong><br>
+❌ <strong>Ingen signifikant forskjell mellom gruppene totalt sett.</strong><br>
+❌ <strong>Ingen signifikant forskjell i hvordan gruppene utviklet seg over tid.</strong></p>
+<p>#visualisere interaksjonen mellom tid (pre/post) og gruppe (stedlig/digital) med en linjegraf: ##Hva ser du i plottet? Hvis linjene er parallelt, betyr det at begge gruppene forbedret seg likt.</p>
+<p>Hvis linjene krysser eller har ulik stigning, kan det være en interaksjon (men i ditt tilfelle er interaksjonen ikke signifikant).</p>
+<p>Feilstolpene (error bars) viser hvor mye variasjon det er i dataene.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Beregne gjennomsnitt og standardfeil per gruppe og tid</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>summary_plot <span class="ot">&lt;-</span> berg_prepost <span class="sc">%&gt;%</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gruppe, tid) <span class="sc">%&gt;%</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="fu">sd</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>())</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'gruppe'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+# Groups:   gruppe [2]
+  gruppe  tid   mean_score    se
+  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+1 digital post        55.3 0.463
+2 digital pre         53.4 0.610
+3 stedlig post        55.5 0.204
+4 stedlig pre         53.1 0.784</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sørg for at "tid" har riktig rekkefølge</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>berg_prepost<span class="sc">$</span>tid <span class="ot">&lt;-</span> <span class="fu">factor</span>(berg_prepost<span class="sc">$</span>tid, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"post"</span>))</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Beregne gjennomsnitt og standardfeil per gruppe og tid</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>summary_plot <span class="ot">&lt;-</span> berg_prepost <span class="sc">%&gt;%</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gruppe, tid) <span class="sc">%&gt;%</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="fu">sd</span>(s_sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>())</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'gruppe'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot interaksjon mellom tid og gruppe</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summary_plot, <span class="fu">aes</span>(<span class="at">x =</span> tid, <span class="at">y =</span> mean_score, <span class="at">color =</span> gruppe, <span class="at">group =</span> gruppe)) <span class="sc">+</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>   </span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_score <span class="sc">-</span> se, <span class="at">ymax =</span> mean_score <span class="sc">+</span> se), <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span>  </span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Endring i score fra pre til post per gruppe"</span>,</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Tidspunkt"</span>,</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Gjennomsnittlig score (s_sum)"</span>,</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Gruppe"</span></span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Pre"</span>, <span class="st">"Post"</span>)) <span class="sc">+</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span></span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-resultat_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>#Sammenligne pre og post ## dat.wide er nytt datasett som viser endring i de 2 gruppene. Se etter en effektstørrelse</p>
+</section>
+<section id="styrketester" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Styrketester</h1>
+<p>##Keiser testene 1RM og Pmax</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gjennomsnitt og SD på 1RM og Pmax på pre-testing</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>keiser <span class="ot">&lt;-</span> komplett_datainnsamling <span class="sc">%&gt;%</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tid <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"post"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tid =</span> <span class="fu">factor</span>(tid , <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"post"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(deltaker, tid , gruppe ) <span class="sc">%&gt;%</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarize</span>(</span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">Snitt =</span> <span class="fu">mean</span>(repmax, <span class="at">na.rm =</span><span class="cn">TRUE</span>),</span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">Sd =</span> <span class="fu">sd</span>(repmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median =</span> <span class="fu">median</span>(repmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Antall =</span> <span class="fu">n</span>()</span>
+<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'deltaker', 'tid'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 88 × 7
+# Groups:   deltaker, tid [88]
+   deltaker tid   gruppe  Snitt    Sd Median Antall
+   &lt;chr&gt;    &lt;fct&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;int&gt;
+ 1 011      pre   stedlig   155    NA    155      1
+ 2 011      post  stedlig   NaN    NA     NA      1
+ 3 012      pre   digital   110    NA    110      1
+ 4 012      post  digital   135    NA    135      1
+ 5 013      pre   stedlig   130    NA    130      1
+ 6 013      post  stedlig   135    NA    135      1
+ 7 014      pre   digital   140    NA    140      1
+ 8 014      post  digital   140    NA    140      1
+ 9 015      pre   digital   140    NA    140      1
+10 015      post  digital   NaN    NA     NA      1
+# ℹ 78 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(keiser)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="zngxjpgerr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zngxjpgerr table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zngxjpgerr thead, #zngxjpgerr tbody, #zngxjpgerr tfoot, #zngxjpgerr tr, #zngxjpgerr td, #zngxjpgerr th {
+  border-style: none;
+}
+
+#zngxjpgerr p {
+  margin: 0;
+  padding: 0;
+}
+
+#zngxjpgerr .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zngxjpgerr .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zngxjpgerr .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zngxjpgerr .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zngxjpgerr .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zngxjpgerr .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zngxjpgerr .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zngxjpgerr .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zngxjpgerr .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zngxjpgerr .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zngxjpgerr .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zngxjpgerr .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zngxjpgerr .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zngxjpgerr .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zngxjpgerr .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zngxjpgerr .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zngxjpgerr .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zngxjpgerr .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zngxjpgerr .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zngxjpgerr .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zngxjpgerr .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zngxjpgerr .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zngxjpgerr .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zngxjpgerr .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zngxjpgerr .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zngxjpgerr .gt_left {
+  text-align: left;
+}
+
+#zngxjpgerr .gt_center {
+  text-align: center;
+}
+
+#zngxjpgerr .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zngxjpgerr .gt_font_normal {
+  font-weight: normal;
+}
+
+#zngxjpgerr .gt_font_bold {
+  font-weight: bold;
+}
+
+#zngxjpgerr .gt_font_italic {
+  font-style: italic;
+}
+
+#zngxjpgerr .gt_super {
+  font-size: 65%;
+}
+
+#zngxjpgerr .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zngxjpgerr .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zngxjpgerr .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zngxjpgerr .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zngxjpgerr .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zngxjpgerr .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zngxjpgerr .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zngxjpgerr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zngxjpgerr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="gruppe">gruppe</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Snitt">Snitt</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Sd">Sd</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Median">Median</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Antall">Antall</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="011 - pre">011 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="011 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="011 - pre  Snitt" class="gt_row gt_right">155</td>
+<td headers="011 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="011 - pre  Median" class="gt_row gt_right">155</td>
+<td headers="011 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="011 - post">011 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="011 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="011 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="011 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="011 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="011 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="012 - pre">012 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="012 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="012 - pre  Snitt" class="gt_row gt_right">110</td>
+<td headers="012 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="012 - pre  Median" class="gt_row gt_right">110</td>
+<td headers="012 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="012 - post">012 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="012 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="012 - post  Snitt" class="gt_row gt_right">135</td>
+<td headers="012 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="012 - post  Median" class="gt_row gt_right">135</td>
+<td headers="012 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="013 - pre">013 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="013 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="013 - pre  Snitt" class="gt_row gt_right">130</td>
+<td headers="013 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="013 - pre  Median" class="gt_row gt_right">130</td>
+<td headers="013 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="013 - post">013 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="013 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="013 - post  Snitt" class="gt_row gt_right">135</td>
+<td headers="013 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="013 - post  Median" class="gt_row gt_right">135</td>
+<td headers="013 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="014 - pre">014 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="014 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="014 - pre  Snitt" class="gt_row gt_right">140</td>
+<td headers="014 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="014 - pre  Median" class="gt_row gt_right">140</td>
+<td headers="014 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="014 - post">014 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="014 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="014 - post  Snitt" class="gt_row gt_right">140</td>
+<td headers="014 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="014 - post  Median" class="gt_row gt_right">140</td>
+<td headers="014 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="015 - pre">015 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="015 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="015 - pre  Snitt" class="gt_row gt_right">140</td>
+<td headers="015 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="015 - pre  Median" class="gt_row gt_right">140</td>
+<td headers="015 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="015 - post">015 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="015 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="015 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="015 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="015 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="015 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="016 - pre">016 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="016 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="016 - pre  Snitt" class="gt_row gt_right">140</td>
+<td headers="016 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="016 - pre  Median" class="gt_row gt_right">140</td>
+<td headers="016 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="016 - post">016 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="016 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="016 - post  Snitt" class="gt_row gt_right">141</td>
+<td headers="016 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="016 - post  Median" class="gt_row gt_right">141</td>
+<td headers="016 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="017 - pre">017 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="017 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="017 - pre  Snitt" class="gt_row gt_right">225</td>
+<td headers="017 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="017 - pre  Median" class="gt_row gt_right">225</td>
+<td headers="017 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="017 - post">017 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="017 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="017 - post  Snitt" class="gt_row gt_right">240</td>
+<td headers="017 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="017 - post  Median" class="gt_row gt_right">240</td>
+<td headers="017 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="018 - pre">018 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="018 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="018 - pre  Snitt" class="gt_row gt_right">150</td>
+<td headers="018 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="018 - pre  Median" class="gt_row gt_right">150</td>
+<td headers="018 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="018 - post">018 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="018 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="018 - post  Snitt" class="gt_row gt_right">174</td>
+<td headers="018 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="018 - post  Median" class="gt_row gt_right">174</td>
+<td headers="018 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="019 - pre">019 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="019 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="019 - pre  Snitt" class="gt_row gt_right">100</td>
+<td headers="019 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="019 - pre  Median" class="gt_row gt_right">100</td>
+<td headers="019 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="019 - post">019 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="019 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="019 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="019 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="019 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="019 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="020 - pre">020 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="020 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="020 - pre  Snitt" class="gt_row gt_right">200</td>
+<td headers="020 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="020 - pre  Median" class="gt_row gt_right">200</td>
+<td headers="020 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="020 - post">020 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="020 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="020 - post  Snitt" class="gt_row gt_right">210</td>
+<td headers="020 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="020 - post  Median" class="gt_row gt_right">210</td>
+<td headers="020 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="021 - pre">021 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="021 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="021 - pre  Snitt" class="gt_row gt_right">250</td>
+<td headers="021 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="021 - pre  Median" class="gt_row gt_right">250</td>
+<td headers="021 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="021 - post">021 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="021 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="021 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="021 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="021 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="021 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="022 - pre">022 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="022 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="022 - pre  Snitt" class="gt_row gt_right">205</td>
+<td headers="022 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="022 - pre  Median" class="gt_row gt_right">205</td>
+<td headers="022 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="022 - post">022 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="022 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="022 - post  Snitt" class="gt_row gt_right">235</td>
+<td headers="022 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="022 - post  Median" class="gt_row gt_right">235</td>
+<td headers="022 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="023 - pre">023 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="023 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="023 - pre  Snitt" class="gt_row gt_right">250</td>
+<td headers="023 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="023 - pre  Median" class="gt_row gt_right">250</td>
+<td headers="023 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="023 - post">023 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="023 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="023 - post  Snitt" class="gt_row gt_right">300</td>
+<td headers="023 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="023 - post  Median" class="gt_row gt_right">300</td>
+<td headers="023 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="024 - pre">024 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="024 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="024 - pre  Snitt" class="gt_row gt_right">250</td>
+<td headers="024 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="024 - pre  Median" class="gt_row gt_right">250</td>
+<td headers="024 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="024 - post">024 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="024 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="024 - post  Snitt" class="gt_row gt_right">200</td>
+<td headers="024 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="024 - post  Median" class="gt_row gt_right">200</td>
+<td headers="024 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="025 - pre">025 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="025 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="025 - pre  Snitt" class="gt_row gt_right">220</td>
+<td headers="025 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="025 - pre  Median" class="gt_row gt_right">220</td>
+<td headers="025 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="025 - post">025 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="025 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="025 - post  Snitt" class="gt_row gt_right">250</td>
+<td headers="025 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="025 - post  Median" class="gt_row gt_right">250</td>
+<td headers="025 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="026 - pre">026 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="026 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="026 - pre  Snitt" class="gt_row gt_right">185</td>
+<td headers="026 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="026 - pre  Median" class="gt_row gt_right">185</td>
+<td headers="026 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="026 - post">026 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="026 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="026 - post  Snitt" class="gt_row gt_right">190</td>
+<td headers="026 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="026 - post  Median" class="gt_row gt_right">190</td>
+<td headers="026 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="031 - pre">031 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="031 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="031 - pre  Snitt" class="gt_row gt_right">120</td>
+<td headers="031 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="031 - pre  Median" class="gt_row gt_right">120</td>
+<td headers="031 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="031 - post">031 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="031 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="031 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="031 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="031 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="031 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="032 - pre">032 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="032 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="032 - pre  Snitt" class="gt_row gt_right">145</td>
+<td headers="032 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="032 - pre  Median" class="gt_row gt_right">145</td>
+<td headers="032 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="032 - post">032 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="032 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="032 - post  Snitt" class="gt_row gt_right">160</td>
+<td headers="032 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="032 - post  Median" class="gt_row gt_right">160</td>
+<td headers="032 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="033 - pre">033 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="033 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="033 - pre  Snitt" class="gt_row gt_right">185</td>
+<td headers="033 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="033 - pre  Median" class="gt_row gt_right">185</td>
+<td headers="033 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="033 - post">033 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="033 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="033 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="033 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="033 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="033 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="034 - pre">034 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="034 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="034 - pre  Snitt" class="gt_row gt_right">100</td>
+<td headers="034 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="034 - pre  Median" class="gt_row gt_right">100</td>
+<td headers="034 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="034 - post">034 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="034 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="034 - post  Snitt" class="gt_row gt_right">124</td>
+<td headers="034 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="034 - post  Median" class="gt_row gt_right">124</td>
+<td headers="034 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="035 - pre">035 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="035 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="035 - pre  Snitt" class="gt_row gt_right">105</td>
+<td headers="035 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="035 - pre  Median" class="gt_row gt_right">105</td>
+<td headers="035 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="035 - post">035 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="035 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="035 - post  Snitt" class="gt_row gt_right">112</td>
+<td headers="035 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="035 - post  Median" class="gt_row gt_right">112</td>
+<td headers="035 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="036 - pre">036 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="036 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="036 - pre  Snitt" class="gt_row gt_right">180</td>
+<td headers="036 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="036 - pre  Median" class="gt_row gt_right">180</td>
+<td headers="036 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="036 - post">036 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="036 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="036 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="036 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="036 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="036 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="037 - pre">037 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="037 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="037 - pre  Snitt" class="gt_row gt_right">185</td>
+<td headers="037 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="037 - pre  Median" class="gt_row gt_right">185</td>
+<td headers="037 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="037 - post">037 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="037 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="037 - post  Snitt" class="gt_row gt_right">205</td>
+<td headers="037 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="037 - post  Median" class="gt_row gt_right">205</td>
+<td headers="037 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="038 - pre">038 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="038 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="038 - pre  Snitt" class="gt_row gt_right">200</td>
+<td headers="038 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="038 - pre  Median" class="gt_row gt_right">200</td>
+<td headers="038 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="038 - post">038 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="038 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="038 - post  Snitt" class="gt_row gt_right">205</td>
+<td headers="038 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="038 - post  Median" class="gt_row gt_right">205</td>
+<td headers="038 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="039 - pre">039 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="039 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="039 - pre  Snitt" class="gt_row gt_right">175</td>
+<td headers="039 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="039 - pre  Median" class="gt_row gt_right">175</td>
+<td headers="039 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="039 - post">039 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="039 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="039 - post  Snitt" class="gt_row gt_right">190</td>
+<td headers="039 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="039 - post  Median" class="gt_row gt_right">190</td>
+<td headers="039 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="040 - pre">040 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="040 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="040 - pre  Snitt" class="gt_row gt_right">110</td>
+<td headers="040 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="040 - pre  Median" class="gt_row gt_right">110</td>
+<td headers="040 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="040 - post">040 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="040 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="040 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="040 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="040 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="040 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="041 - pre">041 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="041 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="041 - pre  Snitt" class="gt_row gt_right">330</td>
+<td headers="041 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="041 - pre  Median" class="gt_row gt_right">330</td>
+<td headers="041 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="041 - post">041 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="041 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="041 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="041 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="041 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="041 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="042 - pre">042 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="042 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="042 - pre  Snitt" class="gt_row gt_right">210</td>
+<td headers="042 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="042 - pre  Median" class="gt_row gt_right">210</td>
+<td headers="042 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="042 - post">042 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="042 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="042 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="042 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="042 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="042 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="043 - pre">043 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="043 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="043 - pre  Snitt" class="gt_row gt_right">280</td>
+<td headers="043 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="043 - pre  Median" class="gt_row gt_right">280</td>
+<td headers="043 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="043 - post">043 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="043 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="043 - post  Snitt" class="gt_row gt_right">310</td>
+<td headers="043 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="043 - post  Median" class="gt_row gt_right">310</td>
+<td headers="043 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="051 - pre">051 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="051 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="051 - pre  Snitt" class="gt_row gt_right">135</td>
+<td headers="051 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="051 - pre  Median" class="gt_row gt_right">135</td>
+<td headers="051 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="051 - post">051 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="051 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="051 - post  Snitt" class="gt_row gt_right">145</td>
+<td headers="051 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="051 - post  Median" class="gt_row gt_right">145</td>
+<td headers="051 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="052 - pre">052 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="052 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="052 - pre  Snitt" class="gt_row gt_right">135</td>
+<td headers="052 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="052 - pre  Median" class="gt_row gt_right">135</td>
+<td headers="052 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="052 - post">052 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="052 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="052 - post  Snitt" class="gt_row gt_right">155</td>
+<td headers="052 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="052 - post  Median" class="gt_row gt_right">155</td>
+<td headers="052 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="053 - pre">053 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="053 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="053 - pre  Snitt" class="gt_row gt_right">240</td>
+<td headers="053 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="053 - pre  Median" class="gt_row gt_right">240</td>
+<td headers="053 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="053 - post">053 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="053 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="053 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="053 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="053 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="053 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="054 - pre">054 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="054 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="054 - pre  Snitt" class="gt_row gt_right">152</td>
+<td headers="054 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="054 - pre  Median" class="gt_row gt_right">152</td>
+<td headers="054 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="054 - post">054 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="054 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="054 - post  Snitt" class="gt_row gt_right">167</td>
+<td headers="054 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="054 - post  Median" class="gt_row gt_right">167</td>
+<td headers="054 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="055 - pre">055 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="055 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="055 - pre  Snitt" class="gt_row gt_right">155</td>
+<td headers="055 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="055 - pre  Median" class="gt_row gt_right">155</td>
+<td headers="055 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="055 - post">055 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="055 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="055 - post  Snitt" class="gt_row gt_right">170</td>
+<td headers="055 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="055 - post  Median" class="gt_row gt_right">170</td>
+<td headers="055 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="056 - pre">056 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="056 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="056 - pre  Snitt" class="gt_row gt_right">150</td>
+<td headers="056 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="056 - pre  Median" class="gt_row gt_right">150</td>
+<td headers="056 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="056 - post">056 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="056 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="056 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="056 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="056 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="056 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="057 - pre">057 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="057 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="057 - pre  Snitt" class="gt_row gt_right">135</td>
+<td headers="057 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="057 - pre  Median" class="gt_row gt_right">135</td>
+<td headers="057 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="057 - post">057 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="057 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="057 - post  Snitt" class="gt_row gt_right">140</td>
+<td headers="057 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="057 - post  Median" class="gt_row gt_right">140</td>
+<td headers="057 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="058 - pre">058 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="058 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="058 - pre  Snitt" class="gt_row gt_right">150</td>
+<td headers="058 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="058 - pre  Median" class="gt_row gt_right">150</td>
+<td headers="058 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="058 - post">058 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="058 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="058 - post  Snitt" class="gt_row gt_right">160</td>
+<td headers="058 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="058 - post  Median" class="gt_row gt_right">160</td>
+<td headers="058 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="059 - pre">059 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="059 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="059 - pre  Snitt" class="gt_row gt_right">110</td>
+<td headers="059 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="059 - pre  Median" class="gt_row gt_right">110</td>
+<td headers="059 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="059 - post">059 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="059 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="059 - post  Snitt" class="gt_row gt_right">120</td>
+<td headers="059 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="059 - post  Median" class="gt_row gt_right">120</td>
+<td headers="059 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="060 - pre">060 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="060 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="060 - pre  Snitt" class="gt_row gt_right">125</td>
+<td headers="060 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="060 - pre  Median" class="gt_row gt_right">125</td>
+<td headers="060 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="060 - post">060 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="060 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="060 - post  Snitt" class="gt_row gt_right">NaN</td>
+<td headers="060 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="060 - post  Median" class="gt_row gt_right">NA</td>
+<td headers="060 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="091 - pre">091 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="091 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="091 - pre  Snitt" class="gt_row gt_right">167</td>
+<td headers="091 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="091 - pre  Median" class="gt_row gt_right">167</td>
+<td headers="091 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="091 - post">091 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="091 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="091 - post  Snitt" class="gt_row gt_right">168</td>
+<td headers="091 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="091 - post  Median" class="gt_row gt_right">168</td>
+<td headers="091 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="092 - pre">092 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="092 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="092 - pre  Snitt" class="gt_row gt_right">140</td>
+<td headers="092 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="092 - pre  Median" class="gt_row gt_right">140</td>
+<td headers="092 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="092 - post">092 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="092 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="092 - post  Snitt" class="gt_row gt_right">155</td>
+<td headers="092 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="092 - post  Median" class="gt_row gt_right">155</td>
+<td headers="092 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="093 - pre">093 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="093 - pre  gruppe" class="gt_row gt_left">digital</td>
+<td headers="093 - pre  Snitt" class="gt_row gt_right">150</td>
+<td headers="093 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="093 - pre  Median" class="gt_row gt_right">150</td>
+<td headers="093 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="093 - post">093 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="093 - post  gruppe" class="gt_row gt_left">digital</td>
+<td headers="093 - post  Snitt" class="gt_row gt_right">170</td>
+<td headers="093 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="093 - post  Median" class="gt_row gt_right">170</td>
+<td headers="093 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="094 - pre">094 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="094 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="094 - pre  Snitt" class="gt_row gt_right">110</td>
+<td headers="094 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="094 - pre  Median" class="gt_row gt_right">110</td>
+<td headers="094 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="094 - post">094 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="094 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="094 - post  Snitt" class="gt_row gt_right">120</td>
+<td headers="094 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="094 - post  Median" class="gt_row gt_right">120</td>
+<td headers="094 - post  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="095 - pre">095 - pre</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="095 - pre  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="095 - pre  Snitt" class="gt_row gt_right">80</td>
+<td headers="095 - pre  Sd" class="gt_row gt_right">NA</td>
+<td headers="095 - pre  Median" class="gt_row gt_right">80</td>
+<td headers="095 - pre  Antall" class="gt_row gt_right">1</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="095 - post">095 - post</th>
+    </tr>
+    <tr class="gt_row_group_first"><td headers="095 - post  gruppe" class="gt_row gt_left">stedlig</td>
+<td headers="095 - post  Snitt" class="gt_row gt_right">120</td>
+<td headers="095 - post  Sd" class="gt_row gt_right">NA</td>
+<td headers="095 - post  Median" class="gt_row gt_right">120</td>
+<td headers="095 - post  Antall" class="gt_row gt_right">1</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>#pre- og post-testdata Keiser for de samme deltakerne, hvor jeg bruker en mixed ANOVA, en paired t-test, og en Wilcoxon sign-rank test for å sammenligne endringer i score innen og mellom gruppene.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtrerer både pre- og post-testdata og omstrukturerer slik at hver deltaker har én rad per tidspunkt</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Hente pre- og post-test data</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>keiser_prepost <span class="ot">&lt;-</span> komplett_datainnsamling<span class="sc">%&gt;%</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(deltaker, gruppe, tid, repmax) <span class="sc">%&gt;%</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tid <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"post"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sjekk datastrukturen</span></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(keiser_prepost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  deltaker gruppe  tid   repmax
+  &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;
+1 011      stedlig pre      155
+2 012      digital pre      110
+3 012      digital post     135
+4 013      stedlig pre      130
+5 013      stedlig post     135
+6 014      digital pre      140</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Gjennomsnittlig endring pr gruppe fra pre til post</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> keiser_prepost <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gruppe, tid) <span class="sc">%&gt;%</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(repmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_score =</span> <span class="fu">sd</span>(repmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'gruppe'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+# Groups:   gruppe [2]
+  gruppe  tid   mean_score sd_score     n
+  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+1 digital post        181.     51.9    17
+2 digital pre         173.     55.0    24
+3 stedlig post        170.     49.7    14
+4 stedlig pre         158.     52.7    20</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visuell endring fra pre til post</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(keiser_prepost, <span class="fu">aes</span>(<span class="at">x =</span> tid, <span class="at">y =</span> repmax, <span class="at">color =</span> gruppe, <span class="at">group =</span> <span class="fu">interaction</span>(gruppe, deltaker))) <span class="sc">+</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Linjer for individuelle deltakere</span></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="co"># Punkter for pre og post</span></span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"line"</span>, <span class="fu">aes</span>(<span class="at">group =</span> gruppe), <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Linjer for gruppenes gjennomsnitt</span></span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Endring i score fra pre til post"</span>, <span class="at">x =</span> <span class="st">"Tidspunkt"</span>, <span class="at">y =</span> <span class="st">"Score (s_sum)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-resultat_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sjekke om hver gruppe forbedret seg signifikant fra pre til post, kan du bruke en paired t-test (dersom normalfordelt) eller Wilcoxon sign-rank test</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>pre_post_wide_keiser <span class="ot">&lt;-</span> keiser_prepost<span class="sc">%&gt;%</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> tid, <span class="at">values_from =</span> repmax )</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>t_test_stedlig_keiser <span class="ot">&lt;-</span> <span class="fu">t.test</span>(pre_post_wide_keiser<span class="sc">$</span>pre[pre_post_wide_keiser<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"stedlig"</span>], </span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>                         pre_post_wide_keiser<span class="sc">$</span>post[pre_post_wide_keiser<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"stedlig"</span>], </span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>t_test_digital_keiser <span class="ot">&lt;-</span> <span class="fu">t.test</span>(pre_post_wide_keiser<span class="sc">$</span>pre[pre_post_wide_keiser<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"digital"</span>], </span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>                         pre_post_wide_keiser<span class="sc">$</span>post[pre_post_wide_keiser<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"digital"</span>], </span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_test_stedlig_keiser)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "stedlig"] and pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "stedlig"]
+t = -1.9859, df = 13, p-value = 0.06855
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -22.9664375   0.9664375
+sample estimates:
+mean difference 
+            -11 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_test_digital_keiser)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "digital"] and pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "digital"]
+t = -5.4444, df = 16, p-value = 5.403e-05
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -22.720293  -9.985589
+sample estimates:
+mean difference 
+      -16.35294 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>wilcox_stedlig_keiser <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(pre_post_wide_keiser<span class="sc">$</span>pre[pre_post_wide_keiser<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"stedlig"</span>], </span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>                              pre_post_wide_keiser<span class="sc">$</span>post[pre_post_wide_keiser<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"stedlig"</span>], </span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in
+wilcox.test.default(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == :
+cannot compute exact p-value with ties</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>wilcox_digital_keiser <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(pre_post_wide_keiser<span class="sc">$</span>pre[pre_post_wide_keiser<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"digital"</span>], </span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>                              pre_post_wide_keiser<span class="sc">$</span>post[pre_post_wide_keiser<span class="sc">$</span>gruppe <span class="sc">==</span> <span class="st">"digital"</span>], </span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in
+wilcox.test.default(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == :
+cannot compute exact p-value with ties</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in
+wilcox.test.default(pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == :
+cannot compute exact p-value with zeroes</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox_stedlig_keiser)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "stedlig"] and pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "stedlig"]
+V = 14, p-value = 0.01687
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox_digital_keiser)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  pre_post_wide_keiser$pre[pre_post_wide_keiser$gruppe == "digital"] and pre_post_wide_keiser$post[pre_post_wide_keiser$gruppe == "digital"]
+V = 0, p-value = 0.0004658
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mixed ANOVA (hvis du vil se interaksjonseffekt mellom tid og gruppe)</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Dersom du vil teste om endringen over tid er forskjellig mellom gruppene, er en mixed ANOVA en god løsning.</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA-modell</span></span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>anova_model_keiser <span class="ot">&lt;-</span> <span class="fu">aov_ez</span>(<span class="at">id =</span> <span class="st">"deltaker"</span>, </span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">dv =</span> <span class="st">"repmax"</span>, </span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">within =</span> <span class="st">"tid"</span>, </span>
+<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">between =</span> <span class="st">"gruppe"</span>, </span>
+<span id="cb87-11"><a href="#cb87-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> keiser_prepost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Converting to factor: gruppe</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Missing values for 13 ID(s), which were removed before analysis:
+011, 015, 019, 021, 031, 033, 036, 040, 041, 042, ... [showing first 10 only]
+Below the first few rows (in wide format) of the removed cases with missing data.
+     deltaker  gruppe pre post
+# 1       011 stedlig 155   NA
+# 5       015 digital 140   NA
+# 9       019 stedlig 100   NA
+# 11      021 digital 250   NA
+# 17      031 digital 120   NA
+# 19      033 digital 185   NA</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Contrasts set to contr.sum for the following variables: gruppe</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova_model_keiser)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: repmax
+      Effect    df     MSE         F   ges p.value
+1     gruppe 1, 29 4864.94      0.23  .008    .633
+2        tid 1, 29  138.58 20.72 ***  .019   &lt;.001
+3 gruppe:tid 1, 29  138.58      0.79 &lt;.001    .380
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '+' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>#Endring i styrke 1RM</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>styrke <span class="ot">&lt;-</span> komplett_datainnsamling<span class="sc">%&gt;%</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(deltaker, tid, gruppe, rm_endring_kg)<span class="sc">%&gt;%</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gruppe<span class="sc">==</span><span class="st">"stedlig"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(tid, gruppe)<span class="sc">%&gt;%</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 4
+# Groups:   tid, gruppe [1]
+   deltaker tid   gruppe  rm_endring_kg
+   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;
+ 1 013      pre   stedlig             5
+ 2 018      pre   stedlig            24
+ 3 020      pre   stedlig            10
+ 4 024      pre   stedlig           -50
+ 5 026      pre   stedlig             5
+ 6 032      pre   stedlig            15
+ 7 034      pre   stedlig            24
+ 8 043      pre   stedlig            30
+ 9 052      pre   stedlig            20
+10 054      pre   stedlig            15
+11 057      pre   stedlig             5
+12 091      pre   stedlig             1
+13 094      pre   stedlig            10
+14 095      pre   stedlig            40</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-metode.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Metode</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-diskusjon.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Diskusjon</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

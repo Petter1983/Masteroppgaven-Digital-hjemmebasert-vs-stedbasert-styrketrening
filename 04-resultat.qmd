@@ -1,41 +1,15 @@
 ---
 title: "Resultat berg og keiser"
 editor: visual
+output: pdf_dokument
+
+
 ---
 
 #Laster ned relevante pakker
-
 ```{r}
-install.packages("openxlsx")
-install.packages("readxl")
-install.packages("gt")
-install.packages("tidyverse")
-install.packages("ggplot2")
-install.packages("broom")
-install.packages("ggtext")
-install.packages("readr")
-install.packages("dplyr")
-install.packages("rio")
-install.packages("rbbt")
-install.packages("tidyr")
-install.packages("rtools")
-install.packages("excidata")
-install.packages("matrix")
-install.packages("lmerTest")
-install.packages("rstatix")
-install.packages("afex")
-install.packages("quarto")
 
-install.packages("rmarkdown")
-install.packages("tinytex")
-tinytex::install_tinytex()  # Installerer en lettversjon av LaTeX
 
-tinytex::tlmgr("--version")  
-
-quarto::quarto_render("Resultat.qmd", output_format = "pdf")
-
-(quarto clean)
-quarto render
 
 ```
 
@@ -54,6 +28,8 @@ library(tidyr)
 library(ggtext)
 library(lme4)
 library(emmeans)
+library(rstatix)
+library(afex)
 
 
 
@@ -73,11 +49,15 @@ View(komplett_datainnsamling)
 #Person karakteristika baseline
 
 ```{r}
+#| echo: true
+#| warning: true
+
 person_baseline <- komplett_datainnsamling%>%
   select(deltaker, tid, kjonn, alder, kreftform, vekt, hoyde, bmi )%>%
   filter(tid=="pre")%>%
   mutate(alder = recode(alder, "unge voksne" = "18-44", "middelalder"="45-59", "eldre voksne" = "60-74", "gamle eldre" ="75-89", "eldste eldre" = "90+"))%>%
   print()
+
 
 
 
@@ -170,6 +150,10 @@ ggplot(berg_post, aes(x = gruppe, y = s_sum, fill = gruppe)) +
   labs(title = "Sammenligning av score mellom grupper post test", 
        x = "Gruppe", 
        y = "Score (s_sum)")
+
+
+
+
 
 t_test_result <- t.test(s_sum ~ gruppe, data = berg_post, var.equal = TRUE) 
 print(t_test_result)
@@ -394,21 +378,7 @@ keiser <- komplett_datainnsamling %>%
   
 gt(keiser)
 
-#Mixed models
-library(lme4)
 
-m8<- lmer(Snitt~gruppe + (1|deltaker), data = keiser)
-summary(m8)
-
-plot(fitted(m8))  # Restplott for å se om det er mønstre i residualene
-qqnorm(residuals(m8)); qqline(residuals(m8))  # Sjekk normalfordeling
-
-library(lmerTest)
-summary(lmer(Snitt ~ gruppe + (1 | deltaker), data = keiser))
-
-
-model_null <- lmer(Snitt ~ (1 | deltaker), data = keiser, REML = TRUE)
-anova(m8, model_null)
 
 
 
@@ -487,10 +457,7 @@ print(wilcox_digital_keiser)
 #Mixed ANOVA (hvis du vil se interaksjonseffekt mellom tid og gruppe)
 #Dersom du vil teste om endringen over tid er forskjellig mellom gruppene, er en mixed ANOVA en god løsning.
 
-install.packages("rstatix")
-install.packages("afex")
-library(rstatix)
-library(afex)
+
 
 # ANOVA-modell
 anova_model_keiser <- aov_ez(id = "deltaker", 
@@ -499,7 +466,7 @@ anova_model_keiser <- aov_ez(id = "deltaker",
                       between = "gruppe", 
                       data = keiser_prepost)
 
-print(anova_model)
+print(anova_model_keiser)
 
 
 
@@ -516,107 +483,9 @@ styrke <- komplett_datainnsamling%>%
   print()
   
   
-  filter(tid=="post")%>%
-  group_by(tid, gruppe)%>%
-  drop_na()%>%
-  print()
   
-  
-  
- tablestrength <- styrke %>%    
-  group_by(tid)%>%
-  filter(gruppe=="stedlig" ) %>%
-   summarise(m = mean(pros_change),
-            sd = sd(pros_change)) %>%
-  mutate(meansd= paste0(signif(m, 3), "(", signif(sd, 3), ")")) %>%
-  select(meansd) 
-
-
-group_by(repmax)%>%
-  group_by(deltaker, tid, gruppe) %>%
-  print()
-  summarise(combined.load = mean(scaled.load, na.rm = TRUE)) %>%
-  ungroup() %>%
-  pivot_wider(names_from = time,
-              values_from = combined.load) %>%
-  mutate(pros_change= ((post - pre) / pre) * 100)  %>%
-  print()
-
-
-
 ```
 
-#Sammenligne pre og post i boxplott og bland altman plot på stedlig trening
-
-```{r}
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Filtrere for stedlig trening
-repmax_stedlig<- komplett_datainnsamling%>%
-select(gruppe, tid, repmax)%>%
-  filter(gruppe=="stedlig")%>%
-  drop_na()%>%
-print()
-
-boxplot(data(repmax_stedlig=="pre", repmax_stedlig=="post"), palette("blue", "red"))
 
 
 
-
-    = df[df["gruppe"] == "stedlig"]
-
-# Velge relevante kolonner
-repmax_stedlig -> df_stedlig[["deltaker", "tid", "repmax"]].dropna()
-
-# Pivotere slik at vi får pre- og post-test på separate kolonner
-df_repmax_wide = df_repmax.pivot(index="deltaker", columns="tid", values="repmax").dropna()
-
-# Lage boxplot
-plt.figure(figsize=(8, 6))
-sns.boxplot(data=[df_repmax_wide["pre"], df_repmax_wide["post"]], palette=["blue", "red"])
-plt.xticks(ticks=[0, 1], labels=["Pre-test", "Post-test"])
-plt.ylabel("Repmax (kg)")
-plt.title("Boxplot av Repmax for Stedlig Trening")
-plt.grid(True)
-plt.show()
-
-# Beregne forskjeller for Bland-Altman-plot
-df_repmax_wide["diff"] = df_repmax_wide["post"] - df_repmax_wide["pre"]
-df_repmax_wide["mean"] = (df_repmax_wide["post"] + df_repmax_wide["pre"]) / 2
-
-# Bland-Altman-plot
-plt.figure(figsize=(8, 6))
-plt.scatter(df_repmax_wide["mean"], df_repmax_wide["diff"], color="black")
-plt.axhline(df_repmax_wide["diff"].mean(), color="red", linestyle="--", label="Mean Difference")
-plt.axhline(df_repmax_wide["diff"].mean() + 1.96 * df_repmax_wide["diff"].std(), color="blue", linestyle="--", label="Upper Limit (95%)")
-plt.axhline(df_repmax_wide["diff"].mean() - 1.96 * df_repmax_wide["diff"].std(), color="blue", linestyle="--", label="Lower Limit (95%)")
-plt.xlabel("Gjennomsnitt av Pre- og Post-test (kg)")
-plt.ylabel("Forskjell (Post - Pre) (kg)")
-plt.title("Bland-Altman-plot for Repmax")
-plt.legend()
-plt.grid(True)
-plt.show()
-
-```
-
-```{r}
-keiser <- komplett_datainnsamling %>%
-
-  filter(tid %in% c("pre", "post"))%>%
-  
-  mutate(tid = factor(tid , levels = c("pre", "post"))) %>%
-  group_by(tid , gruppe ) %>%
- 
- 
-   summarize(
-    Snitt = mean(repmax, na.rm =TRUE),
-    Sd = sd(repmax, na.rm = TRUE),
-    Median = median(repmax, na.rm = TRUE),
-    Percentil = percent_rank(repmax, na.rm= TRUE),
-    Antall = n()
-  ) %>%
-  print()
-
-
-```

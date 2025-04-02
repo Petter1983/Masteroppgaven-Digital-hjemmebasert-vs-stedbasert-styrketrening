@@ -31,5 +31,29 @@
   },
   "07-laboratory-report.qmd": {
     "07-laboratory-report.html": "44931bdb"
+  },
+  "04-resultat.qmd": {
+    "04-resultat.html": "710c6261"
+  },
+  "forord.qmd": {
+    "forord.html": "118095f5"
+  },
+  "01-teori.qmd": {
+    "01-teori.html": "14046ab5"
+  },
+  "02-innledning.qmd": {
+    "02-innledning.html": "894fd106"
+  },
+  "03-metode.qmd": {
+    "03-metode.html": "c859fb4d"
+  },
+  "05-diskusjon.qmd": {
+    "05-diskusjon.html": "ca526c41"
+  },
+  "06-referanser.qmd": {
+    "06-referanser.html": "507ead75"
+  },
+  "07-vedlegg.qmd": {
+    "07-vedlegg.html": "c7d2d827"
   }
 }
